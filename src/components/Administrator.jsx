@@ -12,10 +12,10 @@ const Administrator =({}) => {
                     <div className='administrator-outer-container'>
                         <div className='administrator-menu-container'>
                             <div className='administrator-employee-form'>
-                                <img src={addSymbol} class='addSymbol' alt='Add' />                            
+                                <img src={addSymbol} class='administrator-symbol' alt='Add' />                            
                             </div>
                             <div className='administrator-employee-filter'>
-                                <img src={addFilter} class='addFilter' alt='Filter' />                            
+                                <img src={addFilter} class='administrator-symbol' alt='Filter' />                            
                             </div>
                         </div>
                         <div className='administrator-inner-container'>
