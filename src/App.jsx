@@ -11,7 +11,7 @@ function App() {
   return (
     <div className='App'>
       <p>Powered by:</p>
-      <img className="appLogo" src="../public/img/sparksoftlogo.svg"/>
+      <img className="appLogo" src="../img/sparksoftlogo.svg"/>
       
       {/* Routes for pages */}
       <Routes>

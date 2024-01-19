@@ -86,9 +86,10 @@
 }
 .loginForm input{
     font-family: 'Jost', sans-serif;
+    padding-left: 5%;
 }
 .loginForm input::placeholder{
-    padding-left: 5%;
+    font-style: italic;
 }
 #username{
     width: 86%;
@@ -161,9 +162,11 @@
     border: none;
     font-family: 'Jost', sans-serif;
     font-size: 1.2rem;
+    padding-left: 3%;
 }
 .loginRegForm input::placeholder{
-    padding-left: 5%;
+    padding-left: 0%;
+    font-style:italic;
 }
 
 .loginRegBackContainer{
