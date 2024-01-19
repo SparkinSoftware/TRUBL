@@ -6,13 +6,15 @@ import Contact from './components/Contact'
 import Technician from './components/Technician'
 import './index.css';
 import Administrator from './components/Administrator'
+import Login from './components/Login/Login.jsx'
 
 
 function App() {
 
   return (
     <div className='App'>
-      <h1>SparkinSoftware</h1>
+      <p>Powered by:</p>
+      <img className="appLogo" src="../img/sparksoftlogo.svg"/>
       
       {/* Routes for pages */}
       <Routes>
@@ -21,6 +23,7 @@ function App() {
         <Route path='contact' element={ <Contact/> } />
         <Route path='technician' element={ <Technician/> } />
         <Route path='administrator' element={ <Administrator/> } />
+        <Route path='login' element={ <Login /> } />
       </Routes>
       
 

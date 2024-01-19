@@ -1,3 +1,4 @@
+
 /* jesse's css for Technician component START*/
 
 .technician-container {
@@ -128,4 +129,18 @@
     height: auto;
 }
 
-/* jesse's css for Technician component END*/
+*{
+    margin: 0;
+    padding: 0;
+}
+html, body{
+    height: 100%;
+    width: 100%;
+    background-color: #F5f5f5;
+    font-family: 'Jost', sans-serif;
+}
+.appLogo{
+    width: 15vw;
+    
+}
+
