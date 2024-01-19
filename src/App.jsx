@@ -4,6 +4,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Contact from './components/Contact'
 import Technician from './components/Technician'
+import './index.css';
 
 
 function App() {
@@ -17,7 +18,10 @@ function App() {
         <Route path='/' element= { <Home/> } />
         <Route path='about' element= { <About /> } /> 
         <Route path='contact' element={ <Contact/> } />
+        <Route path='technician' element={ <Technician/> } />
       </Routes>
+      
+
       
 
     </div>
