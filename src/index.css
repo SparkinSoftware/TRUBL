@@ -1,1 +1,46 @@
+/* jesse's css for Technician component START*/
 
+.technician-container {
+    height: 80vh;
+    width: 100vw;
+    background-color:brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.technician-unassignedTickets {
+    height: 70vh;
+    width: 40vw;
+    background-color: aqua;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.technician-assignedTickets {
+    height: 70vh;
+    width: 40vw;
+    background-color: orange;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.technician-title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.technician-ticketContainer {
+    height: 60vh;
+    width: 40vw;
+    background-color: antiquewhite;
+}
+
+/* jesse's css for Technician component END*/
