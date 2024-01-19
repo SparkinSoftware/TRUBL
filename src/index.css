@@ -6,4 +6,9 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: #F5f5f5;
+    font-family: 'Jost', sans-serif;
+}
+.appLogo{
+    width: 15vw;
+    
 }

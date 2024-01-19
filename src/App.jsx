@@ -4,12 +4,14 @@ import Home from './components/Home'
 import About from './components/About'
 import Contact from './components/Contact'
 import Login from './components/Login/Login.jsx'
+import "./index.css"
 
 function App() {
 
   return (
     <div className='App'>
-      <h1>SparkinSoftware</h1>
+      <p>Powered by:</p>
+      <img className="appLogo" src="../img/sparksoftlogo.svg"/>
       
       {/* Routes for pages */}
       <Routes>
