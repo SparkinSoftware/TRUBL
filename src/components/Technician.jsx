@@ -1,20 +1,24 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Technician =() => {
+const Technician =({}) => {
     return (
         <>
-            <div className='technicianContainer'>
-                <div className='unassignedTickets'>{`Unassigned Tickets`}
-                    <div className='ticketContainer'>
+            <div className='technician-container'>
+                <div className='technician-unassignedTickets'>
+                    <div className='technician-title'>{`Unassigned Tickets`}</div>
+                    <div className='technician-ticketContainer'>
                         {/* FIXME: Tickets Component goes here (filtered)*/}
                     </div>
                 </div>
-                <div className='assignedTickets'>{`Assigned Tickets`}
-                    <div className='ticketContainer'>
+                <div className='technician-assignedTickets'>
+                    <div className='technician-title'>{`Assigned Tickets`}</div>
+                    <div className='technician-ticketContainer'>
                         {/* FIXME: Tickets Component goes here (filtered)*/}
                     </div>
                 </div>
             </div>
+            <Link to='/'>Back Home</Link>
         </>
     )
 }
