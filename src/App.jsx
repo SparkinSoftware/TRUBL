@@ -5,6 +5,7 @@ import About from './components/About'
 import Contact from './components/Contact'
 import Technician from './components/Technician'
 import './index.css';
+import Administrator from './components/Administrator'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='about' element= { <About /> } /> 
         <Route path='contact' element={ <Contact/> } />
         <Route path='technician' element={ <Technician/> } />
+        <Route path='administrator' element={ <Administrator/> } />
       </Routes>
       
 
