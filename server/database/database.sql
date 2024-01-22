@@ -6,7 +6,6 @@ CREATE TABLE Employee (
     location varchar,
     name varchar,
     email varchar,
-    password varchar
 );
 CREATE TABLE TaskIssue (
     ID serial PRIMARY KEY,

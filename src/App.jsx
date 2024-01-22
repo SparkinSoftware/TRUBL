@@ -7,6 +7,7 @@ import Technician from './components/Technician'
 import './index.css';
 import Administrator from './components/Administrator'
 import Login from './components/Login/Login.jsx'
+import { SupabaseProvider } from './SupabaseContext'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <img className="appLogo" src="../img/sparksoftlogo.svg"/>
       
       {/* Routes for pages */}
+      <SupabaseProvider>
       <Routes>
         <Route path='/' element= { <Home/> } />
         <Route path='about' element= { <About /> } /> 
@@ -25,6 +27,7 @@ function App() {
         <Route path='administrator' element={ <Administrator/> } />
         <Route path='login' element={ <Login /> } />
       </Routes>
+      </SupabaseProvider>
       
 
       
