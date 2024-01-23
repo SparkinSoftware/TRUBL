@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import addSymbol from '../assets/symbol_add.svg'
 import addFilter from '../assets/symbol_filter.svg'
 import './administrator.css'
+import TableEmployee from './TableEmployee'
 
 const Administrator =({}) => {
     return (
@@ -21,6 +22,7 @@ const Administrator =({}) => {
                         </div>
                         <div className='administrator-inner-container'>
                             {/* FIXME: EmployeesView Component goes here */}
+                            <TableEmployee />
                         </div>
                     </div>
                 </div>
