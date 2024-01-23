@@ -34,9 +34,6 @@
     border-top: #313131 solid 1px;
 }
 
-.submittedTicket p {
-
-}
 
 .ticketFormContainer{
     display: flex;
@@ -100,6 +97,7 @@ textarea {
     font-size: large;
     border-radius: 25px;
     background-color: #d1d0cb;
+    transition: ease 300ms;
 }
 
 #newIssueButton:hover {
@@ -148,17 +146,18 @@ textarea {
     margin: 1em 0 0 0;
     padding: 0.5em 1em;
     text-transform: capitalize;
-    border: none;
+    border: #313131 solid .01rem;
     cursor: pointer;
     background-color: #d1d0cb;
+    transition: ease 300ms;
+
 }
 
 #submittedTicketDelete:hover {
     background-color: rgb(244, 247, 233);
-
+    border: #313131 solid .01rem;
 }
 #submittedTicketDelete:active {
     color: whitesmoke;
     background-color: darkred;
-    border-radius: 10px;
 }
