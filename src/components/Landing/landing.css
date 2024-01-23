@@ -1,0 +1,81 @@
+.landingBody{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    user-select: none;
+}
+
+.landingContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f4f2;
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    width: 50%;
+    align-items: center;
+    text-align: center;
+    justify-content: space-around;
+    height: 50%;
+    margin-top: 25%;
+    color: #313131;
+}
+
+.landingEmployeeButton{
+    background-color: #ebeae3;
+    height: 50%;
+    margin-top: 5%;
+    margin-bottom: 2.5%;
+    color: #313131;
+    width: 33%;
+}
+
+.landingTechButton{
+    background-color: #ebeae3;
+    height: 50%;
+    margin-top: 5%;
+    margin-bottom: 20%;
+    color: #313131;
+    width: 33%;
+}
+
+.landingAdminButton{
+    background-color: #ebeae3;
+    height: 50%;
+    margin-top: 5%;
+    margin-bottom:20%;
+    color: #313131;
+    width: 33%;
+}
+
+.landingButtonLogo{
+    font-size: 1.5rem;
+    padding: 5%;
+    color: #313131;
+}
+.landingSubmit{
+    color: white;
+    background-color: #313131;
+    width: 50%;
+    margin-left: 25%;
+    margin-bottom: 10%;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    user-select: none;
+}
+.landingSubmit:hover{
+    color: #313131;
+    background-color: #ebeae3;
+    border: 1px solid #313131;
+    cursor: pointer;
+    user-select: none;
+}
+
+.landingTechButton{
+
+}
+
+.landingAdminButton{
+
+}

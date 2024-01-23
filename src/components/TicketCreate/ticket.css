@@ -27,13 +27,13 @@
 
 .submittedTicket {
     height: 10%;
-    width: 100%;
+    width: 90%;
     text-align: center;
+    margin-top: 1%;
+    padding: 1% 0;
+    border-top: #313131 solid 1px;
 }
 
-.submittedTicket p {
-    margin-top: 1%;
-}
 
 .ticketFormContainer{
     display: flex;
@@ -97,10 +97,15 @@ textarea {
     font-size: large;
     border-radius: 25px;
     background-color: #d1d0cb;
+    transition: ease 300ms;
 }
 
 #newIssueButton:hover {
     background-color: rgb(244, 247, 233);
+}
+
+#newIssueButton:active {
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
 }
 
 #ticketFormClose {
@@ -129,4 +134,30 @@ textarea {
         min-height: 200px;
         min-width: 300px;
     }
+}
+
+#ticketLinkContainer {
+    width: 90%;
+    text-align: left;
+    padding: 2% 0;
+}
+
+#submittedTicketDelete {
+    margin: 1em 0 0 0;
+    padding: 0.5em 1em;
+    text-transform: capitalize;
+    border: #313131 solid .01rem;
+    cursor: pointer;
+    background-color: #d1d0cb;
+    transition: ease 300ms;
+
+}
+
+#submittedTicketDelete:hover {
+    background-color: rgb(244, 247, 233);
+    border: #313131 solid .01rem;
+}
+#submittedTicketDelete:active {
+    color: whitesmoke;
+    background-color: darkred;
 }

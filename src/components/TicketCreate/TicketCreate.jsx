@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { Link } from "react-router-dom";
+import { useSupabase } from '../../SupabaseContext';
 import './ticket.css';
 
 const TicketCreation = () => {
-
+    const supabase = useSupabase();
     const [submittedTicket, setSubmittedTicket] = useState({
         ticketCategory: "",
         ticketLocation: "",
@@ -16,20 +17,54 @@ const TicketCreation = () => {
     const handleNewIssueClick = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        // Add ticket to the back of pending tickets array
-        setPendingTickets([...pendingTickets, submittedTicket])
+    useEffect(() => {
+        const fetchTickets = async () => {
+            const { data, error } = await supabase
+                .from('taskissue')
+                .select('*');
 
-        // clear the form once submitted
+            if (error) {
+                console.error('Error fetching tickets:', error.message);
+            } else {
+                setPendingTickets(data);
+                console.log(pendingTickets);
+            }
+        };
+
+        fetchTickets();
+    }, []);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(supabase.auth.getUser())
+    
+        setPendingTickets([...pendingTickets, submittedTicket]);
+    
+        const { data, error } = await supabase
+            .from('taskissue')
+            .insert([
+                {
+                    location: submittedTicket.ticketLocation,
+                    description: submittedTicket.descriptionOfIssue,
+                    status: 'Pending',
+                    category: submittedTicket.ticketCategory,
+                }
+            ]);
+    
+        if (error) {
+            console.error('Error inserting data:', error.message);
+        } else {
+            console.log('Data inserted:', data);
+        }
+    
         setSubmittedTicket({
-            ticketCategory: "",
-            ticketLocation: "",
-            descriptionOfIssue: ""
-        })
-
-        setShowForm(false)
-    }
+            category: "",
+            location: "",
+            description: ""
+        });
+    
+        setShowForm(false);
+    };
 
     const handleInputChange = (e) => {
         const {name, value} = e.target
@@ -37,6 +72,18 @@ const TicketCreation = () => {
             ...submittedTicket,
             [name]: value
         })
+    }
+
+
+    const handleDeleteTicket = (index) => {
+        // Remove the ticket at the specified index from pending tickets
+        const updatedTickets = [...pendingTickets];
+        updatedTickets.splice(index, 1);
+        setPendingTickets(updatedTickets);
+
+        // Add logic to delete the ticket from the database if needed
+        // Example: Call an API endpoint to delete the ticket from the database
+        // deleteTicketFromDatabase(pendingTickets[index].id);
     }
 
     return (
@@ -47,12 +94,12 @@ const TicketCreation = () => {
                 {pendingTickets.length > 0 && pendingTickets.map((ticket, index) => (
             
                     <div key={index} className="submittedTicket">
-                        <p>Category: {ticket.ticketCategory} Location: {ticket.ticketLocation} Description: {ticket.descriptionOfIssue}</p>
-                        <div></div>
-                        {console.log(ticket.ticketCategory, ticket.ticketLocation, ticket.descriptionOfIssue)}
+                        <p>Category: {ticket.category} Location: {ticket.location} Description: {ticket.description}</p>
+                        <button id="submittedTicketDelete"onClick={() => handleDeleteTicket(index) }>delete</button>
+                        <div>
+                            {/* Progress Bar */}
+                        </div>
                     </div>
-                    // Progress Bar
-    
                 ))}
                 
             </div>
@@ -63,7 +110,7 @@ const TicketCreation = () => {
                     <form className="ticketForm" onSubmit={handleSubmit}>
                         <h3>Please Enter Ticket Information</h3>
                         {/* Dropdown for Category */}
-                        <select name="ticketCategory" id="ticketCat" required>
+                        <select name="category" id="ticketCat" onChange={handleInputChange} required>
                             <option value="">Issue Category</option>
                             <option value="Hardware">Hardware</option>
                             <option value="IT">IT</option>
@@ -72,7 +119,7 @@ const TicketCreation = () => {
                             <option value="Miscellaneous">Miscellaneous</option>
                         </select>
                         {/* Dropdown for City */}
-                        <select name="ticketLocation" id="ticketLocation" required>
+                        <select name="location" id="ticketLocation" onChange={handleInputChange} required>
                             <option value="">Select a City</option>
                             <option value="Austin">Austin, TX</option>
                             <option value="Dallas">Dallas, TX</option>
@@ -83,13 +130,16 @@ const TicketCreation = () => {
                             {/* Add more options as needed */}
                         </select>
                         {/* Description of Issue */}
-                        <textarea name="descriptionOfIssue" id="ticketDescipt" rows="5" placeholder="Description of Issue..." required />
+                        <textarea name="description" id="ticketDescipt" rows="5" placeholder="Description of Issue..."  onChange={handleInputChange} required />
                         <input type="submit" className="createSubmit"/>
                     </form>
                 </div>
             ) : (
                 <button onClick={handleNewIssueClick} id="newIssueButton">New Issue</button>
             )}
+            <div id="ticketLinkContainer">
+                <Link to='/'>Back Home</Link>
+            </div>
         </div>
     )
 }
