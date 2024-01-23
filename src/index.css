@@ -15,4 +15,9 @@ html, body{
     width: 15vw;
     
 }
-
+body{
+    background-image: url('./components/assets/peaks.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
