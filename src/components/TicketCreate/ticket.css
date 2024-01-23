@@ -136,28 +136,45 @@ textarea {
     }
 }
 
-#ticketLinkContainer {
-    width: 90%;
+/* Table data  */
+.ticketsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ticketsTable th, .ticketsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
-    padding: 2% 0;
-}
-
-#submittedTicketDelete {
-    margin: 1em 0 0 0;
-    padding: 0.5em 1em;
-    text-transform: capitalize;
-    border: #313131 solid .01rem;
-    cursor: pointer;
+  }
+  
+  .ticketsTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .ticketsTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .ticketsTable tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .ticketsTable td button {
     background-color: #d1d0cb;
-    transition: ease 300ms;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
 
-}
-
-#submittedTicketDelete:hover {
+  .ticketsTable td button:hover {
     background-color: rgb(244, 247, 233);
-    border: #313131 solid .01rem;
-}
-#submittedTicketDelete:active {
-    color: whitesmoke;
-    background-color: darkred;
-}
+
+  }
+  
+  .ticketsTable td button:active {
+    background-color: #ff3333;
+    color: rgb(244, 247, 233);
+  }
+  
