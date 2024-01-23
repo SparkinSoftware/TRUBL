@@ -7,6 +7,7 @@ import Technician from './components/Technician'
 import './index.css';
 import Administrator from './components/Administrator'
 import Login from './components/Login/Login.jsx'
+import TicketCreate from './components/TicketCreate/TicketCreate.jsx'
 import { SupabaseProvider } from './SupabaseContext'
 
 
@@ -26,6 +27,7 @@ function App() {
         <Route path='technician' element={ <Technician/> } />
         <Route path='administrator' element={ <Administrator/> } />
         <Route path='login' element={ <Login /> } />
+        <Route path='ticketCreate' element={ <TicketCreate /> } />
       </Routes>
       </SupabaseProvider>
       
