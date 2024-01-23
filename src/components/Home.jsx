@@ -9,6 +9,8 @@ const Home = () => {
         <Link to='contact'>Contact Page</Link>
         <br/>
         <Link to='login'>Login</Link>
+        <br />
+        <Link to='ticketCreate'>Tickets</Link>
       </div>
     );
   }
