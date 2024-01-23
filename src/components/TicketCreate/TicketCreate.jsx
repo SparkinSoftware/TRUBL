@@ -74,6 +74,18 @@ const TicketCreation = () => {
         })
     }
 
+
+    const handleDeleteTicket = (index) => {
+        // Remove the ticket at the specified index from pending tickets
+        const updatedTickets = [...pendingTickets];
+        updatedTickets.splice(index, 1);
+        setPendingTickets(updatedTickets);
+
+        // Add logic to delete the ticket from the database if needed
+        // Example: Call an API endpoint to delete the ticket from the database
+        // deleteTicketFromDatabase(pendingTickets[index].id);
+    }
+
     return (
         <div className="ticketPageContainer">
             <div className="ticketStatusContainer">
@@ -83,11 +95,11 @@ const TicketCreation = () => {
             
                     <div key={index} className="submittedTicket">
                         <p>Category: {ticket.category} Location: {ticket.location} Description: {ticket.description}</p>
-                        <div></div>
-                        {console.log(ticket.category, ticket.location, ticket.description)}
+                        <button id="submittedTicketDelete"onClick={() => handleDeleteTicket(index) }>delete</button>
+                        <div>
+                            {/* Progress Bar */}
+                        </div>
                     </div>
-                    // Progress Bar
-    
                 ))}
                 
             </div>
@@ -125,6 +137,9 @@ const TicketCreation = () => {
             ) : (
                 <button onClick={handleNewIssueClick} id="newIssueButton">New Issue</button>
             )}
+            <div id="ticketLinkContainer">
+                <Link to='/'>Back Home</Link>
+            </div>
         </div>
     )
 }
