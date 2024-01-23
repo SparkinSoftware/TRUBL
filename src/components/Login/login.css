@@ -48,7 +48,10 @@
     margin-left: 15%;
     justify-content: center;
 }
-
+.loginErrorContainer{
+    text-align: center;
+    color: red;
+}
 .loginFields{
     display: flex;
     flex-direction: column;
@@ -74,7 +77,9 @@
     font-size: 2rem;
     padding-top: 4%;
 }
-
+.loginErrorContainer{
+    padding-bottom: 5%;
+}
 .loginForm{
     display: flex;
     flex-direction: column;
@@ -87,6 +92,9 @@
 .loginForm input{
     font-family: 'Jost', sans-serif;
     padding-left: 5%;
+    width: 75%;
+    height: 15%;
+    margin-bottom: 10%;
 }
 .loginForm input::placeholder{
     font-style: italic;
