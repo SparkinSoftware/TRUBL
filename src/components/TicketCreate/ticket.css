@@ -127,7 +127,10 @@ textarea {
     scale: 1.05rem;
     border-color: none;
 }
-
+#ticketLinkContainer {
+    width: 90%;
+    margin: 2%;
+}
 
 @media screen and (max-height: 400px){
     .ticketPageContainer{
@@ -166,6 +169,7 @@ textarea {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+    transition: ease 300ms;
   }
 
   .ticketsTable td button:hover {
