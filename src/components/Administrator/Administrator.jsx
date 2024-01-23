@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import addSymbol from '../assets/symbol_add.svg'
 import addFilter from '../assets/symbol_filter.svg'
+import './administrator.css'
 
 const Administrator =({}) => {
     return (
@@ -12,10 +13,10 @@ const Administrator =({}) => {
                     <div className='administrator-outer-container'>
                         <div className='administrator-menu-container'>
                             <div className='administrator-employee-form'>
-                                <img src={addSymbol} class='administrator-symbol' alt='Add' />                            
+                                <img src={addSymbol} className='administrator-symbol' alt='Add' />                            
                             </div>
                             <div className='administrator-employee-filter'>
-                                <img src={addFilter} class='administrator-symbol' alt='Filter' />                            
+                                <img src={addFilter} className='administrator-symbol' alt='Filter' />                            
                             </div>
                         </div>
                         <div className='administrator-inner-container'>
