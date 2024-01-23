@@ -1,3 +1,134 @@
+
+/* jesse's css for Technician component START*/
+
+.technician-container {
+    height: 80vh;
+    width: 100vw;
+    background-color:brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.technician-unassignedTickets {
+    height: 70vh;
+    width: 40vw;
+    background-color: aqua;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.technician-assignedTickets {
+    height: 70vh;
+    width: 40vw;
+    background-color: orange;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.technician-title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.technician-ticketContainer {
+    height: 60vh;
+    width: 40vw;
+    background-color: antiquewhite;
+}
+
+.administrator-container {
+    height: 80vh;
+    width: 100vw;
+    background-color:brown;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.administrator-employees-view {
+    height: 70vh;
+    width: 70vw;
+    background-color: aqua;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.administrator-title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.administrator-outer-container {
+    height: 70vh;
+    width: 70vw;
+    background-color: rgb(208, 139, 50);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.administrator-menu-container {
+    height: 60vh;
+    width: 10vh;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+}
+
+.administrator-employee-form {
+    height: 50px;
+    width: 10vh;
+    background-color: springgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.administrator-employee-filter {
+    height: 50px;
+    width: 10vh;
+    background-color: rgb(6, 117, 62);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.administrator-inner-container {
+    height: 60vh;
+    width: 60vw;
+    background-color: antiquewhite;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.administrator-symbol {
+    max-width: 100%;
+    height: auto;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -6,4 +137,10 @@ html, body{
     height: 100%;
     width: 100%;
     background-color: #F5f5f5;
+    font-family: 'Jost', sans-serif;
 }
+.appLogo{
+    width: 15vw;
+    
+}
+

@@ -8,6 +8,9 @@ const Home = () => {
         <br/>
         <Link to='contact'>Contact Page</Link>
         <br/>
+        <Link to='technician'>{`Technician`}</Link>
+        <br/>
+        <Link to='administrator'>{`Administrator`}</Link>
         <Link to='login'>Login</Link>
         <br />
         <Link to='ticketCreate'>Tickets</Link>

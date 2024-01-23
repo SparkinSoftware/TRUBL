@@ -5,13 +5,14 @@
     display: flex;
     background-color: #F5f5f5;
     margin-top: 13vh;
+    font-family: 'Jost', sans-serif;
 }
-
+/* Login Page Styling */
 .loginContainer{
     display: flex;
     flex-direction: column;
     background-color: #f5f4f2;
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);;
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
     width: 50vw;
     height: 50vh; 
     justify-content: center;
@@ -33,11 +34,11 @@
     text-align: center;
     margin: 0;
     justify-content: center;
-
 }
 .loginLogo h1{
     font-size: 5rem;
-    color: rgb(49, 49, 49);
+    color: #313131;
+    height: 100%;
 }
 .loginFieldContainer{
     display: flex;
@@ -53,6 +54,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
+
 }
 .loginFields button{
     width: 25%;
@@ -67,7 +69,7 @@
     background-color: #ebeae3;
     justify-content: center;
     text-align: center;
-    align-items: cenmter;
+    align-items: center;
     margin: 0;
     font-size: 2rem;
     padding-top: 4%;
@@ -82,12 +84,19 @@
     align-items: center;
     justify-content: center;
 }
-
+.loginForm input{
+    font-family: 'Jost', sans-serif;
+    padding-left: 5%;
+}
+.loginForm input::placeholder{
+    font-style: italic;
+}
 #username{
     width: 86%;
     height: 20%;
     margin-bottom: 5%;
-    font-size: 1.5rem;;
+    font-size: 1.5rem;
+    border: none;
 }
 #password{
     width: 86%;
@@ -95,6 +104,7 @@
     font-size: 1.5rem;
     margin-top: 5%;
     margin-bottom: 5%;
+    border: none;
 }
 .loginRegisterContainer{
     height: 15%;
@@ -105,15 +115,83 @@
 .loginRegisterLink{
     color: blue;
     margin-top: 2.5%;
+    cursor: pointer;
 }
-.loginRegisterLink:visited{
-    color: inherit;
+.loginRegisterLink:hover{
+    color: purple;
 }
 
 .loginSubmit{
-    background-color: #d1d0cb;
-
+    background-color: #b8b7b2;
+    border: none;
+    color: white;
 }
 .loginSubmit:hover{
     background-color: rgb(244, 247, 233);
+    color:#313131;
+}
+/* Registration Styling */
+.loginRegFields{
+    
+    background-color: #ebeae3;;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    margin-bottom: 5%;
+}
+.loginRegLabel{
+    display: flex;
+    height: 10%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+.loginRegForm{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+.loginRegForm input{
+    width: 85%;
+    height: 10%;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    padding-left: 3%;
+}
+.loginRegForm input::placeholder{
+    padding-left: 0%;
+    font-style:italic;
+}
+
+.loginRegBackContainer{
+    height: 10%;
+}
+.loginRegBack{
+    align-items: center;
+    text-align: center;
+}
+.loginRegBack:hover{
+    cursor: pointer;
+    color: gray;
+}
+.loginRegSubmit{
+    border: none;
+    background-color: #b8b7b2;
+    width: 25%;
+    height: 10%;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    justify-content: center;
+    text-align: center;
+}
+.loginRegSubmit:hover{
+    background-color: rgb(244, 247, 233);
+    color:#313131;
+
 }

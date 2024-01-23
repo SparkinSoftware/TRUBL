@@ -1,8 +1,59 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useSupabase } from '../../SupabaseContext';
 import './login.css';
 
 function Login(){
+    const supabase = useSupabase();
+    const [isRegistrationMode, setRegistrationMode] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const { user, error } = await supabase.auth.signInWithPassword({ email, password });
+        if (error) {
+            console.error('Error logging in:', error.message);
+        } else {
+            console.log('User logged in');
+        }
+    };
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+        if (password !== confirmPassword) {
+            console.error('Error in registration: Passwords do not match');
+            return;
+        }
+        // Attempt to sign up the user using Supabase Auth.
+        const { user, error } = await supabase.auth.signUp({ email, password });
+        if (error) {
+            console.error('Error in registration:', error.message);
+        } else {
+            console.log('User registered');
+            const { data, insertError } = await supabase.from('employee').insert([{
+                name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
+                email: email
+            //     Admin: false,
+            //     Tech: false,
+            //     skillset: '',
+            //     location: '', 
+            }]);
+            if (insertError) {
+                console.error('Error inserting user details:', insertError.message);
+            } else {
+                console.log('User details inserted');
+            }
+        }
+    };
+    const handleRegisterClick = () => {
+        console.log("Registration Mode Toggled On")
+        setRegistrationMode(true);
+    }
+    const handleRegisterBackClick = () => {
+        console.log("Registration Mode Toggled Off")
+        setRegistrationMode(false);
+    }
     return (
         <>
             <div className="loginBody">
@@ -10,26 +61,38 @@ function Login(){
                     <div className="loginLogo">
                         <h1>LOGO</h1>
                     </div>
-                    <div className="loginFieldContainer">
-                        <div className="loginFields">
-                            <div className="loginLabel">EMPLOYEE LOGIN</div>
-                            <form className="loginForm" autoComplete="off">
-                                {/* <label htmlFor="username">Username:</label> */}
-                                <input placeholder="Username" type="text" id="username" name="username" required/>
-
-                                {/* <label htmlFor="password">Password:</label> */}
-                                <input placeholder="Password" type="text" id="password" name="password" required/>
-
-                                <button className="loginSubmit"type="submit">Login</button>
+                    {/* Conditional rendering for RegistrationMode */}
+                    {isRegistrationMode ? (
+                        <div className="loginRegFields">
+                            <div className="loginRegLabel">NEW USER REGISTRATION</div>
+                            <form className="loginRegForm" autoComplete="off" onSubmit={handleRegister}>
+                                <input placeholder="First Name" type="text" id="fname" name="fname" autoComplete="off" required/>
+                                <input placeholder="Last Name" type="text" id="lname" name="lname" autoComplete="off" required/>
+                                <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+                                <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
+                                <input placeholder="Re-Enter Password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+                                <button className="loginRegSubmit" type="submit">Register</button>
                             </form>
-                            <div className="loginRegisterContainer">
-                                <div className="loginRegisterLink">New Employee? <u>Register Here</u></div>
+                            <div className="loginRegBackContainer">
+                                    <div className="loginRegBack" onClick={handleRegisterBackClick}><u>Back to Login</u></div>
+                                </div>
+                        </div>
+                    ) : (
+                        <div className="loginFieldContainer">
+                            <div className="loginFields">
+                                <div className="loginLabel">EMPLOYEE LOGIN</div>
+                                <form className="loginForm" autoComplete="off" onSubmit={handleLogin}>
+                                    <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
+                                    <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
+
+                                    <button className="loginSubmit" type="submit">Login</button>
+                                </form>
+                                <div className="loginRegisterContainer">
+                                    <div className="loginRegisterLink" onClick={handleRegisterClick}>New Employee? <u>Register Here</u></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="loginRegister">
-
-                    </div>
+                    )}
                 </div>
             </div>
         </>
