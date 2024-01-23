@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import addSymbol from '../assets/symbol_add.svg'
 import addFilter from '../assets/symbol_filter.svg'
+import './administrator.css'
 
 const Administrator =({}) => {
     return (
