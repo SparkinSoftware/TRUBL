@@ -66,8 +66,9 @@ const TicketCreation = () => {
                         <select name="ticketCategory" id="ticketCat" required>
                             <option value="">Issue Category</option>
                             <option value="Hardware">Hardware</option>
-                            <option value="Software">Software</option>
+                            <option value="IT">IT</option>
                             <option value="Security">Security</option>
+                            <option value="Software">Software</option>
                             <option value="Miscellaneous">Miscellaneous</option>
                         </select>
                         {/* Dropdown for City */}
