@@ -3,6 +3,7 @@ html, body{
     width: 100%;
     background-color: #F5f5f5;
     font-family: 'Jost', sans-serif;
+    color: #313131;
 }
 
 .administrator-container {
@@ -98,4 +99,18 @@ html, body{
 .administrator-symbol {
     max-width: 100%;
     height: auto;
+}
+
+table,
+td {
+    width: 60vw;
+    border: 1px solid #333;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
 }
