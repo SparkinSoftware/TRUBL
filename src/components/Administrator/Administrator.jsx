@@ -1,11 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import addSymbol from '../assets/symbol_add.svg'
 import addFilter from '../assets/symbol_filter.svg'
 import './administrator.css'
 import TableEmployee from './TableEmployee'
+import { useSupabase } from '../../SupabaseContext'
 
 const Administrator =({}) => {
+    const supabase = useSupabase();
+    const [ employeeData, setEmployeeData ] = useState([]);
+
+    useEffect(() => {
+        const fetchEmployeeData = async () => {
+            const { data, error } = await supabase
+            .from('employee')
+            .select('*');
+
+            if (error) {
+                console.error('Error fetching employee data:', error.message);
+            } else {
+                setEmployeeData(data);
+                //console.log(employeeData);
+            }
+        };
+
+        fetchEmployeeData();
+    }, []);
+
+    console.log(employeeData);
+
     return (
         <>
             <div className='administrator-container'>
@@ -22,7 +45,7 @@ const Administrator =({}) => {
                         </div>
                         <div className='administrator-inner-container'>
                             {/* FIXME: EmployeesView Component goes here */}
-                            <TableEmployee />
+                            <TableEmployee employeeData={employeeData} />
                         </div>
                     </div>
                 </div>

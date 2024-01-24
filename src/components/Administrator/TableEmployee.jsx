@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import EmployeeData from './EmployeeData'
 
-const TableEmployee =({}) => {
+const TableEmployee =({ employeeData }) => {
     return (
         <>
             <table className='table-employee'>
@@ -14,7 +14,17 @@ const TableEmployee =({}) => {
                         <th>{`SKILLSET`}</th>
                     </tr>
                 </thead>
-                <EmployeeData />
+                <tbody>
+                    {employeeData.map((employee) => (
+                        <EmployeeData 
+                            key={employee.id}
+                            name={employee.name}
+                            location={employee.location}
+                            role={employee.role}
+                            skill={employee.skillset}
+                            />
+                    ))}
+                </tbody>
             </table>
         </>
     )
