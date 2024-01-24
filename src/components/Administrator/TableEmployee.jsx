@@ -29,7 +29,7 @@ const TableEmployee =({ employeeData, setEmployeeData }) => {
     return (
         <>
             <table className='table-employee'>
-                <thead>
+                <thead className='table-employee'>
                     <tr>
                         <th id='employee-header' className='header' onClick={() => sortData('name')}>{`EMPLOYEE`}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{`LOCATION`}</th>

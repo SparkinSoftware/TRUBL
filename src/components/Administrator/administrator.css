@@ -58,7 +58,7 @@ html, body{
     height: 50px;
     width: 10vh;
     background-color: #8db4d7;
-    border: 1px black solid;
+    border: 1px #313131 solid;
     display: flex;
     justify-content: center;
     align-items: center;    
@@ -72,7 +72,8 @@ html, body{
     height: 50px;
     width: 10vh;
     background-color: #8db4d7;
-    border: 1px black solid;    display: flex;
+    border: 1px #313131 solid;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -85,7 +86,7 @@ html, body{
     height: 60vh;
     width: 60vw;
     background-color: white;
-    border: 1px black solid;
+    border: 1px #313131 solid;
 }
 
 .material-symbols-outlined {
@@ -101,16 +102,14 @@ html, body{
     height: auto;
 }
 
-table,
-td {
+.table-employee table, th, td {
     width: 60vw;
-    border: 1px solid #333;
+    border: 1px solid #313131;
     font-size: 1.2rem;
     text-align: center;
 }
 
-thead,
-tfoot {
-    background-color: #333;
+.table-employee thead, tfoot {
+    background-color: #313131;
     color: #fff;
 }
