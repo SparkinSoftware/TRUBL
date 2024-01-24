@@ -124,29 +124,40 @@ const TicketCreation = () => {
                                 <th className="actionCell">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="ticketTableBody">
                             {pendingTickets.map((ticket, index) => (
-                            <React.Fragment key={index}>
-                                <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
-                                    <td className="categoryCell">{ticket.category}</td>
-                                    <td className="locationCell">{ticket.location}</td>
-                                    <td className="descriptionCell">{ticket.description}</td>
-                                    <td className="actionCell">
-                                        <button onClick={() => handleDeleteTicket(index)}>Delete</button>
-                                    </td>
-                                </tr>
-                                {selectedTicketIndex === index && (
-                                    <tr key={index} className="expandedRowContainer">
-                                        <div className="expandedRow">
-                                            <div className="fullDescription">{ticket.description}</div>
-                                        </div>
+                                <React.Fragment key={index}>
+                                    <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
+                                        <td className="categoryCell">{ticket.category}</td>
+                                        <td className="locationCell">{ticket.location}</td>
+                                        <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                        <td className="actionCell">
+                                            <button onClick={() => handleDeleteTicket(index)}>Delete</button>
+                                        </td>
                                     </tr>
-                                )}
-                            </React.Fragment>
+                                    {selectedTicketIndex === index && (
+                                        <tr key={index} className="expandedRowContainer">
+                                            <td colSpan="4">
+                                                <div className="expandedRow">
+                                                    <div className="fullDescription">&nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+
+                                </React.Fragment>
                             ))}
                         </tbody>
                     </table>
                 )}
+                {/* Expanded row container outside the table */}
+                {/* {selectedTicketIndex !== undefined && (
+                    <div className="expandedRowContainer">
+                        <div className="expandedRow">
+                            <div className="fullDescription">{pendingTickets[selectedTicketIndex].description}</div>
+                        </div>
+                    </div>
+                )} */}
             </div>
             {/* Show Form or new Issue button */}
             {showForm ? (
