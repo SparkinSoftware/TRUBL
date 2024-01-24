@@ -1,11 +1,10 @@
 CREATE TABLE Employee (
-    ID serial PRIMARY KEY,
-    Admin BOOLEAN,
-    Tech BOOLEAN,
+    ID uuid PRIMARY KEY,
     skillset varchar,
     location varchar,
     name varchar,
     email varchar,
+    role int
 );
 CREATE TABLE TaskIssue (
     ID serial PRIMARY KEY,
