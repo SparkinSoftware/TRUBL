@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Login(){
     const navigate = useNavigate();
     const supabase = useSupabase();
+    console.log(supabase)
     const [isRegistrationMode, setRegistrationMode] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
