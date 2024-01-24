@@ -15,6 +15,8 @@ const Home = () => {
         <Link to='login'>Login</Link>
         <br />
         <Link to='ticketCreate'>Tickets</Link>
+        <br />
+        <Link to='Chat'>Chat</Link>
       </div>
     );
   }

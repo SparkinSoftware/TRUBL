@@ -15,3 +15,9 @@ CREATE TABLE TaskIssue (
     category varchar,
     remote BOOLEAN
 );
+CREATE TABLE Messages (
+    id serial PRIMARY KEY,
+    sender_id uuid REFERENCES Employee(ID),
+    text varchar NOT NULL,
+    created_at timestamp with time zone DEFAULT current_timestamp
+);
