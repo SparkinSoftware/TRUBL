@@ -4,57 +4,57 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    background-color: #F5f5f5;
-    margin-top: 10vh;
+    /* background-color: #F5f5f5; */
+    margin-top: 5vh;
     color: #313131;
     font-family: 'Jost', sans-serif;
 }
 
 .ticketStatusContainer{
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     background-color: #f5f4f2;
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);;
-    width: 50vw;
-    height: fit-content; 
-    padding-bottom: 3%;
+    width: 634px;
+    height: 511px;
+    overflow-y: scroll; 
+    overflow-x: hidden;
     align-items: center;
-    margin: -5% 0 5%; 
 }
-.ticketStatusContainer h1 {
+.ticketStatusContainer h2 {
     margin-top: 4%;
+    text-align: center;
 }
 
 .submittedTicket {
     height: 10%;
-    width: 100%;
+    width: 90%;
     text-align: center;
+    margin-top: 1%;
+    padding: 1% 0;
+    border-top: #313131 solid 1px;
 }
 
-.submittedTicket p {
-    margin-top: 1%;
-}
 
 .ticketFormContainer{
     display: flex;
     flex-direction: column;
     width: 50vw;
-    max-height:max-content;
+    max-height: 45vh;
     font-size: 1rem;
-    background-color: #f5f4f2;
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
     justify-content: center;
     text-align: center;
     align-items: center;
     font-size: 2rem;
-    padding-top: 4%;
+
     margin-bottom: 5%;
 }
 
 .ticketForm{
     display: flex;
     flex-direction: column;
-    padding: 2% 8%;
+
     background-color: #ebeae3;
     margin: -4% 10% 10% 10%;
 }
@@ -63,7 +63,7 @@
     margin: 3% 0;
     width: 100%;
     height: 20%;
-    padding:3% 0 3% 2%; 
+
     font-size: 1rem;
 }
 
@@ -73,9 +73,11 @@
     height: 20%;
     padding:3% 0 3% 2%; 
     font-size: 1rem;
+    transition: ease 300ms;
 }
-
-
+.ticketHeaderContainer{
+    width: 100%;
+}
 textarea {
     padding: 3% 2%;
     font-size: 1rem;
@@ -97,32 +99,46 @@ textarea {
     font-size: large;
     border-radius: 25px;
     background-color: #d1d0cb;
+    transition: ease 300ms;
 }
 
 #newIssueButton:hover {
     background-color: rgb(244, 247, 233);
 }
 
+#newIssueButton:active {
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+}
+
 #ticketFormClose {
     border: solid #313131 1px;
-    width: 50px;
-    height: 50px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     position: relative;
-    top: -120px;
-    left: -54%;
+    right: 48%;
+    
+    font-size: small;
     cursor: pointer;
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
     background-color: #d1d0cb;
+    transition: ease 300ms;
 }
+
 #ticketFormClose:hover {
     background-color: rgb(244, 247, 233);
 }
+
 #ticketFormClose:active {
     scale: 1.05rem;
     border-color: none;
+    background-color: #ff3333;
 }
-
+#ticketLinkContainer {
+    width: 90%;
+    position: absolute;
+    bottom: 3%;
+}
 
 @media screen and (max-height: 400px){
     .ticketPageContainer{
@@ -130,3 +146,97 @@ textarea {
         min-width: 300px;
     }
 }
+
+/* Table data  */
+.ticketsTable {
+    width: 50%;
+    border: none;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ticketsTable th, .ticketsTable td {
+    border: 1px solid #ddd;
+    padding: 0px;
+    text-align: left;
+  }
+  
+  .ticketsTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .ticketsTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .ticketsTable tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .ticketsTable td button {
+    background-color: #d1d0cb;
+    border: none;
+
+    cursor: pointer;
+    transition: ease 300ms;
+  }
+
+  .ticketsTable td button:hover {
+    background-color: rgb(244, 247, 233);
+
+  }
+  
+  .ticketsTable td button:active {
+    background-color: #ff3333;
+    color: rgb(244, 247, 233);
+  }
+
+  .descriptionCell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    width: 30%;
+    font-size: 1rem;
+  }
+  .headerCell{
+    width: 10%;
+  }
+
+  .categoryCell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    width: 10%;
+  }
+
+  .locationCell {
+    width: 10%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .actionCell {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 6.25%;
+  }
+  
+  .expandedRow{
+    background-color: red;
+    width: 100%;
+
+  }
+  .expandedRowContainer{
+    display: flex;
+    width: 100%;
+  }
+  .fullDescription{
+    text-align: left;
+    margin-left: 2rem;
+  }
+  .ticketStatusContainer tr{
+    display: flex;
+  }

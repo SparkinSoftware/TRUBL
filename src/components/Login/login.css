@@ -4,8 +4,9 @@
     align-items: center;
     display: flex;
     background-color: #F5f5f5;
-    margin-top: 13vh;
+    margin-top: 5vh;
     font-family: 'Jost', sans-serif;
+    justify-content: center;
 }
 /* Login Page Styling */
 .loginContainer{
@@ -13,12 +14,10 @@
     flex-direction: column;
     background-color: #f5f4f2;
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
-    width: 50vw;
-    height: 50vh; 
+    width: 511px;
+    height: 634px; 
     justify-content: center;
     align-items: center;
-    margin-left: 25%;
-    margin-right: 25%;
 }
 @media screen and (max-height: 400px){
     .loginContainer{
@@ -48,7 +47,10 @@
     margin-left: 15%;
     justify-content: center;
 }
-
+.loginErrorContainer{
+    text-align: center;
+    color: red;
+}
 .loginFields{
     display: flex;
     flex-direction: column;
@@ -74,7 +76,9 @@
     font-size: 2rem;
     padding-top: 4%;
 }
-
+.loginErrorContainer{
+    padding-bottom: 5%;
+}
 .loginForm{
     display: flex;
     flex-direction: column;
@@ -87,6 +91,9 @@
 .loginForm input{
     font-family: 'Jost', sans-serif;
     padding-left: 5%;
+    width: 75%;
+    height: 15%;
+    margin-bottom: 10%;
 }
 .loginForm input::placeholder{
     font-style: italic;
