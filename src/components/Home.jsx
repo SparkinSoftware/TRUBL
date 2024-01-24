@@ -11,7 +11,7 @@ const Home = () => {
         <Link to='technician'>{`Technician`}</Link>
         <br/>
         <Link to='administrator'>{`Administrator`}</Link>
-        <br/>
+        <br />
         <Link to='login'>Login</Link>
         <br />
         <Link to='ticketCreate'>Tickets</Link>

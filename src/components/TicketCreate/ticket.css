@@ -27,13 +27,13 @@
 
 .submittedTicket {
     height: 10%;
-    width: 100%;
+    width: 90%;
     text-align: center;
+    margin-top: 1%;
+    padding: 1% 0;
+    border-top: #313131 solid 1px;
 }
 
-.submittedTicket p {
-    margin-top: 1%;
-}
 
 .ticketFormContainer{
     display: flex;
@@ -56,7 +56,7 @@
     flex-direction: column;
     padding: 2% 8%;
     background-color: #ebeae3;
-    margin-bottom: 5%;
+    margin: -4% 10% 10% 10%;
 }
 
 .ticketForm select  {
@@ -97,10 +97,15 @@ textarea {
     font-size: large;
     border-radius: 25px;
     background-color: #d1d0cb;
+    transition: ease 300ms;
 }
 
 #newIssueButton:hover {
     background-color: rgb(244, 247, 233);
+}
+
+#newIssueButton:active {
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
 }
 
 #ticketFormClose {
@@ -122,7 +127,10 @@ textarea {
     scale: 1.05rem;
     border-color: none;
 }
-
+#ticketLinkContainer {
+    width: 90%;
+    margin: 2%;
+}
 
 @media screen and (max-height: 400px){
     .ticketPageContainer{
@@ -130,3 +138,47 @@ textarea {
         min-width: 300px;
     }
 }
+
+/* Table data  */
+.ticketsTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .ticketsTable th, .ticketsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .ticketsTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .ticketsTable tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+  
+  .ticketsTable tbody tr:hover {
+    background-color: #e6f7ff;
+  }
+  
+  .ticketsTable td button {
+    background-color: #d1d0cb;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: ease 300ms;
+  }
+
+  .ticketsTable td button:hover {
+    background-color: rgb(244, 247, 233);
+
+  }
+  
+  .ticketsTable td button:active {
+    background-color: #ff3333;
+    color: rgb(244, 247, 233);
+  }
+  

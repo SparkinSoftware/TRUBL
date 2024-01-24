@@ -39,7 +39,7 @@ function Login(){
             setRegistrationError(error.message)
             //put password popup length thing here
         } else {
-            console.log('User registered');
+            console.log('User registered',user);
             const { data, insertError } = await supabase.from('employee').insert([{
                 name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
                 email: email
