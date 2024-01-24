@@ -16,7 +16,8 @@ const TicketCreation = () => {
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
-
+    // state to select ticket by click
+    const [selectedTicketIndex, setSelectedTicketIndex] = useState()
     // function to change state of form to show form or new issue button
     const handleNewIssueClick = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -125,7 +126,8 @@ const TicketCreation = () => {
                         </thead>
                         <tbody>
                             {pendingTickets.map((ticket, index) => (
-                                <tr key={index}>
+                            <React.Fragment key={index}>
+                                <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
                                     <td className="categoryCell">{ticket.category}</td>
                                     <td className="locationCell">{ticket.location}</td>
                                     <td className="descriptionCell">{ticket.description}</td>
@@ -133,6 +135,14 @@ const TicketCreation = () => {
                                         <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                     </td>
                                 </tr>
+                                {selectedTicketIndex === index && (
+                                    <tr key={index}>
+                                        <td className="expandedRow">
+                                            <div className="fullDescription">{ticket.description}</div>
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
                             ))}
                         </tbody>
                     </table>
