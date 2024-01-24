@@ -1,14 +1,13 @@
 html, body{
     height: 100%;
     width: 100%;
-    background-color: #F5f5f5;
     font-family: 'Jost', sans-serif;
+    color: #313131;
 }
 
 .administrator-container {
     height: 80vh;
     width: 100vw;
-    background-color: #F5f5f5;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -98,4 +97,18 @@ html, body{
 .administrator-symbol {
     max-width: 100%;
     height: auto;
+}
+
+table,
+td {
+    width: 60vw;
+    border: 1px solid #333;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
 }

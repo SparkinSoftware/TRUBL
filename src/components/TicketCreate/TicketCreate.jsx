@@ -111,14 +111,14 @@ const TicketCreation = () => {
     return (
         <div className="ticketPageContainer">
             <div className="ticketStatusContainer">
-                <h1>Outstanding Ticket Status</h1>
+                <h2>Outstanding Ticket Status</h2>
                 {/* Tickets table */}
                 {pendingTickets.length > 0 && (
                     <table className="ticketsTable">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th>Category</th>
-                                <th>Location</th>
+                                <th className="locationCell">Location</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
@@ -126,10 +126,10 @@ const TicketCreation = () => {
                         <tbody>
                             {pendingTickets.map((ticket, index) => (
                                 <tr key={index}>
-                                    <td>{ticket.category}</td>
-                                    <td>{ticket.location}</td>
-                                    <td>{ticket.description}</td>
-                                    <td>
+                                    <td className="categoryCell">{ticket.category}</td>
+                                    <td className="locationCell">{ticket.location}</td>
+                                    <td className="descriptionCell">{ticket.description}</td>
+                                    <td className="actionCell">
                                         <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                     </td>
                                 </tr>
@@ -143,7 +143,7 @@ const TicketCreation = () => {
                 <div className="ticketFormContainer">
                     <div id='ticketFormClose' onClick={handleCloseForm}>x</div>
                     <form className="ticketForm" onSubmit={handleSubmit}>
-                        <h3>Please Enter Ticket Information</h3>
+                        <h5>Please Enter Ticket Information</h5>
                         {/* Dropdown for Category */}
                         <select
                             name="category"
