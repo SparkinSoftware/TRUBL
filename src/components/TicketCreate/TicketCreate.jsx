@@ -111,7 +111,7 @@ const TicketCreation = () => {
     return (
         <div className="ticketPageContainer">
             <div className="ticketStatusContainer">
-                <h1>Outstanding Ticket Status</h1>
+                <h2>Outstanding Ticket Status</h2>
                 {/* Tickets table */}
                 {pendingTickets.length > 0 && (
                     <table className="ticketsTable">
@@ -143,7 +143,7 @@ const TicketCreation = () => {
                 <div className="ticketFormContainer">
                     <div id='ticketFormClose' onClick={handleCloseForm}>x</div>
                     <form className="ticketForm" onSubmit={handleSubmit}>
-                        <h3>Please Enter Ticket Information</h3>
+                        <h5>Please Enter Ticket Information</h5>
                         {/* Dropdown for Category */}
                         <select
                             name="category"
