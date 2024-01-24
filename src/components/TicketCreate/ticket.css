@@ -181,4 +181,36 @@ textarea {
     background-color: #ff3333;
     color: rgb(244, 247, 233);
   }
+
+  .descriptionCell {
+    max-width: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .locationCell {
+    max-width: 3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media screen and (max-width: 680px) {
+    .locationCell {
+        display: none;
+    }
+  }
+
+  .categoryCell {
+    max-width: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .actionCell {
+    max-width: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+  }
   
