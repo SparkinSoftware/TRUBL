@@ -117,11 +117,11 @@ const TicketCreation = () => {
                 {pendingTickets.length > 0 && (
                     <table className="ticketsTable">
                         <thead>
-                            <tr >
-                                <th>Category</th>
+                            <tr className="ticketHeaderContainer">
+                                <th className="headerCell">Category</th>
                                 <th className="locationCell">Location</th>
-                                <th>Description</th>
-                                <th>Action</th>
+                                <th className="descriptionCell">Description</th>
+                                <th className="actionCell">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -136,10 +136,10 @@ const TicketCreation = () => {
                                     </td>
                                 </tr>
                                 {selectedTicketIndex === index && (
-                                    <tr key={index}>
-                                        <td className="expandedRow">
+                                    <tr key={index} className="expandedRowContainer">
+                                        <div className="expandedRow">
                                             <div className="fullDescription">{ticket.description}</div>
-                                        </td>
+                                        </div>
                                     </tr>
                                 )}
                             </React.Fragment>
