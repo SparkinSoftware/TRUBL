@@ -116,9 +116,9 @@ const TicketCreation = () => {
                 {pendingTickets.length > 0 && (
                     <table className="ticketsTable">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th>Category</th>
-                                <th>Location</th>
+                                <th className="locationCell">Location</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
@@ -126,10 +126,10 @@ const TicketCreation = () => {
                         <tbody>
                             {pendingTickets.map((ticket, index) => (
                                 <tr key={index}>
-                                    <td>{ticket.category}</td>
-                                    <td>{ticket.location}</td>
-                                    <td>{ticket.description}</td>
-                                    <td>
+                                    <td className="categoryCell">{ticket.category}</td>
+                                    <td className="locationCell">{ticket.location}</td>
+                                    <td className="descriptionCell">{ticket.description}</td>
+                                    <td className="actionCell">
                                         <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                     </td>
                                 </tr>
