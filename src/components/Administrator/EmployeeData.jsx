@@ -1,19 +1,18 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 //import './administrator.css'
 
 const EmployeeData =({ name, location, role, skill }) => {
     return (
         <>
             <tr>
-                <td>{name}</td>
-                <td>{location}</td>
+                <td className='name'>{name}</td>
+                <td className='location'>{location}</td>
                 {role === 1 ? 
                     <td>{'Employee'}</td> :
                     (role === 2 ?
                     <td>{'Technician'}</td> :
                     <td>{'Administrator'}</td>)}
-                <td>{skill}</td>
+                <td className='skill'>{skill}</td>
             </tr>
         </>
     )

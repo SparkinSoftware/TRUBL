@@ -16,7 +16,8 @@ const TicketCreation = () => {
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
-
+    // state to select ticket by click
+    const [selectedTicketIndex, setSelectedTicketIndex] = useState()
     // function to change state of form to show form or new issue button
     const handleNewIssueClick = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -116,27 +117,47 @@ const TicketCreation = () => {
                 {pendingTickets.length > 0 && (
                     <table className="ticketsTable">
                         <thead>
-                            <tr >
-                                <th>Category</th>
+                            <tr className="ticketHeaderContainer">
+                                <th className="headerCell">Category</th>
                                 <th className="locationCell">Location</th>
-                                <th>Description</th>
-                                <th>Action</th>
+                                <th className="descriptionCell">Description</th>
+                                <th className="actionCell">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="ticketTableBody">
                             {pendingTickets.map((ticket, index) => (
-                                <tr key={index}>
-                                    <td className="categoryCell">{ticket.category}</td>
-                                    <td className="locationCell">{ticket.location}</td>
-                                    <td className="descriptionCell">{ticket.description}</td>
-                                    <td className="actionCell">
-                                        <button onClick={() => handleDeleteTicket(index)}>Delete</button>
-                                    </td>
-                                </tr>
+                                <React.Fragment key={index}>
+                                    <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
+                                        <td className="categoryCell">{ticket.category}</td>
+                                        <td className="locationCell">{ticket.location}</td>
+                                        <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                        <td className="actionCell">
+                                            <button onClick={() => handleDeleteTicket(index)}>Delete</button>
+                                        </td>
+                                    </tr>
+                                    {selectedTicketIndex === index && (
+                                        <tr key={index} className="expandedRowContainer">
+                                            <td colSpan="4">
+                                                <div className="expandedRow">
+                                                    <div className="fullDescription">&nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+
+                                </React.Fragment>
                             ))}
                         </tbody>
                     </table>
                 )}
+                {/* Expanded row container outside the table */}
+                {/* {selectedTicketIndex !== undefined && (
+                    <div className="expandedRowContainer">
+                        <div className="expandedRow">
+                            <div className="fullDescription">{pendingTickets[selectedTicketIndex].description}</div>
+                        </div>
+                    </div>
+                )} */}
             </div>
             {/* Show Form or new Issue button */}
             {showForm ? (
