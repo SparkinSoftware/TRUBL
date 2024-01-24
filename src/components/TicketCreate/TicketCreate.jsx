@@ -6,6 +6,7 @@ import './ticket.css';
 
 const TicketCreation = () => {
     const supabase = useSupabase()
+    // state for form data
     const [submittedTicket, setSubmittedTicket] = useState({
         category: "",
         location: "",
@@ -13,11 +14,14 @@ const TicketCreation = () => {
     });
 
     const [showForm, setShowForm] = useState(false);
+    // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
 
+    // function to change state of form to show form or new issue button
     const handleNewIssueClick = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
 
+    // fetch all tickets from data base on inital load
     useEffect(() => {
         const fetchTickets = async () => {
             const { data, error } = await supabase
@@ -35,6 +39,7 @@ const TicketCreation = () => {
         fetchTickets();
     }, []);
 
+    // add a issue to database and append to table 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(supabase.auth.getUser())
@@ -67,6 +72,7 @@ const TicketCreation = () => {
         setShowForm(false);
     }
 
+    // captures value of inputs 
     const handleInputChange = (e) => {
         const {name, value} = e.target
         setSubmittedTicket({
@@ -75,16 +81,32 @@ const TicketCreation = () => {
         })
     }
 
-    const handleDeleteTicket = (index) => {
-        // Remove the ticket at the specified index from pending tickets
-        const updatedTickets = [...pendingTickets];
-        updatedTickets.splice(index, 1);
-        setPendingTickets(updatedTickets);
-
-        // Add logic to delete the ticket from the database if needed
-        // Example: Call an API endpoint to delete the ticket from the database
-        // deleteTicketFromDatabase(pendingTickets[index].id);
-    }
+    // Delete Ticket from table and database when delete button is clicked
+    const handleDeleteTicket = async (index) => {
+        // Retrieve the ticket ID from the local state
+        const ticketIdToDelete = pendingTickets[index].id;
+    
+        try {
+            // Make an API call to delete the record from the Supabase table
+            const { data, error } = await supabase
+                .from('taskissue')
+                .delete()
+                .eq('id', ticketIdToDelete);
+    
+            if (error) {
+                console.error('Error deleting ticket:', error.message);
+                return;
+            }
+    
+            // Update the local state to reflect the deletion
+            setPendingTickets((prevTickets) =>
+                prevTickets.filter((ticket) => ticket.id !== ticketIdToDelete)
+            );
+        } catch (error) {
+            console.error('Error deleting ticket:', error.message);
+        }
+    };
+    
 
     return (
         <div className="ticketPageContainer">
@@ -136,6 +158,7 @@ const TicketCreation = () => {
                             <option value="Security">Security</option>
                             <option value="Software">Software</option>
                             <option value="Miscellaneous">Miscellaneous</option>
+                            {/* Add more options as needed */}
                         </select>
                         {/* Dropdown for City */}
                         <select
