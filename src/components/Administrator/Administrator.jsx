@@ -45,7 +45,9 @@ const Administrator =({}) => {
                         </div>
                         <div className='administrator-inner-container'>
                             {/* FIXME: EmployeesView Component goes here */}
-                            <TableEmployee employeeData={employeeData} />
+                            <TableEmployee 
+                                employeeData={employeeData}
+                                setEmployeeData={setEmployeeData} />
                         </div>
                     </div>
                 </div>
