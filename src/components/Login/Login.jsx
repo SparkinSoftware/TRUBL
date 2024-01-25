@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function Login(){
     const navigate = useNavigate();
     const supabase = useSupabase();
+    console.log(supabase)
     const [isRegistrationMode, setRegistrationMode] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,6 +27,8 @@ function Login(){
     };
 
     const handleRegister = async (e) => {
+
+        const name = document.getElementById('fname').value + ' ' + document.getElementById('lname').value
         e.preventDefault();
         if (password !== confirmPassword) {
             console.error('Error in registration: Passwords do not match');
@@ -33,20 +36,20 @@ function Login(){
             return;
         }
         // Attempt to sign up the user using Supabase Auth.
-        const { user, error } = await supabase.auth.signUp({ email, password });
+        const { user, error } = await supabase.auth.signUp({ email, password, options: {
+            data: {display_name: name }
+        } });
         if (error) {
             console.error('Error in registration:', error.message);
             setRegistrationError(error.message)
             //put password popup length thing here
         } else {
             console.log('User registered',user);
+            const authData = JSON.parse(localStorage.getItem('sb-ktngdikunrifjvpwaljj-auth-token'));
             const { data, insertError } = await supabase.from('employee').insert([{
-                name: document.getElementById('fname').value + ' ' + document.getElementById('lname').value,
+                id: authData.user.id,
+                name: name,
                 email: email
-            //     Admin: false,
-            //     Tech: false,
-            //     skillset: '',
-            //     location: '', 
             }]);
             if (insertError) {
                 console.error('Error inserting user details:', insertError.message);
