@@ -20,6 +20,10 @@ const TicketCreation = () => {
         setCurrentUser(employee)
     })
 
+    const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
+        setUserId(user.data.user.id)
+    }))
+
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
@@ -35,7 +39,8 @@ const TicketCreation = () => {
             
             const { data, error } = await supabase
                 .from('taskissue')
-                .select('*');
+                .select('*')
+                .eq('customer', userId)
 
             if (error) {
                 console.error('Error fetching tickets:', error.message);
@@ -44,7 +49,6 @@ const TicketCreation = () => {
                 console.log(pendingTickets);
             }
         };
-
         fetchTickets();
     }, []);
 
@@ -52,8 +56,8 @@ const TicketCreation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        setPendingTickets([submittedTicket, ...pendingTickets]);
-    
+        setPendingTickets([...pendingTickets, submittedTicket]);
+        
         const { data, error } = await supabase
             .from('taskissue')
             .insert([
@@ -62,6 +66,7 @@ const TicketCreation = () => {
                     description: submittedTicket.description,
                     status: 'Pending',
                     category: submittedTicket.category,
+                    customer: userId, 
                 }
             ]);
     
