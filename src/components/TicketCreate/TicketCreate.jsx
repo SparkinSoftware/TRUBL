@@ -143,7 +143,7 @@ const TicketCreation = () => {
                                     <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
                                         <td className="categoryCell">{ticket.category}</td>
                                         <td className="locationCell">{ticket.location}</td>
-                                        <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                        <td className="descriptionCell descriptionText">{ticket.description}</td>
                                         <td className="actionCell">
                                             <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                         </td>
@@ -273,6 +273,7 @@ const TicketCreation = () => {
                 <Link to='/'>Back Home</Link>
             </div>
         </div>
+    </div>
     )
 }
 
