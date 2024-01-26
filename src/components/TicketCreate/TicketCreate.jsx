@@ -133,7 +133,7 @@ const TicketCreation = () => {
                                     <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
                                         <td className="categoryCell">{ticket.category}</td>
                                         <td className="locationCell">{ticket.location}</td>
-                                        <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                        <td className="descriptionCell descriptionText">{ticket.description}</td>
                                         <td className="actionCell">
                                             <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                         </td>
@@ -161,9 +161,9 @@ const TicketCreation = () => {
                             <div className="fullDescription">{pendingTickets[selectedTicketIndex].description}</div>
                         </div>
                     </div>
-                )} */}
-            </div>
-            {/* Show Form or new Issue button */}
+                )} */}   
+            {/* Show Form or Outstanding Tickets Status */}
+
             {showForm ? (
                 <div className="ticketFormContainer">
                     <div id='ticketFormClose' onClick={handleCloseForm}>x</div>
@@ -222,6 +222,7 @@ const TicketCreation = () => {
                 <Link to='/'>Back Home</Link>
             </div>
         </div>
+    </div>
     )
 }
 
