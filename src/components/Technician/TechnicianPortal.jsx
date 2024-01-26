@@ -4,7 +4,7 @@ import './technician.css'
 import TableTickets from './TableTickets'
 import { useSupabase } from '../../SupabaseContext'
 
-const Technician =({}) => {
+const TechnicianPortal =({}) => {
     const supabase = useSupabase();
     const [ ticketData, setTicketData ] = useState([]);
 
@@ -50,4 +50,4 @@ const Technician =({}) => {
     )
 }
 
-export default Technician
+export default TechnicianPortal
