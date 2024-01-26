@@ -25,8 +25,8 @@ const Chat = () => {
       };
 
       setMessages((prevMessages) => [
-        newMessageWithEmployeeName,
         ...prevMessages,
+        newMessageWithEmployeeName,
       ]);
     } catch (error) {
       console.error("Error fetching employee name:", error);
@@ -83,37 +83,66 @@ const Chat = () => {
       chatboxRef.current.scrollTop = chatboxRef.current.scrollHeight;
     }
   };
+  const closeChat = async () => {
+    try {
+      for (let message of messages) {
+        const { error } = await supabase
+          .from("messages")
+          .delete()
+          .match({ id: message.id });
+        if (error) throw error;
+      }
+
+      console.log("Selected messages deleted");
+    } catch (error) {
+      console.error("Error deleting messages:", error);
+    }
+
+    setShowChat(false);
+    setMessages([]);
+  };
 
   useEffect(() => {
-    // Call scrollToBottom whenever messages change
+    if (showChat) scrollToBottom();
+  }, [showChat]);
+
+  useEffect(() => {
     scrollToBottom();
-  }, [messages]); // Dependency array includes messages
+  }, [messages]);
 
   return (
     <>
       {localStorage.getItem("sb-ktngdikunrifjvpwaljj-auth-token") && (
         <>
-          <button onClick={toggleChat} className="chat-toggle-button"></button>
+          <button
+            type="button"
+            onClick={() => {
+              toggleChat();
+              scrollToBottom();
+            }}
+            className="chat-toggle-button"
+          ></button>
           {showChat && (
             <div className="Chatbox" ref={chatboxRef}>
-              {" "}
-              {/* Attach the ref here */}
-              <ul>
+              <ul className="message-list">
                 {messages.map((message) => (
                   <li className="chatlist" key={message.id}>
                     <strong>{message.employee.name}:</strong> {message.text}
                   </li>
                 ))}
               </ul>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="chat-form">
                 <input
+                  className="chat-input"
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
                   placeholder="Type a message..."
                 />
                 <button type="submit">Send</button>
-                <button onClick={() => setShowChat(false)}>Close</button>
+                <button type="button" onClick={closeChat}>
+                  Close
+                </button>
               </form>
             </div>
           )}
