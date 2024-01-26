@@ -13,18 +13,26 @@ const TicketCreation = () => {
         description: ""
     });
 
+    // currentUser data
+    const [currentUser, setCurrentUser] = useState('Guest')
+    supabase.auth.getUser().then(user => {
+        const employee = user.data.user.user_metadata.display_name
+        setCurrentUser(employee)
+    })
+
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
     // state to select ticket by click
     const [selectedTicketIndex, setSelectedTicketIndex] = useState()
     // function to change state of form to show form or new issue button
-    const handleNewIssueClick = () => { setShowForm(true); }
+    const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
 
     // fetch all tickets from data base on inital load
     useEffect(() => {
         const fetchTickets = async () => {
+            
             const { data, error } = await supabase
                 .from('taskissue')
                 .select('*');
@@ -43,9 +51,8 @@ const TicketCreation = () => {
     // add a issue to database and append to table 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(supabase.auth.getUser())
     
-        setPendingTickets([...pendingTickets, submittedTicket]);
+        setPendingTickets([submittedTicket, ...pendingTickets]);
     
         const { data, error } = await supabase
             .from('taskissue')
@@ -111,6 +118,9 @@ const TicketCreation = () => {
 
     return (
         <div className="ticketPageContainer">
+            <div id="ticketWelcome">
+                <p>Welcome, {currentUser}</p>
+            </div>
             <div className="ticketStatusContainer">
                 <h2>Outstanding Ticket Status</h2>
                 {/* Tickets table */}
@@ -158,9 +168,8 @@ const TicketCreation = () => {
                             <div className="fullDescription">{pendingTickets[selectedTicketIndex].description}</div>
                         </div>
                     </div>
-                )} */}
-            </div>
-            {/* Show Form or new Issue button */}
+                )} */}   
+            {/* Show Form or Outstanding Tickets Status */}
             {showForm ? (
                 <div className="ticketFormContainer">
                     <div id='ticketFormClose' onClick={handleCloseForm}>x</div>
@@ -213,7 +222,49 @@ const TicketCreation = () => {
                     </form>
                 </div>
             ) : (
-                <button onClick={handleNewIssueClick} id="newIssueButton">New Issue</button>
+                <>
+                    <div className="ticketStatusContainer">
+                    <h2>Outstanding Ticket Status</h2>
+                    {/* Tickets table */}
+                    {pendingTickets.length > 0 && (
+                        <table className="ticketsTable">
+                            <thead>
+                                <tr className="ticketHeaderContainer">
+                                    <th className="headerCell">Category</th>
+                                    <th className="locationCell">Location</th>
+                                    <th className="descriptionCell">Description</th>
+                                    <th className="actionCell">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody className="ticketTableBody">
+                                {pendingTickets.map((ticket, index) => (
+                                    <React.Fragment key={index}>
+                                        <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
+                                            <td className="categoryCell">{ticket.category}</td>
+                                            <td className="locationCell">{ticket.location}</td>
+                                            <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                            <td className="actionCell">
+                                                <button onClick={() => handleDeleteTicket(index)}>Delete</button>
+                                            </td>
+                                        </tr>
+                                        {selectedTicketIndex === index && (
+                                            <tr key={index} className="expandedRowContainer">
+                                                <td colSpan="4">
+                                                    <div className="expandedRow">
+                                                        <div className="fullDescription">&nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        )}
+
+                                    </React.Fragment>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                </div>
+                <button onClick={handleNewIssue} id="newIssueButton">New Issue</button>
+                </>
             )}
             <div id="ticketLinkContainer">
                 <Link to='/'>Back Home</Link>

@@ -30,6 +30,7 @@ function App() {
         <Route path='login' element={ <Login /> } />
         <Route path='ticketCreate' element={ <TicketCreate /> } />
         <Route path='landing' element={ <Landing /> } />
+        <Route path='chat' element={ <Chat /> } />  
       </Routes>
       <Chat  />
       </SupabaseProvider>
