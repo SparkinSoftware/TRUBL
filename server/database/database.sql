@@ -1,11 +1,10 @@
 CREATE TABLE Employee (
-    ID serial PRIMARY KEY,
-    Admin BOOLEAN,
-    Tech BOOLEAN,
+    ID uuid PRIMARY KEY,
     skillset varchar,
     location varchar,
     name varchar,
     email varchar,
+    role int
 );
 CREATE TABLE TaskIssue (
     ID serial PRIMARY KEY,
@@ -15,4 +14,10 @@ CREATE TABLE TaskIssue (
     Status varchar,
     category varchar,
     remote BOOLEAN
+);
+CREATE TABLE Messages (
+    id serial PRIMARY KEY,
+    sender_id uuid REFERENCES Employee(ID),
+    text varchar NOT NULL,
+    created_at timestamp with time zone DEFAULT current_timestamp
 );
