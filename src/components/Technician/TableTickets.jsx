@@ -39,7 +39,7 @@ const TableTickets = ({ ticketData, setTicketData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {ticketData.map((ticket) => (
+                    {/* {ticketData.map((ticket) => (
                         <TicketData 
                             key={ticket.id}
                             customer={ticket.customer}
@@ -47,7 +47,10 @@ const TableTickets = ({ ticketData, setTicketData }) => {
                             remote={ticket.remote}
                             assignedTech={ticket.assigned_tech}
                             description={ticket.description} />
-                    ))}
+                    ))} */}
+                    <TicketData 
+                        ticketData={ticketData}
+                        setTicketData={setTicketData} />
                 </tbody>
             </table>
         </>
