@@ -12,6 +12,10 @@
 
 #currentUserContainer {
   color: #fff;
+  position: relative;
+  left: 200px;
+  text-shadow: 1px 1px 5px #313131;
+  font-size: large;
   
 }
 
