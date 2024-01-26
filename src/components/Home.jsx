@@ -21,8 +21,6 @@ import './home.css'
             </div>
           </div>
         </div>
-        <br />
-        <Link to='Chat'>Chat</Link>
       </div>
     );
   }
