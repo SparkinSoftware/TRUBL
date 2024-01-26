@@ -33,10 +33,6 @@ function App() {
       </Routes>
       <Chat  />
       </SupabaseProvider>
-      
-
-      
-
     </div>
   )
 }
