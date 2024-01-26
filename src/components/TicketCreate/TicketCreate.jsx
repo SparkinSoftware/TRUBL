@@ -23,8 +23,10 @@ const TicketCreation = () => {
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
+
     // state to select ticket by click
     const [selectedTicketIndex, setSelectedTicketIndex] = useState()
+
     // function to change state of form to show form or new issue button
     const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -118,7 +120,7 @@ const TicketCreation = () => {
 
     return (
         <div className="ticketPageContainer">    
-            <div id=" ">
+            <div id="currentUserContainer">
                 <p>Welcome, {currentUser}</p>
             </div>
             {/* Show Form or Outstanding Tickets Status */}
