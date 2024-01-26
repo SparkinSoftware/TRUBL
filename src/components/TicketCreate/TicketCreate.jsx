@@ -2,6 +2,7 @@ import React, { useState, useEffect  } from "react";
 import { Link, createRoutesFromElements } from "react-router-dom";
 import { useSupabase } from '../../SupabaseContext';
 import './ticket.css';
+import Chat from '../Chat/Chat.jsx';
 
 
 const TicketCreation = () => {
@@ -94,29 +95,37 @@ const TicketCreation = () => {
         })
     }
 
-    // Delete Ticket from table and database when delete button is clicked
     const handleDeleteTicket = async (index) => {
-        // Retrieve the ticket ID from the local state
+
         const ticketIdToDelete = pendingTickets[index].id;
     
         try {
-            // Make an API call to delete the record from the Supabase table
-            const { data, error } = await supabase
+
+            const { error: messageDeleteError } = await supabase
+                .from('messages')
+                .delete()
+                .eq('ticket_id', ticketIdToDelete);
+    
+            if (messageDeleteError) {
+                console.error('Error deleting messages:', messageDeleteError.message);
+                return;
+            }
+    
+            const { error: ticketDeleteError } = await supabase
                 .from('taskissue')
                 .delete()
                 .eq('id', ticketIdToDelete);
     
-            if (error) {
-                console.error('Error deleting ticket:', error.message);
+            if (ticketDeleteError) {
+                console.error('Error deleting ticket:', ticketDeleteError.message);
                 return;
             }
     
-            // Update the local state to reflect the deletion
             setPendingTickets((prevTickets) =>
                 prevTickets.filter((ticket) => ticket.id !== ticketIdToDelete)
             );
         } catch (error) {
-            console.error('Error deleting ticket:', error.message);
+            console.error('Error during deletion process:', error.message);
         }
     };
     
@@ -211,6 +220,7 @@ const TicketCreation = () => {
                                                         <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
                                                     </div>
                                                 </td>
+                                                <Chat ticketId={ticket.id} />
                                             </tr>
                                         )}
 

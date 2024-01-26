@@ -10,7 +10,6 @@ import Login from './components/Login/Login.jsx'
 import TicketCreate from './components/TicketCreate/TicketCreate.jsx'
 import { SupabaseProvider } from './SupabaseContext'
 import Landing from './components/Landing/Landing.jsx'
-import Chat from './components/Chat/Chat.jsx'
 
 function App() {
 
@@ -30,9 +29,7 @@ function App() {
         <Route path='login' element={ <Login /> } />
         <Route path='ticketCreate' element={ <TicketCreate /> } />
         <Route path='landing' element={ <Landing /> } />
-        <Route path='chat' element={ <Chat /> } />  
       </Routes>
-      <Chat  />
       </SupabaseProvider>
     </div>
   )
