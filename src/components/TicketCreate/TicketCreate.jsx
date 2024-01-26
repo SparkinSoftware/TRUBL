@@ -121,9 +121,6 @@ const TicketCreation = () => {
             <div id="currentUserContainer">
                 <p>Welcome, {currentUser}</p>
             </div>
-            <div id="ticketWelcome">
-                <p>Welcome, {currentUser}</p>
-            </div>
             <div className="ticketStatusContainer">
                 <h2>Outstanding Ticket Status</h2>
                 {/* Tickets table */}
@@ -254,7 +251,7 @@ const TicketCreation = () => {
                                             <tr key={index} className="expandedRowContainer">
                                                 <td colSpan="4">
                                                     <div className="expandedRow">
-                                                        <div className="fullDescription">&nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                        <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
                                                     </div>
                                                 </td>
                                             </tr>
