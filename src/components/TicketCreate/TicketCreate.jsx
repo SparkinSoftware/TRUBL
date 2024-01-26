@@ -155,8 +155,8 @@ const TicketCreation = () => {
                             <option value="Austin">Austin, TX</option>
                             <option value="Dallas">Dallas, TX</option>
                             <option value="Houston">Houston, TX</option>
-                            <option value="SanAntonio">San Antonio, TX</option>
-                            <option value="LasVegas">Las Vegas, NV</option>
+                            <option value="San Antonio">San Antonio, TX</option>
+                            <option value="Las Vegas">Las Vegas, NV</option>
                             <option value="Carlsbad">Carlsbad, NM</option>
                             {/* Add more options as needed */}
                         </select>
