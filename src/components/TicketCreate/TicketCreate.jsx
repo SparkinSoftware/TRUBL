@@ -1,5 +1,5 @@
 import React, { useState, useEffect  } from "react";
-import { Link } from "react-router-dom";
+import { Link, createRoutesFromElements } from "react-router-dom";
 import { useSupabase } from '../../SupabaseContext';
 import './ticket.css';
 
@@ -111,6 +111,9 @@ const TicketCreation = () => {
 
     return (
         <div className="ticketPageContainer">
+            <div id="currentUserContainer">
+                <p>Welcome, {currentUser}</p>
+            </div>
             <div className="ticketStatusContainer">
                 <h2>Outstanding Ticket Status</h2>
                 {/* Tickets table */}
