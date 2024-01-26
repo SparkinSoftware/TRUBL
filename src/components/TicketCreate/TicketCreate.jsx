@@ -139,6 +139,7 @@ const TicketCreation = () => {
                                         <tr key={index} className="expandedRowContainer">
                                             <td colSpan="4">
                                                 <div className="expandedRow">
+                                                    {/* TESTING! */}
                                                     <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
                                                 </div>
                                             </td>
