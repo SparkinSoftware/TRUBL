@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect  } from "react";
-import { Link } from "react-router-dom";
+import { Link, createRoutesFromElements } from "react-router-dom";
 import { useSupabase } from '../../SupabaseContext';
 import './ticket.css';
 
@@ -20,6 +21,10 @@ const TicketCreation = () => {
         setCurrentUser(employee)
     })
 
+    const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
+        setUserId(user.data.user.id)
+    }))
+
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
@@ -35,7 +40,8 @@ const TicketCreation = () => {
             
             const { data, error } = await supabase
                 .from('taskissue')
-                .select('*');
+                .select('*')
+                .eq('customer', userId)
 
             if (error) {
                 console.error('Error fetching tickets:', error.message);
@@ -44,7 +50,6 @@ const TicketCreation = () => {
                 console.log(pendingTickets);
             }
         };
-
         fetchTickets();
     }, []);
 
@@ -52,8 +57,8 @@ const TicketCreation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        setPendingTickets([submittedTicket, ...pendingTickets]);
-    
+        setPendingTickets([...pendingTickets, submittedTicket]);
+        
         const { data, error } = await supabase
             .from('taskissue')
             .insert([
@@ -62,6 +67,7 @@ const TicketCreation = () => {
                     description: submittedTicket.description,
                     status: 'Pending',
                     category: submittedTicket.category,
+                    customer: userId, 
                 }
             ]);
     
@@ -118,7 +124,7 @@ const TicketCreation = () => {
 
     return (
         <div className="ticketPageContainer">    
-            <div id=" ">
+            <div id="currentUserContainer">
                 <p>Welcome, {currentUser}</p>
             </div>
             {/* Show Form or Outstanding Tickets Status */}
@@ -155,8 +161,8 @@ const TicketCreation = () => {
                             <option value="Austin">Austin, TX</option>
                             <option value="Dallas">Dallas, TX</option>
                             <option value="Houston">Houston, TX</option>
-                            <option value="SanAntonio">San Antonio, TX</option>
-                            <option value="LasVegas">Las Vegas, NV</option>
+                            <option value="San Antonio">San Antonio, TX</option>
+                            <option value="Las Vegas">Las Vegas, NV</option>
                             <option value="Carlsbad">Carlsbad, NM</option>
                             {/* Add more options as needed */}
                         </select>
@@ -203,7 +209,7 @@ const TicketCreation = () => {
                                             <tr key={index} className="expandedRowContainer">
                                                 <td colSpan="4">
                                                     <div className="expandedRow">
-                                                        <div className="fullDescription">&nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                        <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
                                                     </div>
                                                 </td>
                                             </tr>
