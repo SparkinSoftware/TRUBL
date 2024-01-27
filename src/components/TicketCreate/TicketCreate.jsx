@@ -16,7 +16,10 @@ const TicketCreation = () => {
 
     // currentUser data
     const [currentUser, setCurrentUser] = useState('Guest')
-    
+    supabase.auth.getUser().then(user => {
+        const employee = user.data.user.user_metadata.display_name
+        setCurrentUser(employee)
+    })
 
     const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
         setUserId(user.data.user.id)
@@ -26,7 +29,7 @@ const TicketCreation = () => {
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
     // state to select ticket by click
-    const [selectedTicketIndex, setSelectedTicketIndex] = useState()
+    const [selectedTicketIndex, setSelectedTicketIndex] = useState(false)
     // function to change state of form to show form or new issue button
     const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
