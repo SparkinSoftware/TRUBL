@@ -55,6 +55,8 @@ function Login(){
                 console.error('Error inserting user details:', insertError.message);
             } else {
                 console.log('User details inserted');
+                setRegistrationMode(false)
+                setLoginError("")
             }
         }
     };
