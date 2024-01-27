@@ -16,10 +16,7 @@ const TicketCreation = () => {
 
     // currentUser data
     const [currentUser, setCurrentUser] = useState('Guest')
-    supabase.auth.getUser().then(user => {
-        const employee = user.data.user.user_metadata.display_name
-        setCurrentUser(employee)
-    })
+    
 
     const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
         setUserId(user.data.user.id)
@@ -37,21 +34,29 @@ const TicketCreation = () => {
     // fetch all tickets from data base on inital load
     useEffect(() => {
         const fetchTickets = async () => {
+            try {
+                const user = await supabase.auth.getUser()
+                const userId = user.data.user.id
             
-            const { data, error } = await supabase
-                .from('taskissue')
-                .select('*')
-                .eq('customer', userId)
-
-            if (error) {
-                console.error('Error fetching tickets:', error.message);
-            } else {
-                setPendingTickets(data);
-                console.log(pendingTickets);
+                const { data, error } = await supabase
+                    .from('taskissue')
+                    .select('*')
+                    .eq('customer', userId)
+    
+                if (error) {
+                    console.error('Error fetching tickets:', error.message);
+                } else {
+                    setPendingTickets(data);
+                    console.log(pendingTickets);
+                } 
+            } catch (error) {
+                console.error('Error fetching tickets:', error.message)
             }
         };
+    
         fetchTickets();
-    }, []);
+    }, [supabase, currentUser]);
+    
 
     // add a issue to database and append to table 
     const handleSubmit = async (e) => {
