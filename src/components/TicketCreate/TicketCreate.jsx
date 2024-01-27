@@ -55,7 +55,7 @@ const TicketCreation = () => {
         };
     
         fetchTickets();
-    }, [supabase, currentUser]);
+    }, [supabase, userId]);
     
 
     // add a issue to database and append to table 
