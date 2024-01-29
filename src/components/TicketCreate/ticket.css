@@ -16,7 +16,15 @@
   left: 200px;
   text-shadow: 1px 1px 5px #313131;
   font-size: large;
-  
+  background-color: rgb(177, 171, 158);
+  width: 10%;
+  border-radius: 10px 10px 0px 0px;
+  text-align: center;
+  justify-content: space-around;
+}
+#currentUserContainer p{
+  padding-left: 0%;
+  padding-right: 0%;
 }
 
 .ticketStatusContainer{
@@ -262,6 +270,9 @@ textarea {
     text-overflow: ellipsis;
     text-align: left;
     padding-left: 10px;
+    padding-right: 1%;
+    font-size: 1rem;
+    text-wrap: nowrap;
   }
 
   .actionCell {
