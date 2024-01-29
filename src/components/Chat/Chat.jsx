@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSupabase } from "../../SupabaseContext";
 import "./Chat.css";
 
-const Chat = () => {
+const Chat = ({ticketId}) => {
   const supabase = useSupabase();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -38,6 +38,7 @@ const Chat = () => {
       let { data: messages, error } = await supabase
         .from("messages")
         .select("*, employee:sender_id (name)")
+        .eq("ticket_id", ticketId)
         .order("created_at", { ascending: false });
 
       if (error) console.error("error", error);
@@ -57,7 +58,7 @@ const Chat = () => {
     return () => {
       supabase.removeChannel(subscription);
     };
-  }, [supabase]);
+  }, [supabase, ticketId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +69,7 @@ const Chat = () => {
     if (user) {
       const { error } = await supabase
         .from("messages")
-        .insert([{ sender_id: user.id, text: newMessage }]);
+        .insert([{ sender_id: user.id, text: newMessage, ticket_id: ticketId }]);
       if (error) console.error("error", error);
       setNewMessage("");
     }
@@ -84,22 +85,21 @@ const Chat = () => {
     }
   };
   const closeChat = async () => {
-    try {
-      for (let message of messages) {
-        const { error } = await supabase
-          .from("messages")
-          .delete()
-          .match({ id: message.id });
-        if (error) throw error;
-      }
+    // try {
+    //   for (let message of messages) {
+    //     const { error } = await supabase
+    //       .from("messages")
+    //       .delete()
+    //       .match({ id: message.id });
+    //     if (error) throw error;
+    //   }
 
-      console.log("Selected messages deleted");
-    } catch (error) {
-      console.error("Error deleting messages:", error);
-    }
+    //   console.log("Selected messages deleted");
+    // } catch (error) {
+    //   console.error("Error deleting messages:", error);
+    // }
 
     setShowChat(false);
-    setMessages([]);
   };
 
   useEffect(() => {
