@@ -17,15 +17,19 @@ const TicketCreation = () => {
     // currentUser data
     const [currentUser, setCurrentUser] = useState('Guest')
     supabase.auth.getUser().then(user => {
-        const employee = user.data.user.user_metadata.display_name
-        setCurrentUser(employee)
+        setCurrentUser(user.data.user.user_metadata.display_name)
+        
     })
+
+    const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
+        setUserId(user.data.user.id)
+    }))
 
     const [showForm, setShowForm] = useState(false);
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
     // state to select ticket by click
-    const [selectedTicketIndex, setSelectedTicketIndex] = useState()
+    const [selectedTicketIndex, setSelectedTicketIndex] = useState(false)
     // function to change state of form to show form or new issue button
     const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -33,28 +37,38 @@ const TicketCreation = () => {
     // fetch all tickets from data base on inital load
     useEffect(() => {
         const fetchTickets = async () => {
+            try {
+                const user = await supabase.auth.getUser()
+                const userId = user.data.user.id
             
-            const { data, error } = await supabase
-                .from('taskissue')
-                .select('*');
-
-            if (error) {
-                console.error('Error fetching tickets:', error.message);
-            } else {
-                setPendingTickets(data);
-                console.log(pendingTickets);
+                const { data, error } = await supabase
+                    .from('taskissue')
+                    .select('*')
+                    .eq('customer', userId)
+    
+                if (error) {
+                    console.error('Error fetching tickets:', error.message);
+                } else {
+                    setPendingTickets(data);
+                    console.log(pendingTickets);
+                } 
+            } catch (error) {
+                console.error('Error fetching tickets:', error.message)
             }
         };
-
+    
         fetchTickets();
-    }, []);
+    }, [supabase, userId]);
+    
 
     // add a issue to database and append to table 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // determine if ticket is remote
+        const isRemote = submittedTicket.category === "Software" || submittedTicket.category === "IT" || submittedTicket.categegory === 'Security'
     
-        setPendingTickets([submittedTicket, ...pendingTickets]);
-    
+        setPendingTickets([...pendingTickets, submittedTicket]);
+        
         const { data, error } = await supabase
             .from('taskissue')
             .insert([
@@ -63,6 +77,8 @@ const TicketCreation = () => {
                     description: submittedTicket.description,
                     status: 'Pending',
                     category: submittedTicket.category,
+                    remote: isRemote,
+                    customer: userId, 
                 }
             ]);
     
@@ -132,62 +148,65 @@ const TicketCreation = () => {
             </div>
             {/* Show Form or Outstanding Tickets Status */}
             {showForm ? (
-                <div className="ticketFormContainer">
-                    <div id='ticketFormClose' onClick={handleCloseForm}>x</div>
-                    <form className="ticketForm" onSubmit={handleSubmit}>
-                        <h5>Please Enter Ticket Information</h5>
-                        {/* Dropdown for Category */}
-                        <select
-                            name="category"
-                            id="ticketCat"
-                            value={submittedTicket.category}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="">Issue Category</option>
-                            <option value="Hardware">Hardware</option>
-                            <option value="IT">IT</option>
-                            <option value="Security">Security</option>
-                            <option value="Software">Software</option>
-                            <option value="Miscellaneous">Miscellaneous</option>
-                            {/* Add more options as needed */}
-                        </select>
-                        {/* Dropdown for City */}
-                        <select
-                            name="location"
-                            id="ticketLocation"
-                            value={submittedTicket.location}
-                            onChange={handleInputChange}
-                            required
-                        >
-                            <option value="">Select a City</option>
-                            <option value="Austin">Austin, TX</option>
-                            <option value="Dallas">Dallas, TX</option>
-                            <option value="Houston">Houston, TX</option>
-                            <option value="San Antonio">San Antonio, TX</option>
-                            <option value="Las Vegas">Las Vegas, NV</option>
-                            <option value="Carlsbad">Carlsbad, NM</option>
-                            {/* Add more options as needed */}
-                        </select>
-                        {/* Description of Issue */}
-                        <textarea
-                            name="description"
-                            id="ticketDescipt"
-                            rows="5"
-                            placeholder="Description of Issue..."
-                            value={submittedTicket.description}
-                            onChange={handleInputChange}
-                            required
-                        />
-                        <input type="submit" className="createSubmit" />
-                    </form>
-                </div>
+                <>
+                    <div className="ticketFormContainer">
+                        <form className="ticketForm" onSubmit={handleSubmit}>
+                            <h5>Please Enter Ticket Information</h5>
+                            {/* Dropdown for Category */}
+                            <select
+                                name="category"
+                                id="ticketCat"
+                                value={submittedTicket.category}
+                                onChange={handleInputChange}
+                                required
+                            >
+                                <option value="">Issue Category</option>
+                                <option value="Hardware">Hardware</option>
+                                <option value="IT">IT</option>
+                                <option value="Security">Security</option>
+                                <option value="Software">Software</option>
+                                <option value="Miscellaneous">Miscellaneous</option>
+                                {/* Add more options as needed */}
+                            </select>
+                            {/* Dropdown for City */}
+                            <select
+                                name="location"
+                                id="ticketLocation"
+                                value={submittedTicket.location}
+                                onChange={handleInputChange}
+                                required
+                            >
+                                <option value="">Select a City</option>
+                                <option value="Austin">Austin, TX</option>
+                                <option value="Dallas">Dallas, TX</option>
+                                <option value="Houston">Houston, TX</option>
+                                <option value="San Antonio">San Antonio, TX</option>
+                                <option value="Las Vegas">Las Vegas, NV</option>
+                                <option value="Carlsbad">Carlsbad, NM</option>
+                                {/* Add more options as needed */}
+                            </select>
+                            {/* Description of Issue */}
+                            <textarea
+                                name="description"
+                                id="ticketDescipt"
+                                rows="5"
+                                placeholder="Description of Issue..."
+                                value={submittedTicket.description}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <input type="submit" className="createSubmit" />
+                        </form>
+                        
+                    </div>
+                    <button className='ticketBtn' onClick={handleCloseForm}>Back</button>
+                </>
             ) : (
                 <>
                     <div className="ticketStatusContainer">
                     <h2>Outstanding Ticket Status</h2>
-                    {/* Tickets table */}
-                    {pendingTickets.length > 0 && (
+                    {/* Tickets table or No Outstanding Tickets Displayed */}
+                    {pendingTickets.length > 0 ? (
                         <table className="ticketsTable">
                             <thead>
                                 <tr className="ticketHeaderContainer">
@@ -200,7 +219,7 @@ const TicketCreation = () => {
                             <tbody className="ticketTableBody">
                                 {pendingTickets.map((ticket, index) => (
                                     <React.Fragment key={index}>
-                                        <tr key={index} onClick={() => setSelectedTicketIndex(index)}>
+                                        <tr onClick={() => setSelectedTicketIndex(index)}>
                                             <td className="categoryCell">{ticket.category}</td>
                                             <td className="locationCell">{ticket.location}</td>
                                             <td className="descriptionCell, descriptionText">{ticket.description}</td>
@@ -223,9 +242,13 @@ const TicketCreation = () => {
                                 ))}
                             </tbody>
                         </table>
-                    )}
+                    ) : (
+                        <>
+                            <h3 >No Outstanding Tickets</h3>
+                        </>
+                        )}
                 </div>
-                <button onClick={handleNewIssue} id="newIssueButton">New Issue</button>
+                <button onClick={handleNewIssue} className="ticketBtn">New Issue</button>
                 </>
             )}
             <div id="ticketLinkContainer">
