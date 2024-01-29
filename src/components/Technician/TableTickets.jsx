@@ -29,11 +29,11 @@ const TableTickets = ({ ticketData, setTicketData }) => {
         <>
             <table className='table-ticket'>
                 <thead className='table-ticket'>
-                    <tr>
-                        <th id='customer-header' className='header' onClick={() => sortData('customer')}>{'Customer'}</th>
+                    <tr className='table-ticket-data'>
+                        <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>
-                        <th id='assigned-tech-header' className='header' onClick={() => sortData('assigned_tech')}>{'Technician'}</th>
+                        <th id='category-header' className='header' onClick={() => sortData('category')}>{'Category'}</th>
                         <th id='description-header' className='header' onClick={() => sortData('description')}>{'Description'}</th>
                         <th id='assign-header' className='header'>{'Assign'}</th>
                     </tr>
