@@ -1,7 +1,7 @@
 
 # Truble App
 
-## Introduction
+## Introduction 👋
 The Truble App is a ticket management system featuring distinct portals for administrators, technicians, and employees. This versatile system streamlines the process of handling tickets, ensuring efficient management across different organizational roles.
 
 ## Table of Contents
@@ -56,7 +56,7 @@ Examples of usage are depicted in various component files, demonstrating how dif
 - **Dependency Issues**: If there are issues with dependencies, re-run `npm install` to ensure all dependencies are correctly installed.
 
 ## Contributors
-- Noah Morrison
-- Colin Tolliver
 - Jesse Carter
+- Colin Tolliver
+- Noah Morrison
 - Ryan Patino
