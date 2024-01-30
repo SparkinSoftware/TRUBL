@@ -49,7 +49,8 @@ function Login(){
             const { data, insertError } = await supabase.from('employee').insert([{
                 id: authData.user.id,
                 name: name,
-                email: email
+                email: email,
+                role: 3
             }]);
             if (insertError) {
                 console.error('Error inserting user details:', insertError.message);
