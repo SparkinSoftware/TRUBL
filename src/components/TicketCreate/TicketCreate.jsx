@@ -51,7 +51,7 @@ const TicketCreation = () => {
                     console.error('Error fetching tickets:', error.message);
                 } else {
                     setPendingTickets(data);
-                    console.log(pendingTickets);
+                    // console.log(pendingTickets);
                 } 
             } catch (error) {
                 console.error('Error fetching tickets:', error.message)
@@ -258,12 +258,12 @@ const TicketCreation = () => {
                 <Link to='/'>Back Home</Link>
                 <br />
                 <Link to='/login'>Back Login</Link>
-                {userId === '557e3f3b-5147-4d7c-8dce-c26e233b4bf2' ? (
+                { userId === 3 && (
                     <>
                         <br/>
                         <Link to='/administrator'>Administrator</Link>
                     </>
-                ): (null)}
+                )}
             </div>
         </div>
     )
