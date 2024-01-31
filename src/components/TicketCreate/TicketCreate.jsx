@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect  } from "react";
 import { Link, createRoutesFromElements } from "react-router-dom";
 import { useSupabase } from '../../SupabaseContext';
@@ -50,13 +51,14 @@ const TicketCreation = () => {
                     console.error('Error fetching tickets:', error.message);
                 } else {
                     setPendingTickets(data);
-                    console.log(pendingTickets);
+                    // console.log(pendingTickets);
                 } 
             } catch (error) {
                 console.error('Error fetching tickets:', error.message)
             }
         };
     
+
         fetchTickets();
     }, [supabase, userId]);
     
@@ -106,6 +108,7 @@ const TicketCreation = () => {
         })
     }
 
+    // Delete Ticket from table and database when delete button is clicked
     const handleDeleteTicket = async (index) => {
 
         const ticketIdToDelete = pendingTickets[index].id;
@@ -253,6 +256,14 @@ const TicketCreation = () => {
             )}
             <div id="ticketLinkContainer">
                 <Link to='/'>Back Home</Link>
+                <br />
+                <Link to='/login'>Back Login</Link>
+                { userId === 3 && (
+                    <>
+                        <br/>
+                        <Link to='/administrator'>Administrator</Link>
+                    </>
+                )}
             </div>
         </div>
     )
