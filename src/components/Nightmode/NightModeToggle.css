@@ -1,0 +1,104 @@
+
+.toggle-label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .toggle-input:checked + .toggle-slider {
+    background-color: #2196F3; /* Toggle color in night mode */
+  }
+  
+  .toggle-slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  .toggle-input:checked + .toggle-slider:before {
+    transform: translateX(26px);
+  }
+  .body-nm{
+    background-color: #313131;
+  }
+  /* ************** LOGIN PAGE NIGHTMODE ******************* */
+  .loginContainer-nm{
+      display: flex;
+      flex-direction: column;
+      background-color: #444444;
+      /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
+      width: 511px;
+      height: 634px; 
+      justify-content: center;
+      align-items: center;
+  }
+  .loginFields-nm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    /* background-color: #313131; */
+  }
+  .loginFields-nm button{
+    width: 25%;
+    height: 15%;
+    margin-bottom: 5%;
+  }
+  .loginLabel-nm{
+    display: flex;
+    width: 100%;
+    height: 20%;
+    font-size: 1.5rem;
+    background-color: #313131;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 0;
+    font-size: 2rem;
+    padding-top: 4%;
+    color:#ffffff;
+  }
+  .loginForm-nm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 65%;
+    background-color:#313131;
+    align-items: center;
+    justify-content: center;
+}
+.loginForm-nm input{
+    font-family: 'Jost', sans-serif;
+    padding-left: 5%;
+    width: 75%;
+    height: 15%;
+    margin-bottom: 10%;
+}
+.loginForm-nm input::placeholder{
+    font-style: italic;
+}

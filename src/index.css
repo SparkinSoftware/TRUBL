@@ -8,7 +8,7 @@
 html, body{
     height: 100%;
     width: 100%;
-    background-color: #F5f5f5;
+    background-color: #f5f4f2;
     font-family: 'Jost', sans-serif;
 }
 .appLogo{
@@ -16,7 +16,7 @@ html, body{
     
 }
 body{
-    background-image: url('./components/assets/peaks.svg');
+    /* background-image: url('./components/assets/peaks.svg'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
