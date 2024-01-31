@@ -3,7 +3,7 @@
     height: 100%;
     align-items: center;
     display: flex;
-    background-color: #F5f5f5;
+    /* background-color: #bebebe; */
     margin-top: 5vh;
     font-family: 'Jost', sans-serif;
     justify-content: center;
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     background-color: #f5f4f2;
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
     width: 511px;
     height: 634px; 
     justify-content: center;
@@ -36,7 +36,7 @@
 }
 .loginLogo h1{
     font-size: 5rem;
-    color: #313131;
+    color: #b46011;
     height: 100%;
 }
 .loginFieldContainer{
@@ -56,7 +56,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-
+    
 }
 .loginFields button{
     width: 25%;
@@ -75,6 +75,7 @@
     margin: 0;
     font-size: 2rem;
     padding-top: 4%;
+    color:#796d5c;
 }
 .loginErrorContainer{
     padding-bottom: 5%;
@@ -84,7 +85,7 @@
     flex-direction: column;
     width: 100%;
     height: 65%;
-    background-color: #ebeae3;
+    background-color:#ebeae3;
     align-items: center;
     justify-content: center;
 }
@@ -120,12 +121,12 @@
 }
 
 .loginRegisterLink{
-    color: blue;
+    color: #e78f29;
     margin-top: 2.5%;
     cursor: pointer;
 }
 .loginRegisterLink:hover{
-    color: purple;
+    color: rgb(255, 255, 255);
 }
 
 .loginSubmit{
@@ -154,6 +155,7 @@
     text-align: center;
     justify-content: center;
     font-size: 1.5rem;
+    color:#796d5c;
 }
 .loginRegForm{
     display: flex;
@@ -182,10 +184,11 @@
 .loginRegBack{
     align-items: center;
     text-align: center;
+    color: #e78f29;
 }
 .loginRegBack:hover{
     cursor: pointer;
-    color: gray;
+    color: rgb(255, 255, 255);
 }
 .loginRegSubmit{
     border: none;
@@ -196,9 +199,22 @@
     font-size: 1.2rem;
     justify-content: center;
     text-align: center;
+    color: white;
 }
 .loginRegSubmit:hover{
     background-color: rgb(244, 247, 233);
     color:#313131;
 
 }
+
+.night-mode .loginContainer{
+        display: flex;
+        flex-direction: column;
+        background-color: #313131;
+        box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+        width: 511px;
+        height: 634px; 
+        justify-content: center;
+        align-items: center;
+}
+

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { useSupabase } from '../../SupabaseContext';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 function Login(){
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ function Login(){
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registrationError, setRegistrationError] = useState('');
     const [loginError, setLoginError] = useState('');
+    const { isNightMode } = useNightMode();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -71,7 +74,7 @@ function Login(){
     return (
         <>
             <div className="loginBody">
-                <div className="loginContainer">
+                <div className={"loginContainer" + (isNightMode ? '-nm' : '')}>
                     <div className="loginLogo">
                         <h1>TRUBL</h1>
                     </div>
@@ -94,9 +97,9 @@ function Login(){
                         </div>
                     ) : (
                         <div className="loginFieldContainer">
-                            <div className="loginFields">
-                                <div className="loginLabel">EMPLOYEE LOGIN</div>
-                                <form className="loginForm" autoComplete="off" onSubmit={handleLogin}>
+                            <div className={"loginFields" + (isNightMode ? '-nm' : '')}>
+                                <div className={"loginLabel" + (isNightMode ? '-nm' : '')}>EMPLOYEE LOGIN</div>
+                                <form className={"loginForm" + (isNightMode ? '-nm' : '')}autoComplete="off" onSubmit={handleLogin}>
                                     <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
                                     <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                                     {loginError && <div className="loginErrorContainer">{loginError}</div>}

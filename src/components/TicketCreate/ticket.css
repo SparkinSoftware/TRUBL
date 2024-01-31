@@ -17,14 +17,16 @@
   text-shadow: 1px 1px 5px #313131;
   font-size: large;
   background-color: rgb(177, 171, 158);
-  width: 10%;
+  width: 150px;
   border-radius: 10px 10px 0px 0px;
   text-align: center;
   justify-content: space-around;
+  min-width: 95px;
 }
 #currentUserContainer p{
-  padding-left: 0%;
-  padding-right: 0%;
+  padding-left: 2%;
+  padding-right: 2%;
+  text-wrap: wrap;
 }
 
 .ticketStatusContainer{
