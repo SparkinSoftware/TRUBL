@@ -7,9 +7,10 @@ import Chat from '../Chat/Chat.jsx';
 import '../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
-const { isNightMode } = useNightMode();
+
 
 const TicketCreation = () => {
+    const { isNightMode } = useNightMode();
     const supabase = useSupabase()
     // state for form data
     const [submittedTicket, setSubmittedTicket] = useState({
