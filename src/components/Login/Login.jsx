@@ -81,18 +81,18 @@ function Login(){
                     {/* Conditional rendering for RegistrationMode */}
                     {isRegistrationMode ? (
                         <div className="loginRegFields">
-                            <div className="loginRegLabel">NEW USER REGISTRATION</div>
+                            <div className={"loginRegLabel" + (isNightMode ? '-nm' : '')}>NEW USER REGISTRATION</div>
                             {registrationError && <div className="loginErrorContainer">{registrationError}</div>}
-                            <form className="loginRegForm" autoComplete="off" onSubmit={handleRegister}>
+                            <form className={"loginRegForm" + (isNightMode ? '-nm' : '')} autoComplete="off" onSubmit={handleRegister}>
                                 <input placeholder="First Name" type="text" id="fname" name="fname" autoComplete="off" required/>
                                 <input placeholder="Last Name" type="text" id="lname" name="lname" autoComplete="off" required/>
                                 <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
                                 <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
                                 <input placeholder="Re-Enter Password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
-                                <button className="loginRegSubmit" type="submit">Register</button>
+                                <button className={"loginRegSubmit" + (isNightMode ? '-nm' : '')} type="submit">Register</button>
                             </form>
-                            <div className="loginRegBackContainer">
-                                    <div className="loginRegBack" onClick={handleRegisterBackClick}><u>Back to Login</u></div>
+                            <div className={"loginRegBackContainer" + (isNightMode ? '-nm' : '')}>
+                                    <div className={"loginRegBack" + (isNightMode ? '-nm' : '')} onClick={handleRegisterBackClick}><u>Back to Login</u></div>
                                 </div>
                         </div>
                     ) : (
