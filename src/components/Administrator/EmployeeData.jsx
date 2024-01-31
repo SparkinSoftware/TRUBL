@@ -1,7 +1,17 @@
 import { useState } from 'react'
+import { useSupabase } from '../../SupabaseContext';
+
 //import './administrator.css'
 
 const EmployeeData =({ name, location, role, skill }) => {
+    const supabase = useSupabase()
+
+    const [currentUser, setCurrentUser] = useState('Guest')
+    supabase.auth.getUser().then(user => {
+        setCurrentUser(user.data.user.id)
+        
+    })
+    // console.log(currentUser);
     return (
         <>
             <tr>
