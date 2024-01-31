@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './landing.css';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 function Landing(){
     // Hardcoded testuser to test different user permissions/roles
     let testuser={role: 'admin'}
     const navigate = useNavigate()
-
+    const { isNightMode } = useNightMode();
     const handleEmployeeSubmit = () => {
         console.log('Employee Submit clicked');
         navigate('/ticketCreate');
@@ -30,24 +32,24 @@ function Landing(){
                         <h1>TRUBL</h1>
                     </div>
                 {/* Always show employee view */}
-                    <div className="landingEmployeeButton">
-                        <div className="landingButtonLogo">Employee Portal</div>
+                    <div className={"landingEmployeeButton" + (isNightMode ? '-nm' : '')}>
+                        <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Employee Portal</div>
                         
-                        <div className="landingSubmit" onClick={handleEmployeeSubmit}>Submit</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleEmployeeSubmit}>Submit</div>
                     </div>
                 {/* Conditional Rendering per roles */}
                 {/* If user is Technician */}
                     {testuser.role === 'technician' && (
-                    <div className="landingTechButton">
-                        <div className="landingButtonLogo">Technician Portal</div>
-                        <div className="landingSubmit" onClick={handleTechSubmit}>Submit</div>
+                    <div className={"landingTechButton" + (isNightMode ? '-nm' : '')}>
+                        <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Technician Portal</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleTechSubmit}>Submit</div>
                     </div>
                     )}
                 {/* If user is Admin */}
                     {testuser.role === 'admin' && (
-                    <div className="landingAdminButton">
-                        <div className="landingButtonLogo">Administrator Portal</div>
-                        <div className="landingSubmit" onClick={handleAdminSubmit}>Submit</div>
+                    <div className={"landingAdminButton" + (isNightMode ? '-nm' : '')}>
+                        <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Administrator Portal</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleAdminSubmit}>Submit</div>
                     </div>
                     )}
                 </div>
