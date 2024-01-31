@@ -64,6 +64,8 @@ const TicketCreation = () => {
     // add a issue to database and append to table 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // determine if ticket is remote
+        const isRemote = submittedTicket.category === "Software" || submittedTicket.category === "IT" || submittedTicket.categegory === 'Security'
     
         setPendingTickets([...pendingTickets, submittedTicket]);
         
@@ -75,6 +77,7 @@ const TicketCreation = () => {
                     description: submittedTicket.description,
                     status: 'Pending',
                     category: submittedTicket.category,
+                    remote: isRemote,
                     customer: userId, 
                 }
             ]);
@@ -202,8 +205,8 @@ const TicketCreation = () => {
                 <>
                     <div className="ticketStatusContainer">
                     <h2>Outstanding Ticket Status</h2>
-                    {/* Tickets table */}
-                    {pendingTickets.length > 0 && (
+                    {/* Tickets table or No Outstanding Tickets Displayed */}
+                    {pendingTickets.length > 0 ? (
                         <table className="ticketsTable">
                             <thead>
                                 <tr className="ticketHeaderContainer">
@@ -239,7 +242,11 @@ const TicketCreation = () => {
                                 ))}
                             </tbody>
                         </table>
-                    )}
+                    ) : (
+                        <>
+                            <h3 >No Outstanding Tickets</h3>
+                        </>
+                        )}
                 </div>
                 <button onClick={handleNewIssue} className="ticketBtn">New Issue</button>
                 </>
