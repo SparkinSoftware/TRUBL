@@ -50,7 +50,7 @@ function Login(){
                 id: authData.user.id,
                 name: name,
                 email: email,
-                role: 3
+                role: 1
             }]);
             if (insertError) {
                 console.error('Error inserting user details:', insertError.message);
