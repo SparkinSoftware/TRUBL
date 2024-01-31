@@ -19,7 +19,7 @@ function App() {
       document.body.style.backgroundColor = '#1a1a1a';
 
     } else {
-      document.body.style.backgroundColor = 'white';
+      document.body.style.backgroundColor = '#f1eee6';
 
     }
 
