@@ -143,7 +143,6 @@ const TicketCreation = () => {
         }
     };
     
-
     return (
         <div className="ticketPageContainer">    
             <div id="currentUserContainer">
@@ -226,15 +225,14 @@ const TicketCreation = () => {
                                             <td className="categoryCell">{ticket.category}</td>
                                             <td className="locationCell">{ticket.location}</td>
                                             <td className="descriptionCell, descriptionText">{ticket.description}</td>
-                                            <td className="actionCell">
-                                                <button onClick={() => handleDeleteTicket(index)}>Delete</button>
+                                            <td className="actionCell" onClick={() => handleDeleteTicket(index)}>Delete
                                             </td>
                                         </tr>
                                         {selectedTicketIndex === index && (
                                             <tr key={index} className="expandedRowContainer">
                                                 <td colSpan="4">
                                                     <div className="expandedRow">
-                                                        <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                        <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>&nbsp;<span className="ticketDownArrow">↳</span>&nbsp;{ticket.description}</div>
                                                     </div>
                                                 </td>
                                                 <Chat ticketId={ticket.id} />
@@ -247,7 +245,7 @@ const TicketCreation = () => {
                         </table>
                     ) : (
                         <>
-                            <h3 >No Outstanding Tickets</h3>
+                            <h3>No Outstanding Tickets</h3>
                         </>
                         )}
                 </div>

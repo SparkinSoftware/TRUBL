@@ -158,121 +158,117 @@ textarea {
 .ticketsTable {
     border: none;
     overflow-y: scroll;
-  }
+}
   
-  .ticketsTable th, .ticketsTable td {
-    border: 1px solid #ddd;
-  }
-  
-  .ticketsTable th {
-    background-color: #313131;
-    color: #f1f2f2
-  }
-  
-  .ticketsTable tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-    
-  }
-  
-  .ticketsTable tbody tr:hover {
-    background-color: #e6f7ff;
-    cursor: pointer;
-  }
-  
-  .ticketsTable td button {
-    background-color: #d1d0cb;
-    border: none;
-    cursor: pointer;
-    transition: ease 300ms;
-    width: 100%;
-    height: 33px;
-  }
+.ticketsTable th, .ticketsTable td {
+  border: 1px solid #ddd;
+}
 
-  .ticketsTable td button:hover {
-    background-color: rgb(244, 247, 233);
+.ticketsTable th {
+  background-color: #313131;
+  color: #f1f2f2
+}
 
-  }
-  
-  .ticketsTable td button:active {
-    background-color: #ff3333;
-    color: #f1f2f2;
-  }
+.ticketsTable tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
 
-  .descriptionCell {
-    white-space: normal;
-    text-overflow:ellipsis;
-    width: 100%;
-    max-width: 311px;
-    text-align: left;
-    padding-left: 10px;
-  }
-  .descriptionText{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
-    max-width: 311px;
-    text-align: left;
-    padding-left: 10px;
-  }
+.ticketsTable tbody tr:hover {
+  background-color: #e6f7ff;
+  cursor: pointer;
+}
 
-  .categoryCell {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: flex;
-    width: 100%;
-    height: 35px;
-  }
-  .categoryCell text{
-    width: 30%;
-    text-indent: 10%;
-  }
+.actionCell {
+  background-color: #d1d0cb;
+  border: none;
+  cursor: pointer;
+  transition: ease 300ms;
+  width: 100%;
+  height: 33px;
+  padding: 0 10px;
+}
 
-  .locationCell {
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: left;
-    padding-left: 10px;
-  }
+.actionCell:hover {
+  background-color: rgb(244, 247, 233);
 
-  .actionCell {
-    overflow: hidden;
-    width: 7%;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  .actionCell button {
-    text-align: center;
-    align-items: center;
-    font-family: 'Jost', sans-serif;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .expandedRow{
-    background-color: rgb(248, 248, 248);
-    width: 100%;
+}
 
-  }
-  .expandedRowContainer{
-    width: 100%;
-    flex-grow: 1;
-  }
-  .fullDescription{
-    text-align: left;
-    height: 200px;
-    width:100%;
-    max-width: 100%;
-    display: flex;
-    background-color: rgb(250, 249, 249);
-    border-right: 1px outset #eeeeee;
-    border-bottom: 3px outset #e9e9e9;
-    border-left: 1px inset #eeeeee;
-  }
-  .fullDescription:hover{
-    cursor: default;
-  }
+.actionCell:active {
+  background-color: #ff3333;
+  color: #f1f2f2;
+}
+
+.descriptionCell {
+  white-space: normal;
+  text-overflow:ellipsis;
+  width: 100%;
+  max-width: 311px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.descriptionText{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 311px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.ticketDescClose{
+  cursor: pointer;
+}
+
+.categoryCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  width: 100%;
+  height: 35px;
+  margin: 0 0 0 0;
+}
+
+.headerCell {
+  padding: 0 10px;
+}
+
+.categoryCell text{
+  width: 20%;
+  text-indent: 10%;
+}
+
+.locationCell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  padding: 0 10px;
+}
+
+.expandedRow{
+  background-color: rgb(248, 248, 248);
+  width: 100%;
+}
+
+.expandedRowContainer{
+  width: 100%;
+  flex-grow: 1;
+}
+
+.fullDescription{
+  text-align: left;
+  height: 200px;
+  width:100%;
+  max-width: 100%;
+  display: flex;
+  background-color: rgb(250, 249, 249);
+  border-right: 1px outset #eeeeee;
+  border-bottom: 3px outset #e9e9e9;
+  border-left: 1px inset #eeeeee;
+}
+
+.fullDescription:hover{
+  cursor: default;
+}
  
