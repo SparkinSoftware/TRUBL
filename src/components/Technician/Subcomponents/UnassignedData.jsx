@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react'
 //import TechnicianList from './TechnicianList';
 import { useSupabase } from '../../../SupabaseContext';
+import { useSupabase } from '../../SupabaseContext';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const UnassignedData =({ ticketData, setTicketData }) => {
 
+
+    const { isNightMode } = useNightMode();
     const supabase = useSupabase();
     const [ employees, setEmployees ] = useState([]);
 
@@ -83,7 +88,7 @@ const UnassignedData =({ ticketData, setTicketData }) => {
         <>
             {ticketData.map((ticket) => ( 
                 <React.Fragment key={ticket.id}>
-                    <tr id={ticket.id} className='table-ticket-data'>
+                    <tr id={ticket.id} className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <td className='customer'>{ticket.customerName}</td>
                         <td className='location'>{ticket.location}</td>
                         <td className='remote'>

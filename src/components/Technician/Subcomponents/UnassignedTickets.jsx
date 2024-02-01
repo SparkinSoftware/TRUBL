@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import UnassignedData from './UnassignedData'
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const UnassignedTickets = ({ ticketData, setTicketData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
-
+    const { isNightMode } = useNightMode();
     const sortData = (key) => {
         let direction = 'ascending';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -27,9 +29,9 @@ const UnassignedTickets = ({ ticketData, setTicketData }) => {
 
     return (
         <>
-            <table className='table-ticket'>
-                <thead className='table-ticket'>
-                    <tr className='table-ticket-data'>
+            <table className={'table-ticket' + (isNightMode ? '-nm' : '')}>
+                <thead className={'table-ticket' + (isNightMode ? '-nm' : '')}>
+                    <tr className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>

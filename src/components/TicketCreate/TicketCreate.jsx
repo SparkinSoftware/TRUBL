@@ -1,11 +1,16 @@
+
 import React, { useState, useEffect  } from "react";
 import { Link, createRoutesFromElements } from "react-router-dom";
 import { useSupabase } from '../../SupabaseContext';
 import './ticket.css';
 import Chat from '../Chat/Chat.jsx';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
+// { + (isNightMode ? '-nm' : '')}
 
 const TicketCreation = () => {
+    const { isNightMode } = useNightMode();
     const supabase = useSupabase()
     // state for form data
     const [submittedTicket, setSubmittedTicket] = useState({
@@ -26,10 +31,13 @@ const TicketCreation = () => {
     }))
 
     const [showForm, setShowForm] = useState(false);
+    
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
+
     // state to select ticket by click
     const [selectedTicketIndex, setSelectedTicketIndex] = useState(false)
+
     // function to change state of form to show form or new issue button
     const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -50,13 +58,14 @@ const TicketCreation = () => {
                     console.error('Error fetching tickets:', error.message);
                 } else {
                     setPendingTickets(data);
-                    console.log(pendingTickets);
+                    // console.log(pendingTickets);
                 } 
             } catch (error) {
                 console.error('Error fetching tickets:', error.message)
             }
         };
     
+
         fetchTickets();
     }, [supabase, userId]);
     
@@ -106,9 +115,19 @@ const TicketCreation = () => {
         })
     }
 
+    // Delete Ticket from table and database when delete button is clicked
     const handleDeleteTicket = async (index) => {
+        if(index < 0 || index >= pendingTickets.length){
+            console.error('Invailid index for deleting ticket.')
+            return
+        }
 
-        const ticketIdToDelete = pendingTickets[index].id;
+        const ticketIdToDelete = pendingTickets[index].id
+
+        if (!ticketIdToDelete) {
+            console.error('Invalid ticket ID for deleting ticket.')
+            return
+        }
     
         try {
 
@@ -143,19 +162,19 @@ const TicketCreation = () => {
 
     return (
         <div className="ticketPageContainer">    
-            <div id="currentUserContainer">
+            <div id={"currentUserContainer" + (isNightMode ? '-nm' : '')}>
                 <p>Welcome, {currentUser}</p>
             </div>
             {/* Show Form or Outstanding Tickets Status */}
             {showForm ? (
                 <>
-                    <div className="ticketFormContainer">
-                        <form className="ticketForm" onSubmit={handleSubmit}>
+                    <div className={"ticketFormContainer" + (isNightMode ? '-nm' : '')}>
+                        <form className={"ticketForm" + (isNightMode ? '-nm' : '')} onSubmit={handleSubmit}>
                             <h5>Please Enter Ticket Information</h5>
                             {/* Dropdown for Category */}
                             <select
                                 name="category"
-                                id="ticketCat"
+                                id={"ticketCat" + (isNightMode ? '-nm' : '')}
                                 value={submittedTicket.category}
                                 onChange={handleInputChange}
                                 required
@@ -171,7 +190,7 @@ const TicketCreation = () => {
                             {/* Dropdown for City */}
                             <select
                                 name="location"
-                                id="ticketLocation"
+                                id={"ticketLocation" + (isNightMode ? '-nm' : '')}
                                 value={submittedTicket.location}
                                 onChange={handleInputChange}
                                 required
@@ -188,50 +207,50 @@ const TicketCreation = () => {
                             {/* Description of Issue */}
                             <textarea
                                 name="description"
-                                id="ticketDescipt"
+                                id={"ticketDescript" + (isNightMode ? '-nm' : '')}
                                 rows="5"
                                 placeholder="Description of Issue..."
                                 value={submittedTicket.description}
                                 onChange={handleInputChange}
                                 required
                             />
-                            <input type="submit" className="createSubmit" />
+                            <input type="submit" className={"createSubmit" + (isNightMode ? '-nm' : '')} />
                         </form>
                         
                     </div>
-                    <button className='ticketBtn' onClick={handleCloseForm}>Back</button>
+                    <button className={'ticketBtn' + (isNightMode ? '-nm' : '')} onClick={handleCloseForm}>Back</button>
                 </>
             ) : (
                 <>
-                    <div className="ticketStatusContainer">
+                    <div className={"ticketStatusContainer" + (isNightMode ? '-nm' : '')}>
                     <h2>Outstanding Ticket Status</h2>
                     {/* Tickets table or No Outstanding Tickets Displayed */}
                     {pendingTickets.length > 0 ? (
-                        <table className="ticketsTable">
+                        <table className={"ticketsTable" + (isNightMode ? '-nm' : '')}>
                             <thead>
-                                <tr className="ticketHeaderContainer">
-                                    <th className="headerCell">Category</th>
-                                    <th className="locationCell">Location</th>
-                                    <th className="descriptionCell">Description</th>
-                                    <th className="actionCell">Action</th>
+                                <tr className={"ticketHeaderContainer" + (isNightMode ? '-nm' : '')}>
+                                    <th className={"headerCell" + (isNightMode ? '-nm' : '')}>Category</th>
+                                    <th className={"locationCell" + (isNightMode ? '-nm' : '')}>Location</th>
+                                    <th className={"descriptionCell" + (isNightMode ? '-nm' : '')}>Description</th>
+                                    <th className={"actionCell" + (isNightMode ? '-nm' : '')}>Action</th>
                                 </tr>
                             </thead>
-                            <tbody className="ticketTableBody">
+                            <tbody className={"ticketTableBody" + (isNightMode ? '-nm' : '')}>
                                 {pendingTickets.map((ticket, index) => (
                                     <React.Fragment key={index}>
                                         <tr onClick={() => setSelectedTicketIndex(index)}>
-                                            <td className="categoryCell">{ticket.category}</td>
-                                            <td className="locationCell">{ticket.location}</td>
-                                            <td className="descriptionCell, descriptionText">{ticket.description}</td>
-                                            <td className="actionCell">
+                                            <td className={"categoryCell" + (isNightMode ? '-nm' : '')}>{ticket.category}</td>
+                                            <td className={"locationCell" + (isNightMode ? '-nm' : '')}>{ticket.location}</td>
+                                            <td className={"descriptionCell, descriptionText" + (isNightMode ? '-nm' : '')}>{ticket.description}</td>
+                                            <td className={"actionCell" + (isNightMode ? '-nm' : '')}>
                                                 <button onClick={() => handleDeleteTicket(index)}>Delete</button>
                                             </td>
                                         </tr>
                                         {selectedTicketIndex === index && (
-                                            <tr key={index} className="expandedRowContainer">
+                                            <tr key={index} className={"expandedRowContainer" + (isNightMode ? '-nm' : '')}>
                                                 <td colSpan="4">
-                                                    <div className="expandedRow">
-                                                        <div className="fullDescription">&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                                                    <div className={"expandedRow" + (isNightMode ? '-nm' : '')}>
+                                                        <div className={"fullDescription" + (isNightMode ? '-nm' : '')}>&nbsp;<span className="ticketDescClose" onClick={() => setSelectedTicketIndex(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
                                                     </div>
                                                 </td>
                                                 <Chat ticketId={ticket.id} />
@@ -248,11 +267,19 @@ const TicketCreation = () => {
                         </>
                         )}
                 </div>
-                <button onClick={handleNewIssue} className="ticketBtn">New Issue</button>
+                <button onClick={handleNewIssue} className={"ticketBtn" + (isNightMode ? '-nm' : '')}>New Issue</button>
                 </>
             )}
-            <div id="ticketLinkContainer">
-                <Link to='/'>Back Home</Link>
+            <div id={"ticketLinkContainer" + (isNightMode ? '-nm' : '')}>
+                <Link to='/landing'>Back</Link>
+                <br />
+                <Link to='/login'>Logout</Link>
+                { userId === 3 && (
+                    <>
+                        <br/>
+                        <Link to='/administrator'>Administrator</Link>
+                    </>
+                )}
             </div>
         </div>
     )

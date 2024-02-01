@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { useSupabase } from '../../SupabaseContext';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 function Login(){
     const navigate = useNavigate();
@@ -13,6 +15,7 @@ function Login(){
     const [confirmPassword, setConfirmPassword] = useState('');
     const [registrationError, setRegistrationError] = useState('');
     const [loginError, setLoginError] = useState('');
+    const { isNightMode } = useNightMode();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -49,7 +52,8 @@ function Login(){
             const { data, insertError } = await supabase.from('employee').insert([{
                 id: authData.user.id,
                 name: name,
-                email: email
+                email: email,
+                role: 1
             }]);
             if (insertError) {
                 console.error('Error inserting user details:', insertError.message);
@@ -71,32 +75,32 @@ function Login(){
     return (
         <>
             <div className="loginBody">
-                <div className="loginContainer">
+                <div className={"loginContainer" + (isNightMode ? '-nm' : '')}>
                     <div className="loginLogo">
                         <h1>TRUBL</h1>
                     </div>
                     {/* Conditional rendering for RegistrationMode */}
                     {isRegistrationMode ? (
                         <div className="loginRegFields">
-                            <div className="loginRegLabel">NEW USER REGISTRATION</div>
+                            <div className={"loginRegLabel" + (isNightMode ? '-nm' : '')}>NEW USER REGISTRATION</div>
                             {registrationError && <div className="loginErrorContainer">{registrationError}</div>}
-                            <form className="loginRegForm" autoComplete="off" onSubmit={handleRegister}>
+                            <form className={"loginRegForm" + (isNightMode ? '-nm' : '')} autoComplete="off" onSubmit={handleRegister}>
                                 <input placeholder="First Name" type="text" id="fname" name="fname" autoComplete="off" required/>
                                 <input placeholder="Last Name" type="text" id="lname" name="lname" autoComplete="off" required/>
                                 <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
                                 <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required />
                                 <input placeholder="Re-Enter Password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
-                                <button className="loginRegSubmit" type="submit">Register</button>
+                                <button className={"loginRegSubmit" + (isNightMode ? '-nm' : '')} type="submit">Register</button>
                             </form>
-                            <div className="loginRegBackContainer">
-                                    <div className="loginRegBack" onClick={handleRegisterBackClick}><u>Back to Login</u></div>
+                            <div className={"loginRegBackContainer" + (isNightMode ? '-nm' : '')}>
+                                    <div className={"loginRegBack" + (isNightMode ? '-nm' : '')} onClick={handleRegisterBackClick}><u>Back to Login</u></div>
                                 </div>
                         </div>
                     ) : (
                         <div className="loginFieldContainer">
-                            <div className="loginFields">
-                                <div className="loginLabel">EMPLOYEE LOGIN</div>
-                                <form className="loginForm" autoComplete="off" onSubmit={handleLogin}>
+                            <div className={"loginFields" + (isNightMode ? '-nm' : '')}>
+                                <div className={"loginLabel" + (isNightMode ? '-nm' : '')}>EMPLOYEE LOGIN</div>
+                                <form className={"loginForm" + (isNightMode ? '-nm' : '')}autoComplete="off" onSubmit={handleLogin}>
                                     <input placeholder="Email" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
                                     <input placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                                     {loginError && <div className="loginErrorContainer">{loginError}</div>}
