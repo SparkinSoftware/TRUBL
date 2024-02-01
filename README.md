@@ -1,8 +1,8 @@
 
-# Truble App
+# TRUBL App
 
 ## Introduction 👋
-The Truble App is a ticket management system featuring distinct portals for administrators, technicians, and employees. This versatile system streamlines the process of handling tickets, ensuring efficient management across different organizational roles.
+The TRUBL App is a ticket management system featuring distinct portals for administrators, technicians, and employees. This versatile system streamlines the process of handling tickets, ensuring efficient management across different organizational roles.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -28,7 +28,7 @@ The Truble App is a ticket management system featuring distinct portals for admi
 4. Create a `.env` file and add your Supabase key.
 
 ## Usage
-The Truble App enhances maintenance management within organizations through a user-friendly ticketing system. It's designed with distinct portals for different user roles, improving the efficiency and effectiveness of handling maintenance requests.
+The TRUBL App enhances maintenance management within organizations through a user-friendly ticketing system. It's designed with distinct portals for different user roles, improving the efficiency and effectiveness of handling maintenance requests.
 
 - **Administrators**: Gain an overview of all maintenance activities, manage user roles and ticket assignments, and access analytical tools for insights into maintenance trends.
 - **Technicians**: View and manage maintenance tickets, communicate with employees through a real-time chat feature, and update ticket statuses as they progress.
