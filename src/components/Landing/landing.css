@@ -98,8 +98,8 @@
 }
 .landingSubmit:hover{
     color: #313131;
-    background-color: #ebeae3;
-    border: 1px solid #313131;
+    background-color: #c99450;
+    /* border: 1px solid #313131; */
     cursor: pointer;
     user-select: none;
 }
@@ -117,7 +117,7 @@
 }
 .landingSubmit-nm:hover{
     color: #313131;
-    background-color: #ebeae3;
+    background-color: #ebe6e3;
     border: 1px solid #313131;
     cursor: pointer;
     user-select: none;
