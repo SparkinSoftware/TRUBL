@@ -181,3 +181,7 @@
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
+
+.table-ticket-data.fullDescription {
+    background-color: yellow;
+}

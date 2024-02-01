@@ -3,11 +3,16 @@ import AssignedData from './AssignedData'
 import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
+import Chat from '../../Chat/Chat'
 
 const AssignedTickets = ({ assignedData, setAssignedData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
-    const supabase = useSupabase()
+    const [ showChat, setShowChat ] = useState(false);
+    const supabase = useSupabase();
+    const [selectedAssignedTicket, setSelectedAssignedTicket] = useState(false)
+
     const { isNightMode } = useNightMode();
+
     const sortData = (key) => {
         let direction = 'ascending';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -29,6 +34,13 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
         setAssignedData(sortedData);
     }
 
+    const handleRowClick = (ticket) => {
+        setSelectedTicket(ticket);
+        setShowChat(true);
+    }
+
+    
+
     return (
         <>
             <table className='table-ticket'>
@@ -39,13 +51,14 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>
                         <th id='category-header' className='header' onClick={() => sortData('category')}>{'Category'}</th>
                         <th id='description-header' className='header' onClick={() => sortData('description')}>{'Description'}</th>
-                        <th id='assign-header' className='header'>{'Assign'}</th>
+                        <th id='assign-header' className='header'>{'Reassign'}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <AssignedData 
                         assignedData={assignedData}
-                        setAssignedData={setAssignedData} />
+                        setAssignedData={setAssignedData}
+                         />
                 </tbody>
             </table>
         </>
