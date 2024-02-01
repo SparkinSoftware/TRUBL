@@ -97,7 +97,7 @@ const TechnicianPortal =({}) => {
                     </div>
                 </div>
             </div>
-            <Link to='/'>Back Home</Link>
+            {/* <Link to='/'>Back Home</Link> */}
         </>
     )
 }
