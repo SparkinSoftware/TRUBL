@@ -30,10 +30,7 @@ function Landing(){
                     console.error('Error fetching role:', error);
                 } else if (data) {
                     setRole(data.role);
-                }else{
-                    setIsLoading(false);
                 }
-                setIsLoading(false);
             }
         };
     
@@ -57,10 +54,10 @@ function Landing(){
         navigate('/administrator');
       };
 
-    //   useEffect(() => {
-    //     let timer = setTimeout(() => setIsLoading(false), 500);
-    //     return () => clearTimeout(timer);
-    //   })
+      useEffect(() => {
+        let timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
+      })
 
       if (isLoading) {
         return <div className={'loading' + (isNightMode ? '-nm' : '')}>Loading...</div>;
