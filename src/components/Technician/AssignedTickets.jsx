@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import AssignedData from './AssignedData'
 import { useSupabase } from '../../SupabaseContext';
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const AssignedTickets = ({ assignedData, setAssignedData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
     const supabase = useSupabase()
-
+    const { isNightMode } = useNightMode();
     const sortData = (key) => {
         let direction = 'ascending';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -31,7 +33,7 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
         <>
             <table className='table-ticket'>
                 <thead className='table-ticket'>
-                    <tr className='table-ticket-data'>
+                    <tr className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>
