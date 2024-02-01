@@ -12,7 +12,6 @@ const TableEmployee =({ employeeData, setEmployeeData }) => {
         }
         setSortConfig({ key, direction });
 
-        console.log(`${key} and ${direction} is clicked`);
 
         const sortedData = [...employeeData].sort((a, b) => {
             if (a[key] < b[key]) {
@@ -47,6 +46,8 @@ const TableEmployee =({ employeeData, setEmployeeData }) => {
                             location={employee.location}
                             role={employee.role}
                             skill={employee.skillset}
+                            employeeData={employeeData}
+                            setEmployeeData={setEmployeeData}
                             />
                     ))}
                 </tbody>
