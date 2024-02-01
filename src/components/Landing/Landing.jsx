@@ -79,7 +79,7 @@ function Landing(){
                     <div className={"landingEmployeeButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Employee Portal</div>
                         
-                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleEmployeeSubmit}>Submit</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleEmployeeSubmit}>Enter</div>
                     </div>
                 )}
                 {/* Conditional Rendering per roles */}
@@ -87,14 +87,14 @@ function Landing(){
                     {role == '2' && (
                     <div className={"landingTechButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Technician Portal</div>
-                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleTechSubmit}>Submit</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleTechSubmit}>Enter</div>
                     </div>
                     )}
                 {/* If user is Admin */}
                     {role == '3' && (
                     <div className={"landingAdminButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Administrator Portal</div>
-                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleAdminSubmit}>Submit</div>
+                        <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleAdminSubmit}>Enter</div>
                     </div>
                     )}
                 </div>
