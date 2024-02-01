@@ -11,6 +11,7 @@ function Landing(){
     const [role, setRole] = useState('')
     const [isLoading, setIsLoading] = useState(true);
     const supabase = useSupabase();
+    const { isNightMode } = useNightMode();
     
     supabase.auth.getUser().then(user => {
         setCurrentUser(user.data.user.id)
@@ -29,7 +30,10 @@ function Landing(){
                     console.error('Error fetching role:', error);
                 } else if (data) {
                     setRole(data.role);
+                }else{
+                    setIsLoading(false);
                 }
+                setIsLoading(false);
             }
         };
     
@@ -40,7 +44,6 @@ function Landing(){
 
 
     const navigate = useNavigate()
-    const { isNightMode } = useNightMode();
 
     const handleEmployeeSubmit = () => {
         console.log('Employee Submit clicked');
@@ -57,10 +60,10 @@ function Landing(){
         navigate('/administrator');
       };
 
-      useEffect(() => {
-        let timer = setTimeout(() => setIsLoading(false), 500);
-        return () => clearTimeout(timer);
-      })
+    //   useEffect(() => {
+    //     let timer = setTimeout(() => setIsLoading(false), 500);
+    //     return () => clearTimeout(timer);
+    //   })
 
       if (isLoading) {
         return <div className={'loading' + (isNightMode ? '-nm' : '')}>Loading...</div>;
