@@ -35,12 +35,14 @@ const TableEmployee =({ employeeData, setEmployeeData }) => {
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{`LOCATION`}</th>
                         <th id='role-header' className='header' onClick={() => sortData('role')}>{`ROLE`}</th>
                         <th id='skill-header' className='header' onClick={() => sortData('skillset')}>{`SKILLSET`}</th>
+                        <th id='action-header' className='header'>{`ACTION`}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {employeeData.map((employee) => (
                         <EmployeeData 
                             key={employee.id}
+                            id={employee.id}
                             name={employee.name}
                             location={employee.location}
                             role={employee.role}
