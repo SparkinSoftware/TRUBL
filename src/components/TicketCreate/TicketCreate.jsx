@@ -213,8 +213,8 @@ const TicketCreation = () => {
                             <thead>
                                 <tr className="ticketHeaderContainer">
                                     <th className="headerCell">Category</th>
-                                    <th className="locationCell">Location</th>
-                                    <th className="descriptionCell">Description</th>
+                                    <th className="locationHeader">Location</th>
+                                    <th className="descriptionText">Description</th>
                                     <th className="actionCell">Action</th>
                                 </tr>
                             </thead>
@@ -224,7 +224,7 @@ const TicketCreation = () => {
                                         <tr onClick={() => setSelectedTicketIndex(index)}>
                                             <td className="categoryCell">{ticket.category}</td>
                                             <td className="locationCell">{ticket.location}</td>
-                                            <td className="descriptionCell, descriptionText">{ticket.description}</td>
+                                            <td className="descriptionText">{ticket.description}</td>
                                             <td className="actionCell" onClick={() => handleDeleteTicket(index)}>Delete
                                             </td>
                                         </tr>
