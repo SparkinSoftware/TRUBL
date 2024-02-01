@@ -23,7 +23,6 @@ const TicketCreation = () => {
     const [currentUser, setCurrentUser] = useState('Guest')
     supabase.auth.getUser().then(user => {
         setCurrentUser(user.data.user.user_metadata.display_name)
-        
     })
 
     const [userId, setUserId] = useState(supabase.auth.getUser().then(user => {
@@ -159,7 +158,6 @@ const TicketCreation = () => {
         }
     };
     
-
     return (
         <div className="ticketPageContainer">    
             <div id={"currentUserContainer" + (isNightMode ? '-nm' : '')}>
@@ -263,7 +261,7 @@ const TicketCreation = () => {
                         </table>
                     ) : (
                         <>
-                            <h3 >No Outstanding Tickets</h3>
+                            <h3>No Outstanding Tickets</h3>
                         </>
                         )}
                 </div>
