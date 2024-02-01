@@ -119,7 +119,7 @@
     flex-direction: column;
     width: 100%;
     height: 65%;
-    background-color:#ebeae3;
+    /* background-color:#ebeae3; */
     align-items: center;
     justify-content: center;
 }

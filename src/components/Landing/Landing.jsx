@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './landing.css';
 import '../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../Nightmode/NightModeContext.jsx';
+
 
 function Landing(){
     // Hardcoded testuser to test different user permissions/roles
@@ -53,7 +54,8 @@ function Landing(){
                     </div>
                     )}
                 </div>
-            </div>        
+            </div>
+            <Link to='/technician'>Technician</Link>        
         </>
     )
 }

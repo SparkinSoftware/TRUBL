@@ -28,12 +28,30 @@
   padding-right: 2%;
   text-wrap: wrap;
 }
+#currentUserContainer-nm {
+  color: #fff;
+  position: relative;
+  left: 200px;
+  text-shadow: 1px 1px 5px #313131;
+  font-size: large;
+  background-color: rgb(61, 61, 61);
+  width: 150px;
+  border-radius: 10px 10px 0px 0px;
+  text-align: center;
+  justify-content: space-around;
+  min-width: 95px;
+}
+#currentUserContainer-nm p{
+  padding-left: 2%;
+  padding-right: 2%;
+  text-wrap: wrap;
+}
 
 .ticketStatusContainer{
     display: inline-block;
     flex-direction: column;
-    /* background-color: #f5f4f2; */
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);;
+    background-color: #f5f4f2;
+    /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
     width: 634px;
     height: 511px;
     overflow-y: scroll;
@@ -42,13 +60,11 @@
 .ticketStatusContainer::-webkit-scrollbar {
     width: 12px; 
 }
-
 .ticketStatusContainer::-webkit-scrollbar-thumb {
     background-color: #d1d0cb; 
     border-radius: 6px; 
     border: 3px solid #f5f4f2; 
 }
-
 .ticketStatusContainer h2 {
     position: sticky;
     top: 0;
@@ -59,6 +75,37 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+.ticketStatusContainer-nm{
+  display: inline-block;
+  flex-direction: column;
+  background-color: #585858;
+  /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
+  width: 634px;
+  height: 511px;
+  overflow-y: scroll;
+  align-items: center;
+}
+.ticketStatusContainer-nm::-webkit-scrollbar {
+  width: 12px; 
+}
+.ticketStatusContainer-nm::-webkit-scrollbar-thumb {
+  background-color: #d1d0cb; 
+  border-radius: 6px; 
+  border: 3px solid #f5f4f2; 
+}
+.ticketStatusContainer-nm h2 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: center;
+  background-color:#313131;
+  border-bottom: 1px solid #313131;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+}
+
+
 
 .submittedTicket {
     height: 10%;
@@ -83,6 +130,19 @@
     font-size: 2rem;
     /* background-color: #f5f4f2; */
 }
+.ticketFormContainer-nm{
+    display: flex;
+    flex-direction: column;
+    width: 634px;
+    height: 511px;
+    font-size: 1rem;
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: #313131;
+}
 
 .ticketForm{
     display: flex;
@@ -99,6 +159,25 @@
     padding: 5px 0;
     font-size: 1rem;
     cursor: pointer;
+}
+.ticketForm-nm{
+    display: flex;
+    flex-direction: column;
+    background-color: #3a3a3a;
+    margin: auto;
+    padding: 25px 60px;
+    color: white;
+}
+
+.ticketForm-nm select  {
+    margin: 3% 0;
+    width: 100%;
+    height: 20%;
+    padding: 5px 0;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: rgb(116, 116, 116);
+    color: rgb(197, 197, 197);
 }
 
 .createSubmit {
@@ -117,11 +196,32 @@
 .createSubmit:hover{
   background-color: rgb(244, 247, 233);
 }
+.createSubmit-nm {
+    margin: 3% 0;
+    width: 100%;
+    height: 20%;
+    padding:3% 0 3% 2%; 
+    font-size: 1rem;
+    letter-spacing: .3em;
+    transition: ease 300ms;
+    background-color: #d1d0cb;
+    cursor: pointer;
+    border: solid 1px #313131;
+}
 
+.createSubmit-nm:hover{
+  background-color: rgb(244, 247, 233);
+}
+#ticketDescript-nm{
+  background-color: #313131;
+  color: white;
+}
 .ticketHeaderContainer{
     width: 100%;
 }
-
+.headerCell-nm{
+  color: white;
+}
 textarea {
     padding: 5px;
     font-size: 1rem;
@@ -140,18 +240,42 @@ textarea {
     font-family: 'Jost', sans-serif;
     cursor: pointer;
 }
-
 .ticketBtn:hover {
     background-color: rgb(244, 247, 233);
 }
-
 .ticketBtn:active {
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
     background-color: #313131;
     color: #d1d0cb;
 }
+.ticketBtn-nm {
+    height: 50px;
+    width: 120px;
+    text-align: center;
+    font-size: large;
+    border-radius: 25px;
+    background-color: #70706f;
+    transition: ease 300ms;
+    margin-top: 50px;
+    font-family: 'Jost', sans-serif;
+    cursor: pointer;
+}
+.ticketBtn-nm:hover {
+    background-color: rgb(244, 247, 233);
+}
+.ticketBtn-nm:active {
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    background-color: #313131;
+    color: #d1d0cb;
+}
+
 
 #ticketLinkContainer {
+    width: 90%;
+    position: absolute;
+    bottom: 3%;
+}
+#ticketLinkContainer-nm {
     width: 90%;
     position: absolute;
     bottom: 3%;
@@ -178,7 +302,11 @@ textarea {
     background-color: #313131;
     color: #f1f2f2
   }
-  
+  .ticketsTable-nm th {
+    background-color: #313131;
+    color: #f1f2f2
+  }
+
   .ticketsTable tbody tr:nth-child(odd) {
     background-color: #f9f9f9;
     
@@ -207,6 +335,25 @@ textarea {
     background-color: #ff3333;
     color: #f1f2f2;
   }
+  .ticketsTable-nm td button {
+    background-color: #686868;
+    border: none;
+    cursor: pointer;
+    transition: ease 300ms;
+    width: 100%;
+    height: 33px;
+    color: white;
+  }
+
+  .ticketsTable-nm td button:hover {
+    background-color: rgb(244, 247, 233);
+    color: #313131;
+  }
+  
+  .ticketsTable-nm td button:active {
+    background-color: #ff3333;
+    color: #f1f2f2;
+  }
 
   .descriptionCell {
     white-space: normal;
@@ -225,6 +372,27 @@ textarea {
     text-align: left;
     padding-left: 10px;
   }
+  .descriptionCell-nm {
+    white-space: normal;
+    text-overflow:ellipsis;
+    width: 100%;
+    max-width: 311px;
+    text-align: left;
+    padding-left: 10px;
+    color: white;
+  }
+  .descriptionText-nm{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 311px;
+    text-align: left;
+    padding-left: 10px;
+    color: white;
+  }
+
+
 
   .categoryCell {
     overflow: hidden;
@@ -237,6 +405,20 @@ textarea {
     width: 30%;
     text-indent: 10%;
   }
+    .categoryCell-nm {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    width: 100%;
+    height: 35px;
+    color: white;
+  }
+  .categoryCell-nm text{
+    width: 30%;
+    text-indent: 10%;
+    color: white;
+  }
+
 
   .locationCell {
     width: 100%;
@@ -248,6 +430,17 @@ textarea {
     font-size: 1rem;
     text-wrap: nowrap;
   }
+    .locationCell-nm {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 1%;
+    font-size: 1rem;
+    text-wrap: nowrap;
+    color: white;
+  }
 
   .actionCell {
     overflow: hidden;
@@ -257,6 +450,22 @@ textarea {
     text-align: center;
   }
   .actionCell button {
+    text-align: center;
+    align-items: center;
+    font-family: 'Jost', sans-serif;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  .actionCell-nm {
+    overflow: hidden;
+    width: 7%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+  }
+  .actionCell-nm button {
     text-align: center;
     align-items: center;
     font-family: 'Jost', sans-serif;
