@@ -1,15 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './landing.css';
 import '../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../Nightmode/NightModeContext.jsx';
+import { useSupabase } from '../../SupabaseContext';
 
 
 function Landing(){
-    // Hardcoded testuser to test different user permissions/roles
-    let testuser={role: 'admin'}
+    const [currentUser, setCurrentUser] = useState('Guest')
+    const [role, setRole] = useState('')
+    const [isLoading, setIsLoading] = useState(true);
+    const supabase = useSupabase();
+    
+    supabase.auth.getUser().then(user => {
+        setCurrentUser(user.data.user.id)
+    })
+
+    useEffect(() => {
+        const fetchUserRole = async () => {
+            if (currentUser !== 'Guest') {
+                const { data, error } = await supabase
+                    .from('employee')
+                    .select('role')
+                    .eq('id', currentUser)
+                    .single();
+    
+                if (error) {
+                    console.error('Error fetching role:', error);
+                } else if (data) {
+                    setRole(data.role);
+                }
+            }
+        };
+    
+        fetchUserRole();
+    }, [currentUser, supabase]);
+    console.log(role)
+    
+
+
     const navigate = useNavigate()
     const { isNightMode } = useNightMode();
+
     const handleEmployeeSubmit = () => {
         console.log('Employee Submit clicked');
         navigate('/ticketCreate');
@@ -25,6 +57,19 @@ function Landing(){
         navigate('/administrator');
       };
 
+      useEffect(() => {
+        let timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
+      })
+
+      if (isLoading) {
+        return <div className={'loading' + (isNightMode ? '-nm' : '')}>Loading...</div>;
+    }
+
+    if (role == '') {
+        return <div className={'loading' + (isNightMode ? '-nm' : '')}>Please Log In</div>;
+    }
+
     return(
         <>
             <div className="landingBody">
@@ -33,29 +78,30 @@ function Landing(){
                         <h1>TRUBL</h1>
                     </div>
                 {/* Always show employee view */}
+                {(role == '1' || role == '2' || role =='3') && (
                     <div className={"landingEmployeeButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Employee Portal</div>
                         
                         <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleEmployeeSubmit}>Submit</div>
                     </div>
+                )}
                 {/* Conditional Rendering per roles */}
                 {/* If user is Technician */}
-                    {testuser.role === 'technician' && (
+                    {role == '2' && (
                     <div className={"landingTechButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Technician Portal</div>
                         <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleTechSubmit}>Submit</div>
                     </div>
                     )}
                 {/* If user is Admin */}
-                    {testuser.role === 'admin' && (
+                    {role == '3' && (
                     <div className={"landingAdminButton" + (isNightMode ? '-nm' : '')}>
                         <div className={"landingButtonLogo" + (isNightMode ? '-nm' : '')}>Administrator Portal</div>
                         <div className={"landingSubmit" + (isNightMode ? '-nm' : '')} onClick={handleAdminSubmit}>Submit</div>
                     </div>
                     )}
                 </div>
-            </div>
-            <Link to='/technician'>Technician</Link>        
+            </div>   
         </>
     )
 }
