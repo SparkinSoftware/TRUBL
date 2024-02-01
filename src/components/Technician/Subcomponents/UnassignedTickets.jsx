@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import UnassignedData from './UnassignedData'
-import '../Nightmode/NightModeToggle.css';
-import { useNightMode } from '../Nightmode/NightModeContext.jsx';
+import '../../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
 const UnassignedTickets = ({ ticketData, setTicketData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);

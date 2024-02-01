@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import AssignedData from './AssignedData'
-import { useSupabase } from '../../SupabaseContext';
-import '../Nightmode/NightModeToggle.css';
-import { useNightMode } from '../Nightmode/NightModeContext.jsx';
+import { useSupabase } from '../../../SupabaseContext';
+import '../../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
 const AssignedTickets = ({ assignedData, setAssignedData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
