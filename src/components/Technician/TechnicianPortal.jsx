@@ -4,9 +4,12 @@ import './technician.css'
 import TableTickets from './TableTickets'
 import AssignedTickets from './AssignedTickets'
 import { useSupabase } from '../../SupabaseContext'
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const TechnicianPortal =({}) => {
     const supabase = useSupabase();
+    const { isNightMode } = useNightMode();
     const [ ticketData, setTicketData ] = useState([]);
     const [ assignedData, setAssignedData ] = useState([]);
     const [ currentUser, setCurrentUser ] = useState('Guest');
@@ -76,18 +79,18 @@ const TechnicianPortal =({}) => {
     return (
         <>
             <div className='technician-container'>
-                <div className='technician-unassignedTickets'>
+                <div className={'technician-unassignedTickets' + (isNightMode ? '-nm' : '')}>
                     <div className='technician-title'>{`Unassigned Tickets`}</div>
-                    <div className='technician-ticketContainer'>
+                    <div className={'technician-ticketContainer' + (isNightMode ? '-nm' : '')}>
                         {/* FIXME: Tickets Component goes here (filtered)*/}
                         <TableTickets 
                             ticketData={ticketData}
                             setTicketData={setTicketData} />
                     </div>
                 </div>
-                <div className='technician-assignedTickets'>
+                <div className={'technician-assignedTickets' + (isNightMode ? '-nm' : '')}>
                     <div className='technician-title'>{`Assigned Tickets`}</div>
-                    <div className='technician-ticketContainer'>
+                    <div className={'technician-ticketContainer' + (isNightMode ? '-nm' : '')}>
                         {/* FIXME: Tickets Component goes here (filtered)*/}
                         {/* <TableTickets /> */}
                         <AssignedTickets

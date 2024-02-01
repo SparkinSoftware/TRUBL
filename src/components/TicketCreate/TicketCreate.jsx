@@ -259,9 +259,9 @@ const TicketCreation = () => {
                 </>
             )}
             <div id={"ticketLinkContainer" + (isNightMode ? '-nm' : '')}>
-                <Link to='/'>Back Home</Link>
+                <Link to='/landing'>Back</Link>
                 <br />
-                <Link to='/login'>Back Login</Link>
+                <Link to='/login'>Logout</Link>
                 { userId === 3 && (
                     <>
                         <br/>

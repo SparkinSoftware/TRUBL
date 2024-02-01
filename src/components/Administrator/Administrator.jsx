@@ -23,14 +23,11 @@ const Administrator =({}) => {
                 console.error('Error fetching employee data:', error.message);
             } else {
                 setEmployeeData(data);
-                //console.log(employeeData);
             }
         };
 
         fetchEmployeeData();
     }, []);
-
-    console.log(employeeData);
 
     return (
         <>
@@ -55,7 +52,9 @@ const Administrator =({}) => {
                     </div>
                 </div>
             </div>
-            <Link to='/'>Back Home</Link>
+            <Link to='/landing'>Back</Link>
+            <br/>
+            <Link to='/'>Logout</Link>
         </>
     )
 }
