@@ -52,7 +52,7 @@
     flex-direction: column;
     background-color: #f5f4f2;
     /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
-    width: 634px;
+    width: 700px;
     height: 511px;
     overflow-y: scroll;
     align-items: center;
@@ -80,7 +80,7 @@
   flex-direction: column;
   background-color: #585858;
   /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
-  width: 634px;
+  width: 700px;
   height: 511px;
   overflow-y: scroll;
   align-items: center;
@@ -133,7 +133,7 @@
 .ticketFormContainer-nm{
     display: flex;
     flex-direction: column;
-    width: 634px;
+    width: 700px;
     height: 511px;
     font-size: 1rem;
     box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
@@ -338,7 +338,7 @@ textarea {
 .ticketsTable tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
-  }
+
   
   .ticketsTable td button:active {
     background-color: #ff3333;
@@ -486,6 +486,7 @@ textarea {
   .expandedRow{
     background-color: rgb(248, 248, 248);
     width: 100%;
+  }
 
 .ticketsTable tbody tr:hover {
   background-color: #e6f7ff;
@@ -570,4 +571,3 @@ textarea {
 .fullDescription:hover{
   cursor: default;
 }
- 

@@ -12,7 +12,10 @@ const Administrator =({}) => {
     const { isNightMode } = useNightMode();
     const supabase = useSupabase();
     const [ employeeData, setEmployeeData ] = useState([]);
-
+    const [currentUser, setCurrentUser] = useState('Guest')
+    supabase.auth.getUser().then(user => {
+        setCurrentUser(user.data.user.user_metadata.display_name)
+    })
     useEffect(() => {
         const fetchEmployeeData = async () => {
             const { data, error } = await supabase
@@ -54,9 +57,11 @@ const Administrator =({}) => {
                     </div>
                 </div>
             </div>
-            <Link to='/landing'>Back</Link>
-            <br/>
-            <Link to='/'>Logout</Link>
+            <div className="linkContainer">
+                <Link to='/landing'>Back</Link>
+                <br/>
+                <Link to='/'>Logout</Link>
+            </div>
         </>
     )
 }
