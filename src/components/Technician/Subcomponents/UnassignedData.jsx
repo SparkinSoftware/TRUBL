@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 //import TechnicianList from './TechnicianList';
-import { useSupabase } from '../../SupabaseContext';
+import { useSupabase } from '../../../SupabaseContext';
 
-const AssignedData =({ assignedData, setAssignedData }) => {
+const UnassignedData =({ ticketData, setTicketData }) => {
 
     const supabase = useSupabase();
     const [ employees, setEmployees ] = useState([]);
@@ -26,7 +26,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
                     customerName: employeeData.find(emp => emp.id === issue.customer)?.name || 'Unknown'
                 }));
 
-                setAssignedData(combineData);
+                setTicketData(combineData);
             } catch (error) {
                 console.error('Error fetching data:', error.message);
             }
@@ -38,28 +38,28 @@ const AssignedData =({ assignedData, setAssignedData }) => {
     const handleInputChange = (e, ticketID) => {
         const { name, value } = e.target;
         console.log(`${e.target.name} and ${e.target.value} inside inputChange function`)
-        const updatedTickets = assignedData.map(ticket => {
+        const updatedTickets = ticketData.map(ticket => {
             if (ticket.id === ticketID) {
                 return { ...ticket, [name]: value === 'true'};
             }
             return ticket;
         });
-        setAssignedData(updatedTickets);
+        setTicketData(updatedTickets);
     }
 
     const handleCategoryChange = (e, ticketID) => {
         const { name, value } = e.target;
-        const updatedTickets = assignedData.map(ticket => {
+        const updatedTickets = ticketData.map(ticket => {
             if (ticket.id === ticketID) {
                 return { ...ticket, [name]: value };
             }
             return ticket;
         });
-        setAssignedData(updatedTickets);
+        setTicketData(updatedTickets);
     }
 
     const handleSubmit = async (ticketID) => {
-        const ticketToUpdate = assignedData.find(ticket => ticket.id === ticketID);
+        const ticketToUpdate = ticketData.find(ticket => ticket.id === ticketID);
         if (ticketToUpdate) {
             try {
                 const { error } = await supabase
@@ -81,7 +81,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
     
     return (
         <>
-            {assignedData.map((ticket) => ( 
+            {ticketData.map((ticket) => ( 
                 <React.Fragment key={ticket.id}>
                     <tr id={ticket.id} className='table-ticket-data'>
                         <td className='customer'>{ticket.customerName}</td>
@@ -123,4 +123,4 @@ const AssignedData =({ assignedData, setAssignedData }) => {
     )
 }
 
-export default AssignedData
+export default UnassignedData
