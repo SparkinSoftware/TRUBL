@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { useSupabase } from '../../SupabaseContext';
 
 const EmployeeData = ({ id, name, location, role, skill }) => {
-    const supabase = useSupabase();
-    const [updatedLocation, setUpdatedLocation] = useState(location);
-    const [updatedSkill, setUpdatedSkill] = useState(skill);
-    const [updatedRole, setUpdatedRole] = useState(role);
+    const supabase = useSupabase()
+    const [updatedLocation, setUpdatedLocation] = useState(location)
+    const [updatedSkill, setUpdatedSkill] = useState(skill)
+    const [updatedRole, setUpdatedRole] = useState(role)
     const [editMode, setEditMode] = useState(false)
 
     const handleLocationChange = (e) => {
-        setUpdatedLocation(e.target.value);
-    };
+        setUpdatedLocation(e.target.value)
+    }
 
     const handleSkillChange = (e) => {
-        setUpdatedSkill(e.target.value);
-    };
+        setUpdatedSkill(e.target.value)
+    }
 
     const handleRoleChange = (e) => {
-        setUpdatedRole(e.target.value);
-    };
+        setUpdatedRole(e.target.value)
+    }
 
     const handleSubmit = async () => {
         try {
@@ -33,7 +33,7 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
 
             if (error) {
                 console.error('Error updating employee:', error.message);
-                return;
+                return
             }
 
             console.log('Update successful for employee ID:', id);
@@ -52,12 +52,12 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
     
             if (error) {
                 console.error('Error deleting employee:', error.message);
-                return;
+                return
             }
     
-            console.log('Delete successful for employee ID:', id);
+            console.log('Delete successful for employee ID:', id)
         } catch (error) {
-            console.error('Error deleting employee:', error.message);
+            console.error('Error deleting employee:', error.message)
         }
     }
     
