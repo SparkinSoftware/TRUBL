@@ -159,7 +159,6 @@ const TicketCreation = () => {
         }
     };
     
-
     return (
         <div className="ticketPageContainer">    
             <div id={"currentUserContainer" + (isNightMode ? '-nm' : '')}>
@@ -263,7 +262,7 @@ const TicketCreation = () => {
                         </table>
                     ) : (
                         <>
-                            <h3 >No Outstanding Tickets</h3>
+                            <h3>No Outstanding Tickets</h3>
                         </>
                         )}
                 </div>

@@ -1,151 +1,151 @@
-import { useState } from 'react'
-//import './administrator.css'
+import React, { useState, useEffect } from 'react';
+import { useSupabase } from '../../SupabaseContext';
 
-const EmployeeData =({ name, location, role, skill }) => {
+const EmployeeData = ({ id, name, location, role, skill }) => {
+    const supabase = useSupabase();
+    const [updatedLocation, setUpdatedLocation] = useState(location);
+    const [updatedSkill, setUpdatedSkill] = useState(skill);
+    const [updatedRole, setUpdatedRole] = useState(role);
+    const [editMode, setEditMode] = useState(false)
+
+    const handleLocationChange = (e) => {
+        setUpdatedLocation(e.target.value);
+    };
+
+    const handleSkillChange = (e) => {
+        setUpdatedSkill(e.target.value);
+    };
+
+    const handleRoleChange = (e) => {
+        setUpdatedRole(e.target.value);
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('employee')
+                .update({
+                    location: updatedLocation,
+                    skillset: updatedSkill,
+                    role: updatedRole,
+                })
+                .eq('id', id);
+
+            if (error) {
+                console.error('Error updating employee:', error.message);
+                return;
+            }
+
+            console.log('Update successful for employee ID:', id);
+            setEditMode(false)
+        } catch (error) {
+            console.error('Error updating employee:', error.message);
+        }
+    }
+
+    const handleDelete = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('employee')
+                .delete()
+                .eq('id', id);
+    
+            if (error) {
+                console.error('Error deleting employee:', error.message);
+                return;
+            }
+    
+            console.log('Delete successful for employee ID:', id);
+        } catch (error) {
+            console.error('Error deleting employee:', error.message);
+        }
+    }
+    
     return (
         <>
             <tr>
                 <td className='name'>{name}</td>
-                {location !== null ? 
-                    <td className='location'>{location}</td> : 
-                    <td className='location'>not specified</td>
-                }
-                {role === 1 ? 
-                    <td>{'Employee'}</td> :
-                    (role === 2 ?
-                    <td>{'Technician'}</td> :
-                    <td>{'Administrator'}</td>)}
-                {skill !== null ?
-                    <td className='skill'>{skill}</td> : 
-                    <td className='skill'>no skills</td>
-                }
+
+                {/* Location Column */}
+                <td className='location'>
+                    {editMode ? ( 
+                        <select name='location'
+                        value={updatedLocation} 
+                        onChange={handleLocationChange}
+                        >
+                            <option value="">Assign City</option>
+                            <option value="Austin">Austin, TX</option>
+                            <option value="Dallas">Dallas, TX</option>
+                            <option value="Houston">Houston, TX</option>
+                            <option value="San Antonio">San Antonio, TX</option>
+                            <option value="Las Vegas">Las Vegas, NV</option>
+                            <option value="Carlsbad">Carlsbad, NM</option>
+                        </select> 
+                    ) : (
+                        location === null ? 'Not Specified' : location
+                    )}
+                </td>
+                
+                <td className='role'>
+                    {/* Role Column */}
+                    { editMode ? (
+                        <select
+                            name='role'
+                            value={updatedRole}
+                            onChange={handleRoleChange}
+                        >
+                            <option value={''}>
+                                {role === 1 ? 'Employee' :(role === 2 ? 'Technician' : 'Administrator')}
+                            </option>
+                            <option value={1}>{'Employee'}</option>
+                            <option value={2}>{'Technician'}</option>
+                            <option value={3}>{'Administrator'}</option>
+                        </select>
+                        ) : (
+                        role === 1 ? 'Employee' : (role === 2 ? 'Technician' : 'Administrator')
+
+                    )}
+                </td>
+
+                <td className='skill'>
+                    {/* Skillset column  */}
+                    {editMode ? (
+                    <select
+                        name='skillset'
+                        value={updatedSkill}
+                        onChange={handleSkillChange}
+                    >
+                        <option value="">Assign Skill</option>
+                        <option value="Admin">Admin</option>
+                        <option value="Hardware">Hardware</option>
+                        <option value="IT">IT</option>
+                        <option value="Security">Security</option>
+                        <option value="Software">Software</option>
+                    </select>
+                    ) : (
+                    skill === null ? 'None' : skill
+                    )}
+                    
+                </td>
+
+                <td className='action'>
+                    {/* Action buttons */}
+                    {editMode ? (
+                        <>
+                            <button className='actionBtn' onClick={handleSubmit}>Update</button>
+                            <button className='actionBtn' onClick={() => setEditMode(false)}>Cancel</button>
+                        </>
+                        
+                    ) : (
+                        <>
+                            <button className='actionBtn' id='editBtn' onClick={() => setEditMode(true)}>Edit</button>
+                            <button className='actionBtn' id='deleteBtn' onClick={handleDelete}>Delete</button>
+                        </>
+                    )}
+                </td>
             </tr>
         </>
-    )
-}
+    );
+};
 
-export default EmployeeData
-
-
-// const TicketData =({ ticketData, setTicketData }) => {
-
-//     const supabase = useSupabase();
-//     const [ employees, setEmployees ] = useState([]);
-
-//     useEffect(() => {
-//         const fetchData = async () => {
-//             try {
-//                 const { data: employeeData, error: employeeError } = await supabase
-//                     .from('employee')
-//                     .select('*');
-//                 if (employeeError) throw employeeError;
-
-//                 const { data: taskIssueData, error: taskIssueError } = await supabase
-//                     .from('taskissue')
-//                     .select('*');
-//                 if (taskIssueError) throw taskIssueError;
-
-//                 setEmployees(employeeData);
-//                 const combineData = taskIssueData.map(issue => ({
-//                     ...issue,
-//                     customerName: employeeData.find(emp => emp.id === issue.customer)?.name || 'Unknown'
-//                 }));
-
-//                 setTicketData(combineData);
-//             } catch (error) {
-//                 console.error('Error fetching data:', error.message);
-//             }
-//         };
-
-//         fetchData();
-//     }, [supabase]);
-
-//     const handleInputChange = (e, ticketID) => {
-//         const { name, value } = e.target;
-//         console.log(`${e.target.name} and ${e.target.value} inside inputChange function`)
-//         const updatedTickets = ticketData.map(ticket => {
-//             if (ticket.id === ticketID) {
-//                 return { ...ticket, [name]: value === 'true'};
-//             }
-//             return ticket;
-//         });
-//         setTicketData(updatedTickets);
-//     }
-
-//     const handleCategoryChange = (e, ticketID) => {
-//         const { name, value } = e.target;
-//         const updatedTickets = ticketData.map(ticket => {
-//             if (ticket.id === ticketID) {
-//                 return { ...ticket, [name]: value };
-//             }
-//             return ticket;
-//         });
-//         setTicketData(updatedTickets);
-//     }
-
-//     const handleSubmit = async (ticketID) => {
-//         const ticketToUpdate = ticketData.find(ticket => ticket.id === ticketID);
-//         if (ticketToUpdate) {
-//             try {
-//                 const { error } = await supabase
-//                     .from('taskissue')
-//                     .update({
-//                         category: ticketToUpdate.category,
-//                         remote: ticketToUpdate.remote,
-//                     })
-//                     .eq('id', ticketID);
-
-//                 if (error) throw error;
-
-//                 console.log('Update successful for ticket ID:', ticketID);
-//             } catch (error) {
-//                 console.error('Error updating ticket:', error.message);
-//             }
-//         }
-//     };
-    
-//     return (
-//         <>
-//             {ticketData.map((ticket) => ( 
-//                 <React.Fragment key={ticket.id}>
-//                     <tr id={ticket.id} className='table-ticket-data'>
-//                         <td className='customer'>{ticket.customerName}</td>
-//                         <td className='location'>{ticket.location}</td>
-//                         <td className='remote'>
-//                             <select
-//                                 name='remote'
-//                                 value={ticket.remote === null ? '' : ticket.remote}
-//                                 onChange={(e) => handleInputChange(e, ticket.id)}
-//                                 required
-//                             >
-//                                 <option value={''}>{''}</option>
-//                                 <option value={true}>{'Y'}</option>
-//                                 <option value={false}>{'N'}</option>
-//                             </select>
-//                         </td>
-//                         <td className='category'>
-//                             <select
-//                                 name='category'
-//                                 value={ticket.category === null ? '' : ticket.category}
-//                                 onChange={(e) => handleCategoryChange(e, ticket.id)}
-//                                 required
-//                             >
-//                                 <option value={''}>{''}</option>
-//                                 <option value={'Hardware'}>{'Hardware'}</option>
-//                                 <option value={'Software'}>{'Software'}</option>
-//                                 <option value={'Security'}>{'Security'}</option>
-//                                 <option value={'Miscellaneous'}>{'Miscellaneous'}</option>
-//                             </select>
-//                         </td>
-//                         <td className='description'>{ticket.description}</td>
-//                         <td className='assign'>
-//                             <input type='button' value='Submit' onClick={() => handleSubmit(ticket.id)}></input>
-//                         </td>
-//                     </tr>
-//                 </React.Fragment>               
-//                 ))}
-//         </>
-//     )
-// }
-
-// export default TicketData
+export default EmployeeData;
