@@ -7,16 +7,16 @@
   }
   .siteTopbar{
     height: 50px;
-    justify-content: center;
     padding-top: 10px;
     padding-left: 10px;
+    display: flex;
+    flex-direction: row;
   }
   .toggle-input {
     opacity: 0;
     width: 0;
     height: 0;
   }
-    
   .toggle-slider {
     position: absolute;
     cursor: pointer;
@@ -28,11 +28,9 @@
     transition: 0.4s;
     border-radius: 34px;
   }
-  
   .toggle-input:checked + .toggle-slider {
-    background-color: #58405e; /* Toggle color in night mode */
+    background-color: #b46011; /* Toggle color in night mode */
   }
-  
   .toggle-slider:before {
     position: absolute;
     content: '';
@@ -44,10 +42,47 @@
     transition: 0.4s;
     border-radius: 50%;
   }
-  
   .toggle-input:checked + .toggle-slider:before {
     transform: translateX(26px);
   }
+
+  .backButtonContainer{
+    width: 60px;
+    height: 34px;
+    margin-left: 10px;
+  }
+  .backButtonBG button{
+    height: 34px;
+    width: 60px;
+    color: white;
+    background-color: #4b0000;
+    border: none;
+  }
+    .backButtonBG button:hover{
+      cursor: pointer;
+      color: #4b0000;
+      background-color: white;
+    }
+  .homeButtonContainer{
+    width: 60px;
+    height: 34px;
+    margin-left: 10px;
+  }
+  .homeButtonBG button{
+    height: 34px;
+    width: 60px;
+    color: white;
+    background-color: #b46011;
+    border: none;
+  }
+    .homeButtonBG button:hover{
+      cursor: pointer;
+      color: #b46011;
+      background-color: white;
+    }
+
+
+
   .body-nm{
     background-color: #313131;
   }
