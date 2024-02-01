@@ -39,10 +39,7 @@ function Landing(){
     
         fetchUserRole();
     }, [currentUser, supabase]);
-    console.log(role)
     
-
-
     const navigate = useNavigate()
 
     const handleEmployeeSubmit = () => {
