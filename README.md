@@ -28,13 +28,20 @@ The Truble App is a ticket management system featuring distinct portals for admi
 4. Create a `.env` file and add your Supabase key.
 
 ## Usage
-The Truble App allows users to efficiently add and delete tickets within the system. It's designed to cater to different user roles, including administrators, technicians, and employees, each with their dedicated portal for specific functionalities.
+The Truble App enhances maintenance management within organizations through a user-friendly ticketing system. It's designed with distinct portals for different user roles, improving the efficiency and effectiveness of handling maintenance requests.
+
+- **Administrators**: Gain an overview of all maintenance activities, manage user roles and ticket assignments, and access analytical tools for insights into maintenance trends.
+- **Technicians**: View and manage maintenance tickets, communicate with employees through a real-time chat feature, and update ticket statuses as they progress.
+- **Employees**: Easily report maintenance issues by creating detailed tickets, include location-specific information, and track the progress of their submitted tickets.
 
 ## Features
-- **Ticket Management**: Create, view, update, and delete tickets.
-- **Role-Based Access**: Different portals for administrators, technicians, and employees.
-- **Real-Time Updates**: Live updates for ticket statuses and changes.
-- **Supabase Integration**: Leveraging Supabase for database management and real-time functionality.
+- **Ticket Management**: Enables creation, viewing, updating, and deletion of tickets in an organized manner.
+- **Role-Based Portals**: Custom portals for administrators, technicians, and employees, each tailored to their specific needs.
+- **Real-Time Chat**: Facilitates direct communication between employees and technicians for efficient resolution of maintenance issues.
+- **Location and Department Tagging**: Allows for precise categorization of tickets based on location and department.
+- **Supabase Integration**: Leverages Supabase for advanced database management and real-time functionality.
+- **User and Role Management**: Administrators can efficiently manage user roles and assign specific tasks and locations.
+
 
 ## Dependencies
 - React (`react`)
