@@ -31,10 +31,13 @@ const TicketCreation = () => {
     }))
 
     const [showForm, setShowForm] = useState(false);
+    
     // tickets in the Outstanding Ticket Status area
     const [pendingTickets, setPendingTickets] = useState([]);
+
     // state to select ticket by click
     const [selectedTicketIndex, setSelectedTicketIndex] = useState(false)
+
     // function to change state of form to show form or new issue button
     const handleNewIssue = () => { setShowForm(true); }
     const handleCloseForm = () => { setShowForm(false); }
@@ -114,8 +117,17 @@ const TicketCreation = () => {
 
     // Delete Ticket from table and database when delete button is clicked
     const handleDeleteTicket = async (index) => {
+        if(index < 0 || index >= pendingTickets.length){
+            console.error('Invailid index for deleting ticket.')
+            return
+        }
 
-        const ticketIdToDelete = pendingTickets[index].id;
+        const ticketIdToDelete = pendingTickets[index].id
+
+        if (!ticketIdToDelete) {
+            console.error('Invalid ticket ID for deleting ticket.')
+            return
+        }
     
         try {
 

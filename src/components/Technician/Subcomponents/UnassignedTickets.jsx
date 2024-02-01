@@ -1,12 +1,10 @@
 import { useState } from 'react'
-import AssignedData from './AssignedData'
-import { useSupabase } from '../../SupabaseContext';
-import '../Nightmode/NightModeToggle.css';
-import { useNightMode } from '../Nightmode/NightModeContext.jsx';
+import UnassignedData from './UnassignedData'
+import '../../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
-const AssignedTickets = ({ assignedData, setAssignedData }) => {
+const UnassignedTickets = ({ ticketData, setTicketData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
-    const supabase = useSupabase()
     const { isNightMode } = useNightMode();
     const sortData = (key) => {
         let direction = 'ascending';
@@ -17,7 +15,7 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
 
         console.log(`${key} and ${direction} is clicked`);
 
-        const sortedData = [...assignedData].sort((a, b) => {
+        const sortedData = [...ticketData].sort((a, b) => {
             if (a[key] < b[key]) {
                 return direction === 'ascending' ? -1 : 1;
             }
@@ -26,13 +24,13 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
             }
             return 0;
         });
-        setAssignedData(sortedData);
+        setTicketData(sortedData);
     }
 
     return (
         <>
-            <table className='table-ticket'>
-                <thead className='table-ticket'>
+            <table className={'table-ticket' + (isNightMode ? '-nm' : '')}>
+                <thead className={'table-ticket' + (isNightMode ? '-nm' : '')}>
                     <tr className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
@@ -52,13 +50,13 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
                             assignedTech={ticket.assigned_tech}
                             description={ticket.description} />
                     ))} */}
-                    <AssignedData 
-                        assignedData={assignedData}
-                        setAssignedData={setAssignedData} />
+                    <UnassignedData 
+                        ticketData={ticketData}
+                        setTicketData={setTicketData} />
                 </tbody>
             </table>
         </>
     )
 }
 
-export default AssignedTickets
+export default UnassignedTickets
