@@ -69,7 +69,7 @@ function Landing(){
         return <div className={'loading' + (isNightMode ? '-nm' : '')}>Loading...</div>;
     }
 
-    if (role == '') {
+    if (role == null) {
         return <div className={'loading' + (isNightMode ? '-nm' : '')}>Please Log In</div>;
     }
 
