@@ -57,11 +57,11 @@ const Administrator =({}) => {
                     </div>
                 </div>
             </div>
-            <div className="linkContainer">
+            {/* <div className="linkContainer">
                 <Link to='/landing'>Back</Link>
                 <br/>
                 <Link to='/'>Logout</Link>
-            </div>
+            </div> */}
         </>
     )
 }

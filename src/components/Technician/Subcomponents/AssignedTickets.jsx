@@ -6,8 +6,10 @@ import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
 const AssignedTickets = ({ assignedData, setAssignedData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
-    const supabase = useSupabase()
+    const supabase = useSupabase();
+
     const { isNightMode } = useNightMode();
+
     const sortData = (key) => {
         let direction = 'ascending';
         if (sortConfig && sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -39,13 +41,14 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>
                         <th id='category-header' className='header' onClick={() => sortData('category')}>{'Category'}</th>
                         <th id='description-header' className='header' onClick={() => sortData('description')}>{'Description'}</th>
-                        <th id='assign-header' className='header'>{'Assign'}</th>
+                        <th id='assign-header' className='header'>{'Reassign'}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <AssignedData 
                         assignedData={assignedData}
-                        setAssignedData={setAssignedData} />
+                        setAssignedData={setAssignedData}
+                         />
                 </tbody>
             </table>
         </>

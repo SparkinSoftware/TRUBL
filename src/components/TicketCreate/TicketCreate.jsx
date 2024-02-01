@@ -268,7 +268,7 @@ const TicketCreation = () => {
                 <button onClick={handleNewIssue} className={"ticketBtn" + (isNightMode ? '-nm' : '')}>New Issue</button>
                 </>
             )}
-            <div id={"ticketLinkContainer" + (isNightMode ? '-nm' : '')}>
+            {/* <div id={"ticketLinkContainer" + (isNightMode ? '-nm' : '')}>
                 <Link to='/landing'>Back</Link>
                 <br />
                 <Link to='/login'>Logout</Link>
@@ -278,7 +278,7 @@ const TicketCreation = () => {
                         <Link to='/administrator'>Administrator</Link>
                     </>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }
