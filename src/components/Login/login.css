@@ -3,17 +3,18 @@
     height: 100%;
     align-items: center;
     display: flex;
-    /* background-color: #F5f5f5; */
+
     margin-top: 5vh;
     font-family: 'Jost', sans-serif;
     justify-content: center;
 }
 /* Login Page Styling */
+
 .loginContainer{
     display: flex;
     flex-direction: column;
     background-color: #f5f4f2;
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    /* box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10); */
     width: 511px;
     height: 634px; 
     justify-content: center;
@@ -25,6 +26,18 @@
         min-width: 300px;
     }
 }
+.night-mode .loginContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #313131;
+    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+    width: 511px;
+    height: 634px; 
+    justify-content: center;
+    align-items: center;
+}
+
+
 .loginLogo{
     color: white;
     width: 100%;
@@ -36,7 +49,7 @@
 }
 .loginLogo h1{
     font-size: 5rem;
-    color: #313131;
+    color: #b46011;
     height: 100%;
 }
 .loginFieldContainer{
@@ -56,7 +69,7 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-
+    
 }
 .loginFields button{
     width: 25%;
@@ -75,16 +88,19 @@
     margin: 0;
     font-size: 2rem;
     padding-top: 4%;
+    color:#796d5c;
 }
 .loginErrorContainer{
     padding-bottom: 5%;
 }
+
+
 .loginForm{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 65%;
-    background-color: #ebeae3;
+    background-color:#ebeae3;
     align-items: center;
     justify-content: center;
 }
@@ -98,6 +114,30 @@
 .loginForm input::placeholder{
     font-style: italic;
 }
+.loginForm-nm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 65%;
+    /* background-color:#ebeae3; */
+    align-items: center;
+    justify-content: center;
+}
+.loginForm-nm input{
+    font-family: 'Jost', sans-serif;
+    padding-left: 5%;
+    width: 75%;
+    height: 15%;
+    margin-bottom: 10%;
+    background-color: #8f8f8f;
+    color: white;
+}
+.loginForm-nm input::placeholder{
+    font-style: italic;
+}
+
+
+
 #username{
     width: 86%;
     height: 20%;
@@ -120,12 +160,12 @@
 }
 
 .loginRegisterLink{
-    color: blue;
+    color: #e78f29;
     margin-top: 2.5%;
     cursor: pointer;
 }
 .loginRegisterLink:hover{
-    color: purple;
+    color: rgb(255, 255, 255);
 }
 
 .loginSubmit{
@@ -139,7 +179,6 @@
 }
 /* Registration Styling */
 .loginRegFields{
-    
     background-color: #ebeae3;;
     height: 75%;
     display: flex;
@@ -147,6 +186,7 @@
     width: 85%;
     margin-bottom: 5%;
 }
+
 .loginRegLabel{
     display: flex;
     height: 10%;
@@ -154,7 +194,19 @@
     text-align: center;
     justify-content: center;
     font-size: 1.5rem;
+    color:#796d5c;
 }
+.loginRegLabel-nm{
+    display: flex;
+    height: 10%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background-color:#313131;
+    color: white;
+}
+
 .loginRegForm{
     display: flex;
     flex-direction: column;
@@ -175,18 +227,55 @@
     padding-left: 0%;
     font-style:italic;
 }
+.loginRegForm-nm{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #313131;
+}
+.loginRegForm-nm input{
+    width: 85%;
+    height: 10%;
+    border: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    padding-left: 3%;
+    background-color: #8f8f8f;
+    color: white;
+}
+.loginRegForm-nm input::placeholder{
+    padding-left: 0%;
+    font-style:italic;
+    color: rgb(179, 179, 179);
+}
+
 
 .loginRegBackContainer{
     height: 10%;
 }
+.loginRegBackContainer-nm{
+    height: 10%;
+    background-color: #313131;
+}
 .loginRegBack{
     align-items: center;
     text-align: center;
+    color: #e78f29;
 }
-.loginRegBack:hover{
+.loginRegBack:hover, .loginRegBack-nm:hover{
     cursor: pointer;
-    color: gray;
+    color: rgb(255, 255, 255);
 }
+.loginRegBack-nm{
+    align-items: center;
+    text-align: center;
+    color: #e78f29;
+    background-color: #313131;
+}
+
 .loginRegSubmit{
     border: none;
     background-color: #b8b7b2;
@@ -196,9 +285,37 @@
     font-size: 1.2rem;
     justify-content: center;
     text-align: center;
+    color: white;
 }
 .loginRegSubmit:hover{
     background-color: rgb(244, 247, 233);
     color:#313131;
-
 }
+.loginRegSubmit-nm{
+    border: none;
+    background-color: #b8b7b2;
+    width: 25%;
+    height: 10%;
+    font-family: 'Jost', sans-serif;
+    font-size: 1.2rem;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+.loginRegSubmit-nm:hover{
+    background-color: rgb(244, 247, 233);
+    color:#313131;
+}
+
+
+.night-mode .loginContainer{
+        display: flex;
+        flex-direction: column;
+        background-color: #313131;
+        box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.10);
+        width: 511px;
+        height: 634px; 
+        justify-content: center;
+        align-items: center;
+}
+

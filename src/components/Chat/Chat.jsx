@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSupabase } from "../../SupabaseContext";
 import "./Chat.css";
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const Chat = ({ticketId}) => {
   const supabase = useSupabase();
@@ -8,6 +10,7 @@ const Chat = ({ticketId}) => {
   const [newMessage, setNewMessage] = useState("");
   const [showChat, setShowChat] = useState(false);
   const chatboxRef = useRef(null);
+  const { isNightMode } = useNightMode();
 
   const handleNewMessage = async (payload) => {
     try {
@@ -120,20 +123,20 @@ const Chat = ({ticketId}) => {
               toggleChat();
               scrollToBottom();
             }}
-            className="chat-toggle-button"
+            className={"chat-toggle-button" + (isNightMode ? '-nm' : '')}
           ></button>
           {showChat && (
-            <div className="Chatbox" ref={chatboxRef}>
-              <ul className="message-list">
+            <div className={"Chatbox" + (isNightMode ? '-nm' : '')} ref={chatboxRef}>
+              <ul className={"message-list" + (isNightMode ? '-nm' : '')}>
                 {messages.map((message) => (
-                  <li className="chatlist" key={message.id}>
+                  <li className={"chatlist" + (isNightMode ? '-nm' : '')} key={message.id}>
                     <strong>{message.employee.name}:</strong> {message.text}
                   </li>
                 ))}
               </ul>
-              <form onSubmit={handleSubmit} className="chat-form">
+              <form onSubmit={handleSubmit} className={"chat-form" + (isNightMode ? '-nm' : '')}>
                 <input
-                  className="chat-input"
+                  className={"chat-input" + (isNightMode ? '-nm' : '')}
                   type="text"
                   value={newMessage}
                   onChange={(e) => setNewMessage(e.target.value)}
