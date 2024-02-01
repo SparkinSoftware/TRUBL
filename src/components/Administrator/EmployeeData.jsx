@@ -3,7 +3,6 @@ import { useSupabase } from '../../SupabaseContext';
 
 const EmployeeData = ({ id, name, location, role, skill }) => {
     const supabase = useSupabase();
-    console.log(id);
     const [updatedLocation, setUpdatedLocation] = useState(location);
     const [updatedSkill, setUpdatedSkill] = useState(skill);
     const [updatedRole, setUpdatedRole] = useState(role);
@@ -45,9 +44,23 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
     }
 
     const handleDelete = async () => {
-        console.log('delete: ', id);
+        try {
+            const { data, error } = await supabase
+                .from('employee')
+                .delete()
+                .eq('id', id);
+    
+            if (error) {
+                console.error('Error deleting employee:', error.message);
+                return;
+            }
+    
+            console.log('Delete successful for employee ID:', id);
+        } catch (error) {
+            console.error('Error deleting employee:', error.message);
+        }
     }
-
+    
     return (
         <>
             <tr>
@@ -77,6 +90,7 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
                     {/* Role Column */}
                     { editMode ? (
                         <select
+                            name='role'
                             value={updatedRole}
                             onChange={handleRoleChange}
                         >
@@ -101,7 +115,8 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
                         value={updatedSkill}
                         onChange={handleSkillChange}
                     >
-                        <option value="null">Assign Skill</option>
+                        <option value="">Assign Skill</option>
+                        <option value="Admin">Admin</option>
                         <option value="Hardware">Hardware</option>
                         <option value="IT">IT</option>
                         <option value="Security">Security</option>
@@ -113,7 +128,7 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
                     
                 </td>
 
-                <td>
+                <td className='action'>
                     {/* Action buttons */}
                     {editMode ? (
                         <>
@@ -123,8 +138,8 @@ const EmployeeData = ({ id, name, location, role, skill }) => {
                         
                     ) : (
                         <>
-                            <button className='actionBtn' onClick={() => setEditMode(true)}>Edit</button>
-                            <button className='actionBtn' onClick={handleDelete}>Delete</button>
+                            <button className='actionBtn' id='editBtn' onClick={() => setEditMode(true)}>Edit</button>
+                            <button className='actionBtn' id='deleteBtn' onClick={handleDelete}>Delete</button>
                         </>
                     )}
                 </td>
