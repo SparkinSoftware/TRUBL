@@ -5,8 +5,11 @@ import addFilter from '../assets/symbol_filter.svg'
 import './administrator.css'
 import TableEmployee from './TableEmployee'
 import { useSupabase } from '../../SupabaseContext'
+import '../Nightmode/NightModeToggle.css';
+import { useNightMode } from '../Nightmode/NightModeContext.jsx';
 
 const Administrator =({}) => {
+    const { isNightMode } = useNightMode();
     const supabase = useSupabase();
     const [ employeeData, setEmployeeData ] = useState([]);
 
@@ -32,18 +35,18 @@ const Administrator =({}) => {
     return (
         <>
             <div className='administrator-container'>
-                <div className='administrator-employees-view'>
-                    <div className='administrator-title'>{`Administrator Portal`}</div>
-                    <div className='administrator-outer-container'>
-                        <div className='administrator-menu-container'>
-                            <div className='administrator-employee-form'>
+                <div className={'administrator-employees-view' + (isNightMode ? '-nm' : '')}>
+                    <div className={'administrator-title' + (isNightMode ? '-nm' : '')}>{`Administrator Portal`}</div>
+                    <div className={'administrator-outer-container' + (isNightMode ? '-nm' : '')}>
+                        <div className={'administrator-menu-container' + (isNightMode ? '-nm' : '')}>
+                            <div className={'administrator-employee-form' + (isNightMode ? '-nm' : '')}>
                                 <img src={addSymbol} className='administrator-symbol' alt='Add' />                            
                             </div>
-                            <div className='administrator-employee-filter'>
+                            <div className={'administrator-employee-filter' + (isNightMode ? '-nm' : '')}>
                                 <img src={addFilter} className='administrator-symbol' alt='Filter' />                            
                             </div>
                         </div>
-                        <div className='administrator-inner-container'>
+                        <div className={'administrator-inner-container' + (isNightMode ? '-nm' : '')}>
                             {/* FIXME: EmployeesView Component goes here */}
                             <TableEmployee 
                                 employeeData={employeeData}
