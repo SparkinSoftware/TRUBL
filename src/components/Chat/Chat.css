@@ -55,6 +55,7 @@
     padding: 1%;
     background-color: #fff;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .chat-input {
@@ -98,3 +99,106 @@
         height: 90vh;
     }
 }
+
+.chat-toggle-button-nm {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color:black;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.chat-toggle-button-nm:hover {
+    background-color: #818589;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+
+.chat-toggle-button-nm:before {
+    content: '\1F4AC';
+}
+
+.Chatbox-nm {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42vw;
+    height: 80vh;
+    z-index: 1001;
+    background-color: #313131;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0px 0px 30px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    cursor: auto
+}
+
+.chat-form-nm {
+    position: relative;
+    bottom: 0;
+    width: 99%;
+    display: flex;
+    align-items: center;
+    padding: 1%;
+    background-color: #252525;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.chat-input-nm {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #313131;
+    color: #ccc;
+}
+
+.chat-input-nm::placeholder {
+    color: #ccc;
+}
+
+.Chatbox-nm button {
+    background-color: #b46011;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Chatbox-nm button:hover {
+    background-color: #8a4b0d;
+}
+
+.message-list-nm {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.chatlist-nm {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+    color: #ccc;
+}
+
