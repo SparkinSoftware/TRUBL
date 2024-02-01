@@ -30,19 +30,13 @@ function Landing(){
                     console.error('Error fetching role:', error);
                 } else if (data) {
                     setRole(data.role);
-                }else{
-                    setIsLoading(false);
                 }
-                setIsLoading(false);
             }
         };
     
         fetchUserRole();
     }, [currentUser, supabase]);
-    console.log(role)
     
-
-
     const navigate = useNavigate()
 
     const handleEmployeeSubmit = () => {
@@ -60,10 +54,10 @@ function Landing(){
         navigate('/administrator');
       };
 
-    //   useEffect(() => {
-    //     let timer = setTimeout(() => setIsLoading(false), 500);
-    //     return () => clearTimeout(timer);
-    //   })
+      useEffect(() => {
+        let timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
+      })
 
       if (isLoading) {
         return <div className={'loading' + (isNightMode ? '-nm' : '')}>Loading...</div>;
