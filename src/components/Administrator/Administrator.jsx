@@ -25,9 +25,7 @@ const Administrator =({}) => {
         };
 
         fetchEmployeeData();
-    }, []);
-
-    console.log(employeeData);
+    }, [supabase]);
 
     return (
         <>
@@ -47,7 +45,8 @@ const Administrator =({}) => {
                             {/* FIXME: EmployeesView Component goes here */}
                             <TableEmployee 
                                 employeeData={employeeData}
-                                setEmployeeData={setEmployeeData} />
+                                setEmployeeData={setEmployeeData}
+                            />
                         </div>
                     </div>
                 </div>
