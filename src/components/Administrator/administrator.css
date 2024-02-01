@@ -112,3 +112,47 @@ html, body{
     background-color: #313131;
     color: #fff;
 }
+
+.actionBtn {
+    padding: 1px 4px;
+    background-color: white;
+    color: #313131;
+    border: none;
+    border-radius: 5px;
+    margin: 0 4px 2px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+#deleteBtn:hover {
+    background-color: #ba0603;
+    color: whitesmoke;
+}
+
+#deleteBtn:active {
+    background-color: #830503;
+    color: whitesmoke;
+}
+
+#editBtn:hover {
+    background-color: #eae022;
+}
+
+#editBtn:active {
+    background-color: #bbb318;
+}
+
+select {
+    cursor: pointer;
+    color: #313131;
+    font-size: 1.1rem;
+    width: 100%;
+    height: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
