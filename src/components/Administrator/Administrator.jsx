@@ -30,7 +30,7 @@ const Administrator =({}) => {
         };
 
         fetchEmployeeData();
-    }, [supabase]);
+    }, [supabase, employeeData]);
 
 
     return (
@@ -39,14 +39,14 @@ const Administrator =({}) => {
                 <div className={'administrator-employees-view' + (isNightMode ? '-nm' : '')}>
                     <div className={'administrator-title' + (isNightMode ? '-nm' : '')}>{`Administrator Portal`}</div>
                     <div className={'administrator-outer-container' + (isNightMode ? '-nm' : '')}>
-                        <div className={'administrator-menu-container' + (isNightMode ? '-nm' : '')}>
+                        {/* <div className={'administrator-menu-container' + (isNightMode ? '-nm' : '')}>
                             <div className={'administrator-employee-form' + (isNightMode ? '-nm' : '')}>
                                 <img src={addSymbol} className='administrator-symbol' alt='Add' />                            
                             </div>
                             <div className={'administrator-employee-filter' + (isNightMode ? '-nm' : '')}>
                                 <img src={addFilter} className='administrator-symbol' alt='Filter' />                            
                             </div>
-                        </div>
+                        </div> */}
                         <div className={'administrator-inner-container' + (isNightMode ? '-nm' : '')}>
                             {/* FIXME: EmployeesView Component goes here */}
                             <TableEmployee 
