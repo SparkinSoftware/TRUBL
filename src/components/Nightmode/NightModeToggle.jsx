@@ -6,8 +6,8 @@ import { Link, useLocation } from 'react-router-dom'
 const NightModeToggle = () => {
   const { toggleNightMode } = useNightMode();
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login'
-  const isHomePage = location.pathname === '/landing'
+  const isLoginPage = location.pathname === '/login' 
+  const isHomePage = location.pathname === '/landing' 
   return (
     <div className="siteTopbar">
       <label className="toggle-label">
@@ -23,6 +23,8 @@ const NightModeToggle = () => {
             </Link>
           </div>
         </label>
+      </>
+      )}
         {!isHomePage && (
           <label className="homeButtonContainer">
             <div className="homeButtonBG">
@@ -31,8 +33,6 @@ const NightModeToggle = () => {
               </Link>
             </div>
           </label>
-      )}
-      </>
       )}
     </div>
   );
