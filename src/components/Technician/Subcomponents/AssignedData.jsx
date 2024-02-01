@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-//import TechnicianList from './TechnicianList';
 import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';

@@ -3,13 +3,10 @@ import AssignedData from './AssignedData'
 import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
-import Chat from '../../Chat/Chat'
 
 const AssignedTickets = ({ assignedData, setAssignedData }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
-    const [ showChat, setShowChat ] = useState(false);
     const supabase = useSupabase();
-    const [selectedAssignedTicket, setSelectedAssignedTicket] = useState(false)
 
     const { isNightMode } = useNightMode();
 
@@ -33,13 +30,6 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
         });
         setAssignedData(sortedData);
     }
-
-    const handleRowClick = (ticket) => {
-        setSelectedTicket(ticket);
-        setShowChat(true);
-    }
-
-    
 
     return (
         <>
