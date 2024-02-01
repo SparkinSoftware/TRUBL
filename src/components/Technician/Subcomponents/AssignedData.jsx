@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-//import TechnicianList from './TechnicianList';
 import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
+import Chat from '../../Chat/Chat.jsx';
 
 const AssignedData =({ assignedData, setAssignedData }) => {
     const { isNightMode } = useNightMode();
     const supabase = useSupabase();
     const [ employees, setEmployees ] = useState([]);
+    const [ expandedTicket, setExpandedTicket ] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,12 +81,18 @@ const AssignedData =({ assignedData, setAssignedData }) => {
             }
         }
     };
+
+    const handleTicketClick = (ticketId) => {
+        setExpandedTicket(expandedTicket === ticketId ? null : ticketId);
+    };
     
     return (
         <>
             {assignedData.map((ticket) => ( 
                 <React.Fragment key={ticket.id}>
-                    <tr id={ticket.id} className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
+                    <tr id={ticket.id} 
+                        className={'table-ticket-data' + (isNightMode ? '-nm' : '')}
+                        onClick={() => handleTicketClick(ticket.id)}>
                         <td className='customer'>{ticket.customerName}</td>
                         <td className='location'>{ticket.location}</td>
                         <td className='remote'>
@@ -119,6 +126,14 @@ const AssignedData =({ assignedData, setAssignedData }) => {
                             <input type='button' value='Submit' onClick={() => handleSubmit(ticket.id)}></input>
                         </td>
                     </tr>
+                    {expandedTicket === ticket.id && (
+                        <tr id={ticket.id} className='expandedRowContainer'>
+                            <td colSpan='6'>
+                                <div className={"fullDescription" + (isNightMode ? '-nm' : '')}>&nbsp;<span className="ticketDescClose" onClick={() => setTicketClick(null)}>X</span>  &nbsp;<span className="ticketDownArrow">↳</span>&nbsp; {ticket.description}</div>
+                            </td>
+                            <Chat ticketId={ticket.id} />
+                        </tr>
+                    )}
                 </React.Fragment>               
                 ))}
         </>
