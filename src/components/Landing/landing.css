@@ -123,3 +123,52 @@
     user-select: none;
 }
 
+.loading {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8a4b0d;
+    font-size: 3rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    width: 100%;
+    height: 650px;
+    backdrop-filter: blur(5px);
+    animation: fadeInOut 1.5s ease-in-out infinite;
+}
+
+.loading-nm {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8a4b0d;
+    font-size: 3rem;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+    user-select: none;
+    width: 100%;
+    height: 650px;
+    backdrop-filter: blur(5px);
+    animation: fadeInOut 1.5s ease-in-out infinite;
+    background-color: #1A1A1A;
+}
+
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+
+
+
+
