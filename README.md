@@ -69,6 +69,9 @@ Examples of usage are depicted in various component files, demonstrating how dif
 - Noah Morrison
 - Ryan Patino
 
+
+# TRUBL App Screen Shots
+
 - Login Page
   
 ![Screen Shot 2024-02-02 at 10 47 46 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/c3530856-29be-402b-b244-33c9f7ceac12)
