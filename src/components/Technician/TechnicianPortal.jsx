@@ -15,6 +15,7 @@ const TechnicianPortal =({}) => {
     const [ currentUser, setCurrentUser ] = useState('Guest');
     const [ userId, setUserId ] = useState(null);
     const [ employeeLocation, setEmployeeLocation ] = useState(null);
+    const [ submitRefresh, setSubmitRefresh ] = useState(0)
 
     useEffect(() => {
         supabase.auth.getUser().then(user => {
@@ -50,7 +51,7 @@ const TechnicianPortal =({}) => {
             }
         };
         fetchTicketData();
-    }, []);
+    }, [submitRefresh]);
 
     // Fetch unassigned ticket data
     useEffect(() => {
@@ -73,7 +74,9 @@ const TechnicianPortal =({}) => {
             
         };
         fetchAssignedData();
-    }, [employeeLocation]);
+    }, [employeeLocation, submitRefresh]);
+
+    const refreshUpdate = () => setSubmitRefresh(prev => prev + 1);
 
     return (
         <>
@@ -84,7 +87,8 @@ const TechnicianPortal =({}) => {
                         {/* FIXME: Tickets Component goes here (filtered)*/}
                         <UnassignedTickets
                             ticketData={ticketData}
-                            setTicketData={setTicketData} />
+                            setTicketData={setTicketData}
+                            submitRefresh={submitRefresh} />
                     </div>
                 </div>
                 <div className={'technician-assignedTickets' + (isNightMode ? '-nm' : '')}>
@@ -93,7 +97,8 @@ const TechnicianPortal =({}) => {
                         {/* FIXME: Tickets Component goes here (filtered by location matching the current user)*/}
                         <AssignedTickets
                             assignedData={assignedData}
-                            setAssignedData={setAssignedData} />
+                            setAssignedData={setAssignedData}
+                            refreshUpdate={refreshUpdate} />
                     </div>
                 </div>
             </div>

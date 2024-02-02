@@ -4,7 +4,7 @@ import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 import Chat from '../../Chat/Chat.jsx';
 
-const AssignedData =({ assignedData, setAssignedData }) => {
+const AssignedData =({ assignedData, setAssignedData, refreshUpdate }) => {
     const { isNightMode } = useNightMode();
     const supabase = useSupabase();
     const [ employees, setEmployees ] = useState([]);
@@ -58,7 +58,6 @@ const AssignedData =({ assignedData, setAssignedData }) => {
             }
             return ticket;
         });
-        setAssignedData(updatedTickets);
     }
 
     const handleSubmit = async (ticketID) => {
@@ -81,6 +80,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
                 console.error('Error updating ticket:', error.message);
             }
         }
+        refreshUpdate();
     };
 
     const handleTicketClick = (ticketId) => {
@@ -89,7 +89,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
     
     return (
         <>
-            {assignedData.filter(ticket => ticket.status !== 'Closed').map((ticket) => (
+            {assignedData.filter(ticket => ticket.status === 'Open').map((ticket) => (
                 <React.Fragment key={ticket.id}>
                     <tr id={ticket.id} 
                         className={'table-ticket-data' + (isNightMode ? '-nm' : '')}

@@ -4,7 +4,7 @@ import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
-const AssignedTickets = ({ assignedData, setAssignedData }) => {
+const AssignedTickets = ({ assignedData, setAssignedData, refreshUpdate }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
     const supabase = useSupabase();
 
@@ -49,6 +49,7 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
                     <AssignedData 
                         assignedData={assignedData}
                         setAssignedData={setAssignedData}
+                        refreshUpdate={refreshUpdate}
                          />
                 </tbody>
             </table>

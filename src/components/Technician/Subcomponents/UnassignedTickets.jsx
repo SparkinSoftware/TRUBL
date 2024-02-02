@@ -3,7 +3,7 @@ import UnassignedData from './UnassignedData'
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
-const UnassignedTickets = ({ ticketData, setTicketData }) => {
+const UnassignedTickets = ({ ticketData, setTicketData, refreshUpdate }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
     const { isNightMode } = useNightMode();
     const sortData = (key) => {
@@ -43,7 +43,8 @@ const UnassignedTickets = ({ ticketData, setTicketData }) => {
                 <tbody>
                     <UnassignedData 
                         ticketData={ticketData}
-                        setTicketData={setTicketData} />
+                        setTicketData={setTicketData}
+                        refreshUpdate={refreshUpdate} />
                 </tbody>
             </table>
         </>
