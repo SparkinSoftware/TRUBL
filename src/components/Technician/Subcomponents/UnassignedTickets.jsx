@@ -29,8 +29,8 @@ const UnassignedTickets = ({ ticketData, setTicketData }) => {
 
     return (
         <>
-            <table className={'table-ticket' + (isNightMode ? '-nm' : '')}>
-                <thead className={'table-ticket' + (isNightMode ? '-nm' : '')}>
+            <table className={'table-ticket'}>
+                <thead className={'table-ticket'}>
                     <tr className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
@@ -41,15 +41,6 @@ const UnassignedTickets = ({ ticketData, setTicketData }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {ticketData.map((ticket) => (
-                        <TicketData 
-                            key={ticket.id}
-                            customer={ticket.customer}
-                            location={ticket.location}
-                            remote={ticket.remote}
-                            assignedTech={ticket.assigned_tech}
-                            description={ticket.description} />
-                    ))} */}
                     <UnassignedData 
                         ticketData={ticketData}
                         setTicketData={setTicketData} />

@@ -68,6 +68,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
                 const { error } = await supabase
                     .from('taskissue')
                     .update({
+                        status: ticketToUpdate.status,
                         category: ticketToUpdate.category,
                         remote: ticketToUpdate.remote,
                     })
@@ -88,11 +89,23 @@ const AssignedData =({ assignedData, setAssignedData }) => {
     
     return (
         <>
-            {assignedData.map((ticket) => ( 
+            {assignedData.filter(ticket => ticket.status !== 'Closed').map((ticket) => (
                 <React.Fragment key={ticket.id}>
                     <tr id={ticket.id} 
                         className={'table-ticket-data' + (isNightMode ? '-nm' : '')}
                         onClick={() => handleTicketClick(ticket.id)}>
+                        <td className='status'>
+                            <select
+                                name='status'
+                                value={ticket.status === null ? 'Pending' : ticket.status}
+                                onChange={(e) => handleCategoryChange(e, ticket.id)}
+                                required
+                            >
+                                <option value={'Pending'}>{'Pending'}</option>
+                                <option value={'Open'}>{'Open'}</option>
+                                <option value={'Closed'}>{'Closed'}</option>
+                            </select>
+                        </td>
                         <td className='customer'>{ticket.customerName}</td>
                         <td className='location'>{ticket.location}</td>
                         <td className='remote'>
@@ -134,7 +147,7 @@ const AssignedData =({ assignedData, setAssignedData }) => {
                             <Chat ticketId={ticket.id} />
                         </tr>
                     )}
-                </React.Fragment>               
+                </React.Fragment>             
                 ))}
         </>
     )
