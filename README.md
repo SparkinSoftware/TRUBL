@@ -96,5 +96,4 @@ Examples of usage are depicted in various component files, demonstrating how dif
 
 - Employee Portal
 
-- 
 ![Screen Shot 2024-02-02 at 11 44 58 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/a8fae0ba-b820-4922-813c-0c3238798c16)
