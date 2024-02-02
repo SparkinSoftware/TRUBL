@@ -68,3 +68,33 @@ Examples of usage are depicted in various component files, demonstrating how dif
 - Colin Tolliver
 - Noah Morrison
 - Ryan Patino
+
+- Login Page
+  
+![Screen Shot 2024-02-02 at 10 47 46 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/c3530856-29be-402b-b244-33c9f7ceac12)
+
+- Landing Page for Admin and Employee
+ 
+![Screen Shot 2024-02-02 at 10 48 17 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/0abdc6b1-5b75-4187-89a4-9d7785120a6e)
+
+- Technician Page
+ 
+![Screen Shot 2024-02-02 at 10 53 45 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/69c3bf08-93dc-4838-82af-ee917204463c)
+
+- Technician Chat Page
+
+ ![Screen Shot 2024-02-02 at 10 55 03 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/0f973542-17bb-43b3-a0ec-0cac661a72a6)
+
+- Administrator Portal
+ 
+![Screen Shot 2024-02-02 at 10 56 45 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/f56d7159-8f65-4fd0-ad7a-00932fbde7d7)
+
+
+- Employeee Portal form
+
+![Screen Shot 2024-02-02 at 10 50 29 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/a60bd92f-7396-426d-a1e1-ad835e40c858)
+
+- Employee Portal
+
+- 
+![Screen Shot 2024-02-02 at 11 44 58 AM](https://github.com/SparkinSoftware/TRUBL/assets/106916823/a8fae0ba-b820-4922-813c-0c3238798c16)
