@@ -4,7 +4,7 @@ import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
-const AssignedTickets = ({ assignedData, setAssignedData }) => {
+const AssignedTickets = ({ assignedData, setAssignedData, refreshUpdate }) => {
     const [ sortConfig, setSortConfig ] = useState(null);
     const supabase = useSupabase();
 
@@ -36,18 +36,20 @@ const AssignedTickets = ({ assignedData, setAssignedData }) => {
             <table className='table-ticket'>
                 <thead className='table-ticket'>
                     <tr className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
-                        <th id='customer-header' className='header' style={{width: '8%'}} onClick={() => sortData('customer')}>{'Customer'}</th>
+                        <th id='status-header' className='header' onClick={() => sortData('status')}>{'Status'}</th>
+                        <th id='customer-header' className='header' onClick={() => sortData('customer')}>{'Customer'}</th>
                         <th id='location-header' className='header' onClick={() => sortData('location')}>{'Location'}</th>
                         <th id='remote-header' className='header' onClick={() => sortData('remote')}>{'Remote'}</th>
                         <th id='category-header' className='header' onClick={() => sortData('category')}>{'Category'}</th>
                         <th id='description-header' className='header' onClick={() => sortData('description')}>{'Description'}</th>
-                        <th id='assign-header' className='header'>{'Reassign'}</th>
+                        <th id='assign-header' className='header'>{'Update'}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <AssignedData 
                         assignedData={assignedData}
                         setAssignedData={setAssignedData}
+                        refreshUpdate={refreshUpdate}
                          />
                 </tbody>
             </table>

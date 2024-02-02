@@ -4,7 +4,7 @@ import { useSupabase } from '../../../SupabaseContext';
 import '../../Nightmode/NightModeToggle.css';
 import { useNightMode } from '../../Nightmode/NightModeContext.jsx';
 
-const UnassignedData =({ ticketData, setTicketData }) => {
+const UnassignedData =({ ticketData, setTicketData, refreshUpdate }) => {
 
 
     const { isNightMode } = useNightMode();
@@ -71,6 +71,7 @@ const UnassignedData =({ ticketData, setTicketData }) => {
                     .update({
                         category: ticketToUpdate.category,
                         remote: ticketToUpdate.remote,
+                        status: 'Open'
                     })
                     .eq('id', ticketID);
 
@@ -81,11 +82,12 @@ const UnassignedData =({ ticketData, setTicketData }) => {
                 console.error('Error updating ticket:', error.message);
             }
         }
+        refreshUpdate();
     };
     
     return (
         <>
-            {ticketData.map((ticket) => ( 
+            {ticketData.filter(ticket => ticket.status === 'Pending').map((ticket) => ( 
                 <React.Fragment key={ticket.id}>
                     <tr id={ticket.id} className={'table-ticket-data' + (isNightMode ? '-nm' : '')}>
                         <td className='customer'>{ticket.customerName}</td>

@@ -104,10 +104,11 @@
 
 .table-ticket tbody tr:hover, tr:hover td > select {
     background-color: rgb(241, 241, 212);
+    color: #313131;
 }
-.table-ticket-nm tbody tr:hover, tr:hover td > select {
+/* .table-ticket-nm tbody tr:hover, tr:hover td > select {
     background-color: rgb(179, 143, 110);
-}
+} */
 
 .table-ticket-data td {
     max-width: 10vw;
@@ -130,6 +131,7 @@
     width: 100%;
     height: 100%;
     border: none;
+    font-size: 0.8rem;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -141,6 +143,9 @@
     width: 100%;
     height: 100%;
     border: none;
+    font-size: 0.8rem;
+    background-color: #444444;
+    color: white;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -180,8 +185,4 @@
     background-color: #75757a;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-}
-
-.table-ticket-data.fullDescription {
-    background-color: yellow;
 }
