@@ -26,6 +26,7 @@ The TRUBL App is a ticket management system featuring distinct portals for admin
    ```
 3. Set up your database using `database.sql` on your own Supabase database.
 4. Create a `.env` file and add your Supabase key.
+5. Turn on Realtime for the messages table on Supabase.
 
 ## Usage
 The TRUBL App enhances maintenance management within organizations through a user-friendly ticketing system. It's designed with distinct portals for different user roles, improving the efficiency and effectiveness of handling maintenance requests.
