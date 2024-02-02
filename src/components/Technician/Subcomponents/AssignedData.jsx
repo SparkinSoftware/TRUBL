@@ -89,7 +89,7 @@ const AssignedData =({ assignedData, setAssignedData, refreshUpdate }) => {
     
     return (
         <>
-            {assignedData.filter(ticket => ticket.status === 'Open').map((ticket) => (
+            {assignedData.filter(ticket => ticket.status === 'Open' && ticket.location === 'Austin').map((ticket) => (
                 <React.Fragment key={ticket.id}>
                     <tr id={ticket.id} 
                         className={'table-ticket-data' + (isNightMode ? '-nm' : '')}
